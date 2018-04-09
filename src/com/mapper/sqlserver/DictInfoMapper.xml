@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.DictInfoMapper">
+	
+	<resultMap id="dictInfoResultMap" type="DictInfo">
+		<id column="DICTINFO_DICT_ID" property="dictId"/>
+		<result column="DICTINFO_TYPE_ID" property="typeId"/>
+		<result column="DICTINFO_DICT_CODE" property="dictCode"/>
+	    <result column="DICTINFO_DICT_NAME" property="dictName"/>
+	    <result column="DICTINFO_DICT_PINY" property="dictPiny"/>
+	    <result column="DICTINFO_DICT_DESC" property="dictDesc"/>
+	    <result column="DICTINFO_DICT_SORT" property="dictSort"/>
+	    <result column="DICTINFO_REDACT_SYMBOL" property="redactSymbol"/>
+	    <result column="DICTINFO_ENABLE_STATUS" property="enableStatus"/>
+	    <result column="DICTINFO_DELETE_STATUS" property="deleteStatus"/>
+	    <result column="DICTINFO_CREATE_USER_ID" property="createUserId"/>
+	    <result column="DICTINFO_CREATE_TIME" property="createTime"/>
+	    <result column="DICTINFO_UPDATE_USER_ID" property="updateUserId"/>
+	    <result column="DICTINFO_UPDATE_TIME" property="updateTime"/>
+	    <association property="dictType" resultMap="com.mapper.DictTypeMapper.dictTypeResultMap"/>
+	</resultMap>
+	
+	<sql id="columnsOfDictInfo">
+		dictInfo.DICT_ID AS DICTINFO_DICT_ID,
+		dictInfo.TYPE_ID AS DICTINFO_TYPE_ID,
+		dictInfo.DICT_CODE AS DICTINFO_DICT_CODE,
+		dictInfo.DICT_NAME AS DICTINFO_DICT_NAME,
+		dictInfo.DICT_PINY AS DICTINFO_DICT_PINY,
+		dictInfo.DICT_DESC AS DICTINFO_DICT_DESC,
+		dictInfo.DICT_SORT AS DICTINFO_DICT_SORT,
+		dictInfo.REDACT_SYMBOL AS DICTINFO_REDACT_SYMBOL,
+		dictInfo.ENABLE_STATUS AS DICTINFO_ENABLE_STATUS,
+		dictInfo.DELETE_STATUS AS DICTINFO_DELETE_STATUS,
+    	dictInfo.CREATE_USER_ID AS DICTINFO_CREATE_USER_ID,
+    	dictInfo.CREATE_TIME AS DICTINFO_CREATE_TIME,
+    	dictInfo.UPDATE_USER_ID AS DICTINFO_UPDATE_USER_ID,
+    	dictInfo.UPDATE_TIME AS DICTINFO_UPDATE_TIME
+	</sql>
+	
+	<!-- 保存字典基本信息  -->
+	<insert id="insert" parameterType="DictInfo">
+		INSERT INTO TS_DICT_INFO
+           (DICT_ID
+           ,TYPE_ID
+           ,DICT_CODE
+           ,DICT_NAME
+           ,DICT_PINY
+           ,DICT_DESC
+           ,DICT_SORT
+           ,REDACT_SYMBOL
+           ,ENABLE_STATUS
+           ,DELETE_STATUS
+           ,CREATE_USER_ID
+           ,CREATE_TIME
+           ,UPDATE_USER_ID
+           ,UPDATE_TIME)
+		VALUES(
+     	    #{dictId}
+     	   ,#{typeId}
+     	   ,#{dictCode}
+     	   ,#{dictName}
+     	   ,#{dictPiny}
+     	   ,#{dictDesc}
+     	   ,#{dictSort}
+     	   ,#{redactSymbol}
+     	   ,#{enableStatus}
+     	   ,#{deleteStatus}
+     	   ,#{createUserId}
+     	   ,#{createTime}
+     	   ,#{createUserId}
+     	   ,#{createTime})
+	</insert>
+	
+	<!-- 删除字典基本信息(通过字典主键)  -->
+	<delete id="deleteByDictId" parameterType="string">
+	    DELETE FROM TS_DICT_INFO
+	    WHERE DICT_ID = #{dictId}
+	</delete>
+	
+	<!-- 删除字典基本信息(通过类型主键)  -->
+	<delete id="deleteByTypeId" parameterType="string">
+	    DELETE FROM TS_DICT_INFO
+	    WHERE TYPE_ID = #{typeId}
+	</delete>
+	
+	<!-- 删除字典基本信息(通过字典编号)  -->
+	<delete id="deleteByDictCode" parameterType="string">
+	    DELETE FROM TS_DICT_INFO
+	    WHERE DICT_CODE = #{dictCode}
+	</delete>
+	
+	<!-- 删除字典基本信息(通过类型编号)  -->
+	<delete id="deleteByTypeCode" parameterType="string">
+	    
+	</delete>
+	
+	<!-- 更新字典基本信息(通过字典主键)  -->
+	<update id="updateByDictIdSelective" parameterType="DictInfo">
+		UPDATE TS_DICT_INFO
+		<set>
+			<if test="typeId != null">
+		        TYPE_ID = #{typeId},
+		    </if>
+		    <if test="dictCode != null">
+		        DICT_CODE = #{dictCode},
+		    </if>
+		    <if test="dictName != null">
+		        DICT_NAME = #{dictName},
+		    </if>
+		    <if test="dictPiny != null">
+		        DICT_PINY = #{dictPiny},
+		    </if>
+		    <if test="dictDesc != null">
+		        DICT_DESC = #{dictDesc},
+		    </if>
+		    <if test="dictSort != null">
+		        DICT_SORT = #{dictSort},
+		    </if>
+		    <if test="redactSymbol != null">
+		        REDACT_SYMBOL = #{redactSymbol},
+		    </if>
+		    <if test="enableStatus != null">
+		        ENABLE_STATUS = #{enableStatus},
+		    </if>
+		    <if test="deleteStatus != null">
+		        DELETE_STATUS = #{deleteStatus},
+		    </if>
+		    <if test="creatUserId != null">
+		        CREATE_USER_ID = #{creatUserId},
+		    </if>
+		    <if test="creatTime != null">
+		        CREATE_TIME = #{creatTime},
+		    </if>
+		    <if test="updateUserId != null">
+		        UPDATE_USER_ID = #{updateUserId},
+		    </if>
+		    <if test="updateTime != null">
+		        UPDATE_TIME = #{updateTime}
+		    </if>
+		</set>
+		<where>
+		    DICT_ID = #{dictId}
+		</where>
+	</update>
+	
+  	<!-- 查询字典基本信息  -->
+	<select id="select" parameterType="DictInfo" resultMap="dictInfoResultMap">
+		SELECT <include refid="columnsOfDictInfo"/>
+		FROM TS_DICT_INFO dictInfo
+		<where>
+		    <if test="dictId != null">
+		    	AND dictInfo.DICT_ID = #{dictId}
+		    </if>
+		    <if test="typeId != null">
+		    	AND dictInfo.TYPE_ID = #{typeId}
+		    </if>
+		    <if test="dictCode != null">
+		        AND dictInfo.DICT_CODE = #{dictCode}
+		    </if>
+		</where>
+	</select>
+	
+	<!-- 查询字典基本信息(通过类型主键) -->
+	<select id="selectByTypeId" parameterType="map" resultMap="dictInfoResultMap">
+		SELECT <include refid="columnsOfDictInfo"/>
+		FROM TS_DICT_INFO dictInfo
+		<where>
+			<if test="typeId != null">
+				AND dictInfo.TYPE_ID = #{typeId}
+			</if>
+			<if test="redactSymbol != null">
+		        AND dictInfo.REDACT_SYMBOL = #{redactSymbol}
+		    </if>
+		    <if test="enableStatus != null">
+		        AND dictInfo.ENABLE_STATUS = #{enableStatus}
+		    </if>
+		    <if test="deleteStatus != null">
+		        AND dictInfo.DELETE_STATUS = #{deleteStatus}
+		    </if>
+		</where>
+		ORDER BY dictInfo.DICT_CODE,dictInfo.DICT_SORT ASC
+	</select>
+	
+	<!-- 查询字典基本信息(通过字典主键) -->
+	<select id="selectByDictId" parameterType="map" resultMap="dictInfoResultMap">
+		SELECT <include refid="columnsOfDictInfo"/>
+		FROM TS_DICT_INFO dictInfo
+		<where>
+			<if test="dictId != null">
+				AND dictInfo.DICT_ID = #{dictId}
+			</if>
+			<if test="redactSymbol != null">
+		        AND dictInfo.REDACT_SYMBOL = #{redactSymbol}
+		    </if>
+		    <if test="enableStatus != null">
+		        AND dictInfo.ENABLE_STATUS = #{enableStatus}
+		    </if>
+		    <if test="deleteStatus != null">
+		        AND dictInfo.DELETE_STATUS = #{deleteStatus}
+		    </if>
+		</where>
+	</select>
+	
+	<!-- 查询字典基本信息(通过类型编号) -->
+	<select id="selectByTypeCode" parameterType="map" resultMap="dictInfoResultMap">
+		SELECT <include refid="columnsOfDictInfo"/>,
+			   dictType.TYPE_CODE DICTTYPE_TYPE_CODE
+		FROM TS_DICT_INFO dictInfo
+		INNER JOIN TS_DICT_TYPE dictType
+		ON dictType.TYPE_ID = dictInfo.TYPE_ID
+		<where>
+			<if test="typeCode != null">
+				AND LEFT(dictInfo.DICT_CODE, LEN(#{typeCode})) = #{typeCode}
+			</if>
+			<if test="redactSymbol != null">
+		        AND dictInfo.REDACT_SYMBOL = #{redactSymbol}
+		    </if>
+		    <if test="enableStatus != null">
+		        AND dictInfo.ENABLE_STATUS = #{enableStatus}
+		    </if>
+		    <if test="deleteStatus != null">
+		        AND dictInfo.DELETE_STATUS = #{deleteStatus}
+		    </if>
+		</where>
+		ORDER BY dictInfo.DICT_CODE,dictInfo.DICT_SORT ASC
+	</select>
+	
+	<!-- 查询字典基本信息(通过字典编号) -->
+	<select id="selectByDictCode" parameterType="map" resultMap="dictInfoResultMap">
+		SELECT <include refid="columnsOfDictInfo"/>
+		FROM TS_DICT_INFO dictInfo
+		<where>
+			<if test="dictCode != null">
+				AND dictInfo.DICT_CODE = #{dictCode}
+			</if>
+			<if test="redactSymbol != null">
+		        AND dictInfo.REDACT_SYMBOL = #{redactSymbol}
+		    </if>
+		    <if test="enableStatus != null">
+		        AND dictInfo.ENABLE_STATUS = #{enableStatus}
+		    </if>
+		    <if test="deleteStatus != null">
+		        AND dictInfo.DELETE_STATUS = #{deleteStatus}
+		    </if>
+		</where>
+	</select>
+	
+	<!-- 搜索字典信息条件 -->
+	<sql id="clauseOfSearch">
+		 <where>
+		 	<if test="dictName != null">
+		 		AND (LOWER(dictInfo.DICT_PINY) LIKE '%' + LOWER(#{dictName}) + '%'
+		 		OR dictInfo.DICT_NAME LIKE '%' + #{dictName} + '%')
+			</if>
+			<if test="typeName != null">
+		 		AND (LOWER(dictType.TYPE_PINY) LIKE '%' + LOWER(#{typeName}) + '%'
+		 		OR LOWER(dictType.TYPE_NAME) LIKE '%' + LOWER(#{typeName}) + '%')
+			</if>
+		 	<if test="redactSymbol != null">
+		        AND dictInfo.REDACT_SYMBOL = #{redactSymbol}
+		    </if>
+		    <if test="enableStatus != null">
+		        AND dictInfo.ENABLE_STATUS = #{enableStatus}
+		    </if>
+		    <if test="deleteStatus != null">
+		        AND dictInfo.DELETE_STATUS = #{deleteStatus}
+		    </if>
+		</where>
+	</sql>
+	
+	<!-- 搜索字典信息数量 -->
+	<select id="searchSize" parameterType="map" resultType="java.lang.Integer">
+		SELECT
+			COUNT(dictInfo.DICT_ID)
+		FROM
+			TS_DICT_INFO dictInfo
+		INNER JOIN
+			TS_DICT_TYPE dictType
+		ON
+			dictType.TYPE_ID = dictInfo.TYPE_ID
+		<include refid="clauseOfSearch"/>
+	</select>
+	
+	<!-- 搜索字典信息列表 -->
+	<select id="searchList" parameterType="map" resultMap="dictInfoResultMap">
+		SELECT
+			<include refid="columnsOfDictInfo"/>
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY dictType.TYPE_CODE,dictInfo.DICT_SORT ASC) AS ROWNUMBER,
+				dictType.TYPE_ID DICTTYPE_TYPE_ID,
+				dictType.TYPE_CODE DICTTYPE_TYPE_CODE,
+				dictType.TYPE_NAME DICTTYPE_TYPE_NAME,
+				dictType.TYPE_PINY DICTTYPE_TYPE_PINY,
+				dictType.TYPE_DESC DICTTYPE_TYPE_DESC,
+				dictType.TYPE_SPOT DICTTYPE_TYPE_SPOT,
+				dictType.ENABLE_STATUS DICTTYPE_ENABLE_STATUS,
+				dictType.DELETE_STATUS DICTTYPE_DELETE_STATUS
+			FROM
+				TS_DICT_INFO dictInfo
+			INNER JOIN
+				TS_DICT_TYPE dictType
+			ON
+				dictType.TYPE_ID = dictInfo.TYPE_ID
+			<include refid="clauseOfSearch"/>
+		) AS dictInfo
+		<where>
+			<if test="page != null">
+				dictInfo.ROWNUMBER BETWEEN #{page.beginIndex} + 1 AND #{page.closeIndex}
+			</if>
+		</where>
+	</select>
+</mapper>

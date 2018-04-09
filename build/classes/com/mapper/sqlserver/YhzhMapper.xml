@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.YhzhMapper">
+	<resultMap id="BaseResultMap" type="com.model.Yhzh">
+		<id column="ZHID" jdbcType="VARCHAR" property="zhid" />
+		<result column="YHID" jdbcType="VARCHAR" property="yhid" />
+		<result column="DLZH" jdbcType="VARCHAR" property="dlzh" />
+		<result column="DLMM" jdbcType="VARCHAR" property="dlmm" />
+		<result column="SYPT" jdbcType="VARCHAR" property="sypt" />
+		<result column="ZHLX" jdbcType="VARCHAR" property="zhlx" />
+		<result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+		<result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+		<result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ZHID, YHID, DLZH, DLMM, SYPT, ZHLX, ENABLE_STATUS,
+		DELETE_STATUS,
+		CREATE_TIME, CREATE_ID,
+		UPDATE_TIME, UPDATE_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_YHZH
+		where ZHID = #{zhid,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectYhzh" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_YHZH
+		<where>
+			<if test="zhid != null">
+				AND ZHID = #{zhid,jdbcType=VARCHAR}
+			</if>
+			<if test="yhid != null">
+				AND YHID = #{yhid,jdbcType=VARCHAR}
+			</if>
+			<if test="dlzh != null">
+				AND DLZH = #{dlzh,jdbcType=VARCHAR}
+			</if>
+			<if test="dlmm != null">
+				AND DLMM = #{dlmm,jdbcType=VARCHAR}
+			</if>
+			<if test="sypt != null">
+				AND SYPT = #{sypt,jdbcType=VARCHAR}
+			</if>
+			<if test="zhlx != null">
+				AND ZHLX = #{zhlx,jdbcType=VARCHAR}
+			</if>
+			<if test="enableStatus != null">
+				AND ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="deleteStatus != null">
+				AND DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test="createId != null">
+				AND CREATE_ID = #{createId,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				AND UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+			<if test="updateId != null">
+				AND UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		TB_YHZH
+		where ZHID = #{zhid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.Yhzh">
+		insert into TB_YHZH (ZHID,
+		YHID, DLZH,
+		DLMM, SYPT, ZHLX, ENABLE_STATUS,
+		DELETE_STATUS, CREATE_TIME,
+		CREATE_ID,
+		UPDATE_TIME, UPDATE_ID)
+		values (#{zhid,jdbcType=VARCHAR},
+		#{yhid,jdbcType=VARCHAR},
+		#{dlzh,jdbcType=VARCHAR},
+		#{dlmm,jdbcType=VARCHAR}, #{sypt,jdbcType=VARCHAR},
+		#{zhlx,jdbcType=VARCHAR},
+		#{enableStatus,jdbcType=VARCHAR},
+		#{deleteStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR},
+		#{updateId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.Yhzh">
+		insert into TB_YHZH
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="zhid != null">
+				ZHID,
+			</if>
+			<if test="yhid != null">
+				YHID,
+			</if>
+			<if test="dlzh != null">
+				DLZH,
+			</if>
+			<if test="dlmm != null">
+				DLMM,
+			</if>
+			<if test="sypt != null">
+				SYPT,
+			</if>
+			<if test="zhlx != null">
+				ZHLX,
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS,
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="zhid != null">
+				#{zhid,jdbcType=VARCHAR},
+			</if>
+			<if test="yhid != null">
+				#{yhid,jdbcType=VARCHAR},
+			</if>
+			<if test="dlzh != null">
+				#{dlzh,jdbcType=VARCHAR},
+			</if>
+			<if test="dlmm != null">
+				#{dlmm,jdbcType=VARCHAR},
+			</if>
+			<if test="sypt != null">
+				#{sypt,jdbcType=VARCHAR},
+			</if>
+			<if test="zhlx != null">
+				#{zhlx,jdbcType=VARCHAR},
+			</if>
+			<if test="enableStatus != null">
+				#{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				#{updateId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.Yhzh">
+		update TB_YHZH
+		<set>
+			<if test="yhid != null">
+				YHID = #{yhid,jdbcType=VARCHAR},
+			</if>
+			<if test="dlzh != null">
+				DLZH = #{dlzh,jdbcType=VARCHAR},
+			</if>
+			<if test="dlmm != null">
+				DLMM = #{dlmm,jdbcType=VARCHAR},
+			</if>
+			<if test="sypt != null">
+				SYPT = #{sypt,jdbcType=VARCHAR},
+			</if>
+			<if test="zhlx != null">
+				ZHLX = #{zhlx,jdbcType=VARCHAR},
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ZHID = #{zhid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.Yhzh">
+		update TB_YHZH
+		set
+		YHID = #{yhid,jdbcType=VARCHAR},
+		DLZH = #{dlzh,jdbcType=VARCHAR},
+		DLMM =
+		#{dlmm,jdbcType=VARCHAR},
+		SYPT = #{sypt,jdbcType=VARCHAR},
+		ZHLX =
+		#{zhlx,jdbcType=VARCHAR},
+		ENABLE_STATUS =
+		#{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS =
+		#{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=VARCHAR},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID =
+		#{updateId,jdbcType=VARCHAR}
+		where ZHID = #{zhid,jdbcType=VARCHAR}
+	</update>
+</mapper>

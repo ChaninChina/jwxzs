@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.StrwMapper">
+	<resultMap id="BaseResultMap" type="com.model.Strw">
+		<id column="RWID" jdbcType="VARCHAR" property="rwid" />
+		<result column="RWMC" jdbcType="VARCHAR" property="rwmc" />
+		<result column="QZID" jdbcType="VARCHAR" property="qzid" />
+		<result column="STID" jdbcType="VARCHAR" property="stid" />
+		<result column="MBID" jdbcType="VARCHAR" property="mbid" />
+		<result column="RWFZID" jdbcType="VARCHAR" property="rwfzid" />
+		<result column="RWLX" jdbcType="VARCHAR" property="rwlx" />
+		<result column="TXLX" jdbcType="VARCHAR" property="txlx" />
+		<result column="JLZQ_ZDZ" jdbcType="INTEGER" property="jlzqZdz" />
+		<result column="JLZQ_ZXZ" jdbcType="INTEGER" property="jlzqZxz" />
+		<result column="JLZQ_QDZ" jdbcType="INTEGER" property="jlzqQdz" />
+		<result column="JLZQLX" jdbcType="VARCHAR" property="jlzqlx" />
+		<result column="KSSJ" jdbcType="VARCHAR" property="kssj" />
+		<result column="JSSJ" jdbcType="VARCHAR" property="jssj" />
+		<result column="ZDJLS" jdbcType="BIGINT" property="zdjls" />
+		<result column="SHBZ" jdbcType="VARCHAR" property="shbz" />
+		<result column="TIME_STAMP" jdbcType="BIGINT" property="timeStamp" />
+		<result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+		<result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+		<result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+		<result column="WCZT" jdbcType="VARCHAR" property="wczt" />
+		<result column="SHZT" jdbcType="VARCHAR" property="shzt" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		RWID, RWMC, QZID, STID, MBID, RWFZID, RWLX, TXLX, JLZQ_ZDZ,
+		JLZQ_ZXZ,
+		JLZQ_QDZ, JLZQLX,
+		KSSJ, JSSJ, ZDJLS, SHBZ, TIME_STAMP =
+		CAST(TIME_STAMP AS BIGINT), ENABLE_STATUS, DELETE_STATUS,
+		CREATE_TIME,
+		CREATE_ID,
+		UPDATE_TIME, UPDATE_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_STRW
+		where RWID = #{rwid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		TB_STRW
+		where RWID = #{rwid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.Strw">
+		insert into TB_STRW (RWID,
+		RWMC, QZID,
+		STID, MBID, RWFZID,
+		RWLX, TXLX, JLZQ_ZDZ,
+		JLZQ_ZXZ, JLZQ_QDZ,
+		JLZQLX,
+		KSSJ, JSSJ, ZDJLS, SHBZ,
+		TIME_STAMP, ENABLE_STATUS,
+		DELETE_STATUS,
+		CREATE_TIME, CREATE_ID, UPDATE_TIME,
+		UPDATE_ID)
+		values
+		(#{rwid,jdbcType=VARCHAR}, #{rwmc,jdbcType=VARCHAR},
+		#{qzid,jdbcType=VARCHAR},
+		#{stid,jdbcType=VARCHAR},
+		#{mbid,jdbcType=VARCHAR}, #{rwfzid,jdbcType=VARCHAR},
+		#{rwlx,jdbcType=VARCHAR}, #{txlx,jdbcType=VARCHAR},
+		#{jlzqZdz,jdbcType=INTEGER},
+		#{jlzqZxz,jdbcType=INTEGER},
+		#{jlzqQdz,jdbcType=INTEGER}, #{jlzqlx,jdbcType=VARCHAR},
+		#{kssj,jdbcType=VARCHAR}, #{jssj,jdbcType=VARCHAR},
+		#{zdjls,jdbcType=BIGINT}, #{shbz,jdbcType=VARCHAR},
+		#{timeStamp,jdbcType=BIGINT}, #{enableStatus,jdbcType=VARCHAR},
+		#{deleteStatus,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR},
+		#{updateId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.Strw">
+		insert into TB_STRW
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="rwid != null">
+				RWID,
+			</if>
+			<if test="rwmc != null">
+				RWMC,
+			</if>
+			<if test="qzid != null">
+				QZID,
+			</if>
+			<if test="stid != null">
+				STID,
+			</if>
+			<if test="mbid != null">
+				MBID,
+			</if>
+			<if test="rwfzid != null">
+				RWFZID,
+			</if>
+			<if test="rwlx != null">
+				RWLX,
+			</if>
+			<if test="txlx != null">
+				TXLX,
+			</if>
+			<if test="jlzqZdz != null">
+				JLZQ_ZDZ,
+			</if>
+			<if test="jlzqZxz != null">
+				JLZQ_ZXZ,
+			</if>
+			<if test="jlzqQdz != null">
+				JLZQ_QDZ,
+			</if>
+			<if test="jlzqlx != null">
+				JLZQLX,
+			</if>
+			<if test="kssj != null">
+				KSSJ,
+			</if>
+			<if test="jssj != null">
+				JSSJ,
+			</if>
+			<if test="zdjls != null">
+				ZDJLS,
+			</if>
+			<if test="shbz != null">
+				SHBZ,
+			</if>
+			<if test="timeStamp != null">
+				TIME_STAMP,
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS,
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="rwid != null">
+				#{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwmc != null">
+				#{rwmc,jdbcType=VARCHAR},
+			</if>
+			<if test="qzid != null">
+				#{qzid,jdbcType=VARCHAR},
+			</if>
+			<if test="stid != null">
+				#{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="mbid != null">
+				#{mbid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwfzid != null">
+				#{rwfzid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwlx != null">
+				#{rwlx,jdbcType=VARCHAR},
+			</if>
+			<if test="txlx != null">
+				#{txlx,jdbcType=VARCHAR},
+			</if>
+			<if test="jlzqZdz != null">
+				#{jlzqZdz,jdbcType=INTEGER},
+			</if>
+			<if test="jlzqZxz != null">
+				#{jlzqZxz,jdbcType=INTEGER},
+			</if>
+			<if test="jlzqQdz != null">
+				#{jlzqQdz,jdbcType=INTEGER},
+			</if>
+			<if test="jlzqlx != null">
+				#{jlzqlx,jdbcType=VARCHAR},
+			</if>
+			<if test="kssj != null">
+				#{kssj,jdbcType=VARCHAR},
+			</if>
+			<if test="jssj != null">
+				#{jssj,jdbcType=VARCHAR},
+			</if>
+			<if test="zdjls != null">
+				#{zdjls,jdbcType=BIGINT},
+			</if>
+			<if test="shbz != null">
+				#{shbz,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStamp != null">
+				#{timeStamp,jdbcType=BIGINT},
+			</if>
+			<if test="enableStatus != null">
+				#{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				#{updateId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.Strw">
+		update TB_STRW
+		<set>
+			<if test="rwmc != null">
+				RWMC = #{rwmc,jdbcType=VARCHAR},
+			</if>
+			<if test="qzid != null">
+				QZID = #{qzid,jdbcType=VARCHAR},
+			</if>
+			<if test="stid != null">
+				STID = #{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="mbid != null">
+				MBID = #{mbid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwfzid != null">
+				RWFZID = #{rwfzid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwlx != null">
+				RWLX = #{rwlx,jdbcType=VARCHAR},
+			</if>
+			<if test="txlx != null">
+				TXLX = #{txlx,jdbcType=VARCHAR},
+			</if>
+			<if test="jlzqZdz != null">
+				JLZQ_ZDZ = #{jlzqZdz,jdbcType=INTEGER},
+			</if>
+			<if test="jlzqZxz != null">
+				JLZQ_ZXZ = #{jlzqZxz,jdbcType=INTEGER},
+			</if>
+			<if test="jlzqQdz != null">
+				JLZQ_QDZ = #{jlzqQdz,jdbcType=INTEGER},
+			</if>
+			<if test="jlzqlx != null">
+				JLZQLX = #{jlzqlx,jdbcType=VARCHAR},
+			</if>
+			<if test="kssj != null">
+				KSSJ = #{kssj,jdbcType=VARCHAR},
+			</if>
+			<if test="jssj != null">
+				JSSJ = #{jssj,jdbcType=VARCHAR},
+			</if>
+			<if test="zdjls != null">
+				ZDJLS = #{zdjls,jdbcType=BIGINT},
+			</if>
+			<if test="shbz != null">
+				SHBZ = #{shbz,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStamp != null">
+				TIME_STAMP = #{timeStamp,jdbcType=BIGINT},
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where RWID = #{rwid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.Strw">
+		update TB_STRW
+		set
+		RWMC = #{rwmc,jdbcType=VARCHAR},
+		QZID = #{qzid,jdbcType=VARCHAR},
+		STID =
+		#{stid,jdbcType=VARCHAR},
+		MBID = #{mbid,jdbcType=VARCHAR},
+		RWFZID =
+		#{rwfzid,jdbcType=VARCHAR},
+		RWLX = #{rwlx,jdbcType=VARCHAR},
+		TXLX =
+		#{txlx,jdbcType=VARCHAR},
+		JLZQ_ZDZ = #{jlzqZdz,jdbcType=INTEGER},
+		JLZQ_ZXZ = #{jlzqZxz,jdbcType=INTEGER},
+		JLZQ_QDZ =
+		#{jlzqQdz,jdbcType=INTEGER},
+		JLZQLX = #{jlzqlx,jdbcType=VARCHAR},
+		KSSJ =
+		#{kssj,jdbcType=VARCHAR},
+		JSSJ = #{jssj,jdbcType=VARCHAR},
+		ZDJLS =
+		#{zdjls,jdbcType=BIGINT},
+		SHBZ = #{shbz,jdbcType=VARCHAR},
+		TIME_STAMP =
+		#{timeStamp,jdbcType=BIGINT},
+		ENABLE_STATUS =
+		#{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS =
+		#{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=VARCHAR},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID =
+		#{updateId,jdbcType=VARCHAR}
+		where RWID = #{rwid,jdbcType=VARCHAR}
+	</update>
+
+	<sql id='whereList'>
+		<where>
+			<if test="rwid != null">
+				AND RWID = #{rwid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwmc != null">
+				AND RWMC = #{rwmc,jdbcType=VARCHAR}
+			</if>
+			<if test="qzid != null">
+				AND QZID = #{qzid,jdbcType=VARCHAR}
+			</if>
+			<if test="qzids != null">
+				AND QZID in
+				<foreach item="item" collection="qzids" open="(" separator=","
+					close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="stid != null">
+				AND STID = #{stid,jdbcType=VARCHAR}
+			</if>
+			<if test="mbid != null">
+				AND MBID = #{mbid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwfzid != null">
+				AND RWFZID = #{rwfzid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwlx != null">
+				AND RWLX = #{rwlx,jdbcType=VARCHAR}
+			</if>
+			<if test="txlx != null">
+				AND TXLX = #{txlx,jdbcType=VARCHAR}
+			</if>
+			<if test="jlzqZdz != null">
+				AND JLZQ_ZDZ = #{jlzqZdz,jdbcType=INTEGER}
+			</if>
+			<if test="jlzqZxz != null">
+				AND JLZQ_ZXZ = #{jlzqZxz,jdbcType=INTEGER}
+			</if>
+			<if test="jlzqQdz != null">
+				AND JLZQ_QDZ = #{jlzqQdz,jdbcType=INTEGER}
+			</if>
+			<if test="jlzqlx != null">
+				AND JLZQLX = #{jlzqlx,jdbcType=VARCHAR}
+			</if>
+			<if test="kssj != null">
+				AND KSSJ = #{kssj,jdbcType=VARCHAR}
+			</if>
+			<if test="jssj != null">
+				AND JSSJ = #{jssj,jdbcType=VARCHAR}
+			</if>
+			<if test="zdjls != null">
+				AND ZDJLS = #{zdjls,jdbcType=BIGINT}
+			</if>
+			<if test="shbz != null">
+				AND SHBZ = #{shbz,jdbcType=VARCHAR}
+			</if>
+			<if test="gtTimeStamp != null">
+				AND TIME_STAMP &gt; #{gtTimeStamp,jdbcType=BIGINT}
+			</if>
+
+			<if test="ltTimeStamp != null">
+				AND TIME_STAMP &lt; #{ltTimeStamp,jdbcType=BIGINT}
+			</if>
+
+			<if test="enableStatus != null">
+				AND ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="deleteStatus != null">
+				AND DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test="createId != null">
+				AND CREATE_ID = #{createId,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				AND UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+			<if test="updateId != null">
+				AND UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+			</if>
+			<if test="timeStamp != null">
+				AND TIME_STAMP = #{timeStamp,jdbcType=BINARY}
+			</if>
+		</where>
+	</sql>
+
+
+	<!-- 查询分页数量 -->
+	<select id="searchStrwOfSize" parameterType="map" resultType="Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		TB_STRW
+		<include refid="whereList" />
+	</select>
+
+
+	<!-- 分页查询信息 -->
+	<select id="searchStrwOfList" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		(SELECT *, ROW_NUMBER() OVER(Order by TB_STRW.TIME_STAMP ASC) AS
+		RowNumber
+		FROM TB_STRW
+		<include refid="whereList" />
+		) as strw
+		where strw.RowNumber BETWEEN (#{page.beginIndex}) and
+		#{page.closeIndex}
+	</select>
+
+
+
+
+
+
+	<sql id="yhrwWhere">
+		<where>
+			<if test="qzid != null">
+				AND y.QZID = #{qzid,jdbcType=VARCHAR}
+			</if>
+			<if test="yhid != null">
+				AND y.YHID = #{yhid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwid != null">
+				AND y.RWID = #{rwid,jdbcType=VARCHAR}
+			</if>
+			<if test="stid != null">
+				AND y.STID = #{stid,jdbcType=VARCHAR}
+			</if>
+			<if test="wczt != null">
+				AND y.WCZT = #{wczt,jdbcType=VARCHAR}
+			</if>
+			<if test="shzt != null">
+				AND y.SHZT = #{shzt,jdbcType=VARCHAR}
+			</if>
+			<if test="rwlx != null">
+				AND y.RWLX = #{rwlx,jdbcType=VARCHAR}
+			</if>
+			<if test="gtTimeStamp != null">
+				AND y.TIME_STAMP &gt; #{gtTimeStamp,jdbcType=BIGINT}
+			</if>
+			<if test="ltTimeStamp != null">
+				AND y.TIME_STAMP &lt; #{ltTimeStamp,jdbcType=BIGINT}
+			</if>
+			<if test="enableStatus != null">
+				AND y.ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="deleteStatus != null">
+				AND y.DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND y.CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test="createId != null">
+				AND y.CREATE_ID = #{createId,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				AND y.UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+			<if test="updateId != null">
+				AND y.UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+			</if>
+			<if test="timeStamp != null">
+				AND y.TIME_STAMP = #{timeStamp,jdbcType=BINARY}
+			</if>
+		</where>
+
+	</sql>
+
+	<!-- 查询分页数量 -->
+	<select id="searchStrwZtOfSize" parameterType="map" resultType="Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		TB_YH_RW y
+		<include refid="yhrwWhere" />
+	</select>
+	<sql id="Base_YhRw_Column_List">
+		y.YH_RW_ID, y.QZID, y.YHID, y.RWID, y.STID, y.WCZT, y.SHZT,
+		y.RWLX,
+		TIME_STAMP =
+		CAST(y.TIME_STAMP as bigint), y.ENABLE_STATUS,
+		y.DELETE_STATUS,
+		y.CREATE_TIME, y.CREATE_ID, y.UPDATE_TIME, y.UPDATE_ID
+	</sql>
+	<!-- 分页查询信息 -->
+	<select id="searchStrwZtOfList" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_Alias_List" />
+		FROM TB_STRW strw,(SELECT
+		<include refid="Base_YhRw_Column_List" />
+		,
+		ROW_NUMBER() OVER(Order by
+		y.TIME_STAMP DESC) AS
+		RowNumber
+		FROM
+		TB_YH_RW
+		y
+		<include refid="yhrwWhere" />
+		) as yhrw
+		WHERE strw.RWID = yhrw.RWID AND
+		yhrw.RowNumber BETWEEN
+		(#{page.beginIndex}) and
+		(#{page.closeIndex})
+	</select>
+	<sql id="Base_Column_Alias_List">
+		strw.RWID, strw.RWMC,strw.QZID, strw.STID, strw.MBID,
+		strw.RWFZID,
+		strw.RWLX, strw.TXLX, strw.JLZQ_ZDZ,
+		strw.JLZQ_ZXZ,
+		strw.JLZQ_QDZ,
+		strw.JLZQLX,
+		strw.KSSJ, strw.JSSJ, strw.ZDJLS, strw.SHBZ,
+		TIME_STAMP =
+		CAST(yhrw.TIME_STAMP as bigint),
+		strw.ENABLE_STATUS,
+		strw.DELETE_STATUS, strw.CREATE_TIME,
+		strw.CREATE_ID,
+		strw.UPDATE_TIME,
+		strw.UPDATE_ID,
+		yhrw.WCZT,
+		yhrw.SHZT
+	</sql>
+
+	<sql id="Strw_Alias_List">
+		strw.RWID, strw.RWMC,strw.QZID, strw.STID, strw.MBID,
+		strw.RWFZID,
+		strw.RWLX, strw.TXLX, strw.JLZQ_ZDZ,
+		strw.JLZQ_ZXZ,
+		strw.JLZQ_QDZ,
+		strw.JLZQLX,
+		strw.KSSJ, strw.JSSJ, strw.ZDJLS, strw.SHBZ,
+		TIME_STAMP =
+		CAST(strw.TIME_STAMP as bigint),
+		strw.ENABLE_STATUS,
+		strw.DELETE_STATUS, strw.CREATE_TIME,
+		strw.CREATE_ID,
+		strw.UPDATE_TIME,
+		strw.UPDATE_ID,
+		y.WCZT,
+		y.SHZT
+	</sql>
+	<select id="selectStrw" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_STRW
+		<include refid="whereList" />
+	</select>
+	<select id="selectStrwWWC" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_Alias_List" />
+		from TB_STRW strw
+		join TB_YH_RW yhrw
+		on strw.RWID = yhrw.RWID
+		AND
+		yhrw.YHID = #{yhid,jdbcType=VARCHAR}
+		<where>
+			<if test="gtTimeStamp != null">
+				AND strw.TIME_STAMP &gt; #{gtTimeStamp,jdbcType=BIGINT}
+				AND yhrw.TIME_STAMP &gt; #{gtTimeStamp,jdbcType=BIGINT}
+			</if>
+			<if test="ltTimeStamp != null">
+				AND strw.TIME_STAMP &lt; #{ltTimeStamp,jdbcType=BIGINT}
+				AND yhrw.TIME_STAMP &lt; #{ltTimeStamp,jdbcType=BIGINT}
+			</if>
+		</where>
+	</select>
+
+
+	<select id="selectYhStrw" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Strw_Alias_List" />
+		from TB_STRW strw
+		join TB_YH_RW y
+		on strw.RWID = y.RWID
+		<include refid="yhrwWhere" />
+	</select>
+	<select id="checkPermission" parameterType="map" resultType="java.lang.Integer">
+		select
+		COUNT(*)
+		from TB_YH_RW
+		<where>
+			YHID = #{yhid,jdbcType=VARCHAR}
+			AND
+			RWID =
+			#{rwid,jdbcType=VARCHAR}
+			<if test="deleteStatus != null">
+				AND DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- 查询分页数量 -->
+	<select id="searchStrwKeyOfSize" parameterType="map" resultType="Integer">
+		SELECT DISTINCT
+		COUNT(*)
+		FROM
+		TB_YH_RW y
+		join TB_STRW strw on y.RWID =
+		strw.RWID
+		join TB_STXX stxx on stxx.STID = y.STID
+		<include refid="searchWhere" />
+	</select>
+
+	<!-- 分页查询信息 -->
+	<select id="searchStrwKeyOfList" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_Alias_List" />
+		FROM TB_STRW strw,(SELECT DISTINCT
+		<include refid="Base_YhRw_Column_List" />
+		,
+		ROW_NUMBER() OVER(Order by
+		y.TIME_STAMP DESC) AS
+		RowNumber
+		FROM
+		TB_YH_RW
+		y
+		join TB_STRW strw on y.RWID = strw.RWID
+		join TB_STXX stxx on stxx.STID
+		= y.STID
+		<include refid="searchWhere" />
+		) as yhrw
+		WHERE strw.RWID = yhrw.RWID AND
+		yhrw.RowNumber BETWEEN
+		(#{page.beginIndex}) and
+		(#{page.closeIndex})
+	</select>
+
+	<sql id="searchWhere">
+		<where>
+			<if test="key != null and key != ''">
+				(strw.RWMC like #{key,jdbcType=VARCHAR}
+				or
+				stxx.STMC like
+				#{key,jdbcType=VARCHAR}
+				)
+			</if>
+			<if test="yhid != null and yhid != ''">
+				and y.YHID = #{yhid,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+
+</mapper>

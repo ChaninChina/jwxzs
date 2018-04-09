@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.YhxxMapper">
+  <resultMap id="BaseResultMap" type="com.model.Yhxx">
+    <id column="YHID" jdbcType="VARCHAR" property="yhid" />
+    <result column="ORGN_ID" jdbcType="VARCHAR" property="orgnId" />
+    <result column="YHXM" jdbcType="VARCHAR" property="yhxm" />
+    <result column="YHSP" jdbcType="VARCHAR" property="yhsp" />
+    <result column="YHLX" jdbcType="VARCHAR" property="yhlx" />
+    <result column="YHXB" jdbcType="VARCHAR" property="yhxb" />
+    <result column="LXDH" jdbcType="VARCHAR" property="lxdh" />
+    <result column="SFZH" jdbcType="VARCHAR" property="sfzh" />
+    <result column="YHZW" jdbcType="VARCHAR" property="yhzw" />
+    <result column="SZDW" jdbcType="VARCHAR" property="szdw" />
+    <result column="GLYBZ" jdbcType="VARCHAR" property="glybz" />
+    <result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+    <result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    YHID, ORGN_ID, YHXM, YHSP, YHLX, YHXB, LXDH, SFZH, YHZW, SZDW, GLYBZ, ENABLE_STATUS, 
+    DELETE_STATUS, CREATE_TIME, CREATE_ID, UPDATE_TIME, UPDATE_ID
+  </sql>
+  
+   <sql id="Base_Column_Alias_List">
+    yh.YHID, yh.ORGN_ID, yh.YHXM, yh.YHSP, yh.YHLX, yh.YHXB, yh.LXDH, yh.SFZH, yh.YHZW, yh.SZDW, yh.GLYBZ, yh.ENABLE_STATUS, 
+    yh.DELETE_STATUS, yh.CREATE_TIME, yh.CREATE_ID, yh.UPDATE_TIME, yh.UPDATE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_YHXX
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </select>
+  
+  
+
+  
+    <select id="selectYhxx" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_YHXX
+    <where>
+        <if test="yhid != null">
+       AND YHID = #{yhid,jdbcType=VARCHAR}
+      </if>
+    <if test="orgnId != null">
+         AND ORGN_ID = #{orgnId,jdbcType=VARCHAR}
+      </if>
+      <if test="yhxm != null">
+         AND YHXM = #{yhxm,jdbcType=VARCHAR}
+      </if>
+      <if test="yhsp != null">
+         AND YHSP = #{yhsp,jdbcType=VARCHAR}
+      </if>
+      <if test="yhlx != null">
+         AND YHLX = #{yhlx,jdbcType=VARCHAR}
+      </if>
+      <if test="yhxb != null">
+         AND YHXB = #{yhxb,jdbcType=VARCHAR}
+      </if>
+      <if test="lxdh != null">
+         AND LXDH = #{lxdh,jdbcType=VARCHAR}
+      </if>
+      <if test="sfzh != null">
+         AND SFZH = #{sfzh,jdbcType=VARCHAR}
+      </if>
+      <if test="yhzw != null">
+         AND YHZW = #{yhzw,jdbcType=VARCHAR}
+      </if>
+      <if test="szdw != null">
+         AND SZDW = #{szdw,jdbcType=VARCHAR}
+      </if>
+      <if test="glybz != null">
+         AND GLYBZ = #{glybz,jdbcType=VARCHAR}
+      </if>
+      <if test="enableStatus != null">
+         AND ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="deleteStatus != null">
+         AND DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+         AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+      </if>
+      <if test="createId != null">
+         AND CREATE_ID = #{createId,jdbcType=VARCHAR}
+      </if>
+      <if test="updateTime != null">
+         AND UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="updateId != null">
+         AND UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+      </if>
+    
+    
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_YHXX
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Yhxx">
+    insert into TB_YHXX (YHID, ORGN_ID, YHXM, 
+      YHSP, YHLX, YHXB, LXDH, 
+      SFZH, YHZW, SZDW, GLYBZ, 
+      ENABLE_STATUS, DELETE_STATUS, CREATE_TIME, 
+      CREATE_ID, UPDATE_TIME, UPDATE_ID
+      )
+    values (#{yhid,jdbcType=VARCHAR}, #{orgnId,jdbcType=VARCHAR}, #{yhxm,jdbcType=VARCHAR}, 
+      #{yhsp,jdbcType=VARCHAR}, #{yhlx,jdbcType=VARCHAR}, #{yhxb,jdbcType=VARCHAR}, #{lxdh,jdbcType=VARCHAR}, 
+      #{sfzh,jdbcType=VARCHAR}, #{yhzw,jdbcType=VARCHAR}, #{szdw,jdbcType=VARCHAR}, #{glybz,jdbcType=VARCHAR}, 
+      #{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Yhxx">
+    insert into TB_YHXX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="yhid != null">
+        YHID,
+      </if>
+      <if test="orgnId != null">
+        ORGN_ID,
+      </if>
+      <if test="yhxm != null">
+        YHXM,
+      </if>
+      <if test="yhsp != null">
+        YHSP,
+      </if>
+      <if test="yhlx != null">
+        YHLX,
+      </if>
+      <if test="yhxb != null">
+        YHXB,
+      </if>
+      <if test="lxdh != null">
+        LXDH,
+      </if>
+      <if test="sfzh != null">
+        SFZH,
+      </if>
+      <if test="yhzw != null">
+        YHZW,
+      </if>
+      <if test="szdw != null">
+        SZDW,
+      </if>
+      <if test="glybz != null">
+        GLYBZ,
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="yhid != null">
+        #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="orgnId != null">
+        #{orgnId,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxm != null">
+        #{yhxm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhsp != null">
+        #{yhsp,jdbcType=VARCHAR},
+      </if>
+      <if test="yhlx != null">
+        #{yhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxb != null">
+        #{yhxb,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null">
+        #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="yhzw != null">
+        #{yhzw,jdbcType=VARCHAR},
+      </if>
+      <if test="szdw != null">
+        #{szdw,jdbcType=VARCHAR},
+      </if>
+      <if test="glybz != null">
+        #{glybz,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Yhxx">
+    update TB_YHXX
+    <set>
+      <if test="orgnId != null">
+        ORGN_ID = #{orgnId,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxm != null">
+        YHXM = #{yhxm,jdbcType=VARCHAR},
+      </if>
+      <if test="yhsp != null">
+        YHSP = #{yhsp,jdbcType=VARCHAR},
+      </if>
+      <if test="yhlx != null">
+        YHLX = #{yhlx,jdbcType=VARCHAR},
+      </if>
+      <if test="yhxb != null">
+        YHXB = #{yhxb,jdbcType=VARCHAR},
+      </if>
+      <if test="lxdh != null">
+        LXDH = #{lxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzh != null">
+        SFZH = #{sfzh,jdbcType=VARCHAR},
+      </if>
+      <if test="yhzw != null">
+        YHZW = #{yhzw,jdbcType=VARCHAR},
+      </if>
+      <if test="szdw != null">
+        SZDW = #{szdw,jdbcType=VARCHAR},
+      </if>
+      <if test="glybz != null">
+        GLYBZ = #{glybz,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Yhxx">
+    update TB_YHXX
+    set ORGN_ID = #{orgnId,jdbcType=VARCHAR},
+      YHXM = #{yhxm,jdbcType=VARCHAR},
+      YHSP = #{yhsp,jdbcType=VARCHAR},
+      YHLX = #{yhlx,jdbcType=VARCHAR},
+      YHXB = #{yhxb,jdbcType=VARCHAR},
+      LXDH = #{lxdh,jdbcType=VARCHAR},
+      SFZH = #{sfzh,jdbcType=VARCHAR},
+      YHZW = #{yhzw,jdbcType=VARCHAR},
+      SZDW = #{szdw,jdbcType=VARCHAR},
+      GLYBZ = #{glybz,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+    where YHID = #{yhid,jdbcType=VARCHAR}
+  </update>
+</mapper>

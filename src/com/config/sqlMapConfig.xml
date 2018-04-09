@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--设置别名-->
+<typeAliases>
+<typeAlias alias="AreaInfo" type="com.model.AreaInfo"/>
+<typeAlias alias="Bbxx" type="com.model.Bbxx"/>
+<typeAlias alias="DictInfo" type="com.model.DictInfo"/>
+<typeAlias alias="DictType" type="com.model.DictType"/>
+<typeAlias alias="Fjxx" type="com.model.Fjxx"/>
+<typeAlias alias="JsQx" type="com.model.JsQx"/>
+<typeAlias alias="Jsxx" type="com.model.Jsxx"/>
+<typeAlias alias="MbJltm" type="com.model.MbJltm"/>
+<typeAlias alias="MbJlxx" type="com.model.MbJlxx"/>
+<typeAlias alias="MbJlxxKzxx" type="com.model.MbJlxxKzxx"/>
+<typeAlias alias="MbTmfz" type="com.model.MbTmfz"/>
+<typeAlias alias="MbTmkz" type="com.model.MbTmkz"/>
+<typeAlias alias="Mbfz" type="com.model.Mbfz"/>
+<typeAlias alias="Mbxx" type="com.model.Mbxx"/>
+<typeAlias alias="OrgnInfo" type="com.model.OrgnInfo"/>
+<typeAlias alias="Qxxx" type="com.model.Qxxx"/>
+<typeAlias alias="QzBz" type="com.model.QzBz"/>
+<typeAlias alias="Qzfz" type="com.model.Qzfz"/>
+<typeAlias alias="Qzxx" type="com.model.Qzxx"/>
+<typeAlias alias="Rwfz" type="com.model.Rwfz"/>
+<typeAlias alias="Rwjl" type="com.model.Rwjl"/>
+<typeAlias alias="RwjlTm" type="com.model.RwjlTm"/>
+<typeAlias alias="RwjlTmFj" type="com.model.RwjlTmFj"/>
+<typeAlias alias="RwjlTmTjmx" type="com.model.RwjlTmTjmx"/>
+<typeAlias alias="RwjlTmxx" type="com.model.RwjlTmxx"/>
+<typeAlias alias="RwjlXxTjmx" type="com.model.RwjlXxTjmx"/>
+<typeAlias alias="SjczRz" type="com.model.SjczRz"/>
+<typeAlias alias="Splc" type="com.model.Splc"/>
+<typeAlias alias="Spry" type="com.model.Spry"/>
+<typeAlias alias="Spxx" type="com.model.Spxx"/>
+<typeAlias alias="StFj" type="com.model.StFj"/>
+
+<typeAlias alias="Stfz" type="com.model.Stfz"/>
+<typeAlias alias="Strw" type="com.model.Strw"/>
+<typeAlias alias="Stxx" type="com.model.Stxx"/>
+<typeAlias alias="Xtpz" type="com.model.Xtpz"/>
+<typeAlias alias="Xxxx" type="com.model.Xxxx"/>
+<typeAlias alias="YdYhdl" type="com.model.YdYhdl"/>
+<typeAlias alias="YhJs" type="com.model.YhJs"/>
+<typeAlias alias="YhQz" type="com.model.YhQz"/>
+<typeAlias alias="YhczRz" type="com.model.YhczRz"/>
+<typeAlias alias="Yhdl" type="com.model.Yhdl"/>
+<typeAlias alias="YhdlRz" type="com.model.YhdlRz"/>
+<typeAlias alias="Yhpz" type="com.model.Yhpz"/>
+<typeAlias alias="Yhxx" type="com.model.Yhxx"/>
+<typeAlias alias="Yhzh" type="com.model.Yhzh"/>
+<typeAlias alias="Yzgz" type="com.model.Yzgz"/>
+<typeAlias alias="Tmmb" type="com.model.Tmmb"/>
+</typeAliases>
+
+</configuration>

@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.XxxxMapper">
+	<resultMap id="BaseResultMap" type="com.model.Xxxx">
+		<id column="XXID" jdbcType="VARCHAR" property="xxid" />
+		<result column="XXBT" jdbcType="VARCHAR" property="xxbt" />
+		<result column="XXNR" jdbcType="VARCHAR" property="xxnr" />
+		<result column="XXLX" jdbcType="VARCHAR" property="xxlx" />
+		<result column="STID" jdbcType="VARCHAR" property="stid" />
+		<result column="RWID" jdbcType="VARCHAR" property="rwid" />
+		<result column="QZID" jdbcType="VARCHAR" property="qzid" />
+		<result column="RWJLID" jdbcType="VARCHAR" property="rwjlid" />
+		<result column="XXGLNR" jdbcType="VARCHAR" property="xxglnr" />
+		<result column="XXGLLX" jdbcType="VARCHAR" property="xxgllx" />
+		<result column="YDZT" jdbcType="VARCHAR" property="ydzt" />
+		<result column="FSSJ" jdbcType="VARCHAR" property="fssj" />
+		<result column="GQSJ" jdbcType="VARCHAR" property="gqsj" />
+		<result column="FSFID" jdbcType="VARCHAR" property="fsfid" />
+		<result column="JSFID" jdbcType="VARCHAR" property="jsfid" />
+		<result column="TIME_STAMP" jdbcType="BIGINT" property="timeStamp" />
+		<result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+		<result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+		<result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		XXID, XXBT, XXNR, XXLX, STID, RWID, QZID, RWJLID, XXGLNR,
+		XXGLLX, YDZT,
+		FSSJ, GQSJ,
+		FSFID, JSFID, CAST(TIME_STAMP AS BIGINT) AS
+		TIME_STAMP, ENABLE_STATUS,
+		DELETE_STATUS, CREATE_TIME, CREATE_ID,
+		UPDATE_TIME,
+		UPDATE_ID
+	</sql>
+
+	<sql id="whereList">
+		<where>
+
+			<if test="xxid != null">
+				AND XXID = #{xxid,jdbcType=VARCHAR}
+			</if>
+			<if test="xxbt != null">
+				AND XXBT = #{xxbt,jdbcType=VARCHAR}
+			</if>
+			<if test="xxnr != null">
+				AND XXNR = #{xxnr,jdbcType=VARCHAR}
+			</if>
+			<if test="xxlx != null">
+				AND XXLX = #{xxlx,jdbcType=VARCHAR}
+			</if>
+			<if test="stid != null">
+				AND STID = #{stid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwid != null">
+				AND RWID = #{rwid,jdbcType=VARCHAR}
+			</if>
+			<if test="qzid != null">
+				AND QZID = #{qzid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwjlid != null">
+				AND RWJLID = #{rwjlid,jdbcType=VARCHAR}
+			</if>
+			<if test="xxglnr != null">
+				AND XXGLNR = #{xxglnr,jdbcType=VARCHAR}
+			</if>
+			<if test="xxgllx != null">
+				AND XXGLLX = #{xxgllx,jdbcType=VARCHAR}
+			</if>
+			<if test="ydzt != null">
+				AND YDZT = #{ydzt,jdbcType=VARCHAR}
+			</if>
+			<if test="fssj != null">
+				AND FSSJ = #{fssj,jdbcType=VARCHAR}
+			</if>
+			<if test="gqsj != null">
+				AND GQSJ = #{gqsj,jdbcType=VARCHAR}
+			</if>
+			<if test="fsfid != null">
+				AND FSFID = #{fsfid,jdbcType=VARCHAR}
+			</if>
+			<if test="jsfid != null">
+				AND JSFID = #{jsfid,jdbcType=VARCHAR}
+			</if>
+			<if test="timeStamp != null">
+				AND TIME_STAMP = #{timeStamp,jdbcType=BIGINT}
+			</if>
+			<if test="gtTimeStamp != null">
+				AND TIME_STAMP &gt; #{gtTimeStamp,jdbcType=BIGINT}
+			</if>
+			<if test="ltTimeStamp != null">
+				AND TIME_STAMP &lt; #{ltTimeStamp,jdbcType=BIGINT}
+			</if>
+			<if test="enableStatus != null">
+				AND ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="deleteStatus != null">
+				AND DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test="createId != null">
+				AND CREATE_ID = #{createId,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				AND UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+			<if test="updateId != null">
+				AND UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+			</if>
+		</where>
+
+	</sql>
+
+	<select id="selectXxxx" parameterType="map" resultMap="BaseResultMap">
+		select top 50
+		<include refid="Base_Column_List" />
+		from TB_XXXX
+		<include refid="whereList" />
+		order by TIME_STAMP
+	</select>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_XXXX
+		where XXID = #{xxid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		TB_XXXX
+		where XXID = #{xxid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.Xxxx">
+		insert into TB_XXXX (XXID,
+		XXBT, XXNR,
+		XXLX, STID, RWID, QZID,
+		RWJLID, XXGLNR, XXGLLX,
+		YDZT, FSSJ,
+		GQSJ, FSFID,
+		JSFID, TIME_STAMP, ENABLE_STATUS,
+		DELETE_STATUS,
+		CREATE_TIME, CREATE_ID,
+		UPDATE_TIME, UPDATE_ID)
+		values
+		(#{xxid,jdbcType=VARCHAR}, #{xxbt,jdbcType=VARCHAR},
+		#{xxnr,jdbcType=VARCHAR},
+		#{xxlx,jdbcType=VARCHAR},
+		#{stid,jdbcType=VARCHAR}, #{rwid,jdbcType=VARCHAR},
+		#{qzid,jdbcType=VARCHAR},
+		#{rwjlid,jdbcType=VARCHAR},
+		#{xxglnr,jdbcType=VARCHAR}, #{xxgllx,jdbcType=VARCHAR},
+		#{ydzt,jdbcType=VARCHAR}, #{fssj,jdbcType=VARCHAR},
+		#{gqsj,jdbcType=VARCHAR}, #{fsfid,jdbcType=VARCHAR},
+		#{jsfid,jdbcType=VARCHAR}, #{timeStamp,jdbcType=BIGINT},
+		#{enableStatus,jdbcType=VARCHAR},
+		#{deleteStatus,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.Xxxx">
+		insert into TB_XXXX
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="xxid != null">
+				XXID,
+			</if>
+			<if test="xxbt != null">
+				XXBT,
+			</if>
+			<if test="xxnr != null">
+				XXNR,
+			</if>
+			<if test="xxlx != null">
+				XXLX,
+			</if>
+			<if test="stid != null">
+				STID,
+			</if>
+			<if test="rwid != null">
+				RWID,
+			</if>
+			<if test="qzid != null">
+				QZID,
+			</if>
+			<if test="rwjlid != null">
+				RWJLID,
+			</if>
+			<if test="xxglnr != null">
+				XXGLNR,
+			</if>
+			<if test="xxgllx != null">
+				XXGLLX,
+			</if>
+			<if test="ydzt != null">
+				YDZT,
+			</if>
+			<if test="fssj != null">
+				FSSJ,
+			</if>
+			<if test="gqsj != null">
+				GQSJ,
+			</if>
+			<if test="fsfid != null">
+				FSFID,
+			</if>
+			<if test="jsfid != null">
+				JSFID,
+			</if>
+			<if test="timeStamp != null">
+				TIME_STAMP,
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS,
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="xxid != null">
+				#{xxid,jdbcType=VARCHAR},
+			</if>
+			<if test="xxbt != null">
+				#{xxbt,jdbcType=VARCHAR},
+			</if>
+			<if test="xxnr != null">
+				#{xxnr,jdbcType=VARCHAR},
+			</if>
+			<if test="xxlx != null">
+				#{xxlx,jdbcType=VARCHAR},
+			</if>
+			<if test="stid != null">
+				#{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwid != null">
+				#{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="qzid != null">
+				#{qzid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwjlid != null">
+				#{rwjlid,jdbcType=VARCHAR},
+			</if>
+			<if test="xxglnr != null">
+				#{xxglnr,jdbcType=VARCHAR},
+			</if>
+			<if test="xxgllx != null">
+				#{xxgllx,jdbcType=VARCHAR},
+			</if>
+			<if test="ydzt != null">
+				#{ydzt,jdbcType=VARCHAR},
+			</if>
+			<if test="fssj != null">
+				#{fssj,jdbcType=VARCHAR},
+			</if>
+			<if test="gqsj != null">
+				#{gqsj,jdbcType=VARCHAR},
+			</if>
+			<if test="fsfid != null">
+				#{fsfid,jdbcType=VARCHAR},
+			</if>
+			<if test="jsfid != null">
+				#{jsfid,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStamp != null">
+				#{timeStamp,jdbcType=BIGINT},
+			</if>
+			<if test="enableStatus != null">
+				#{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				#{updateId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.Xxxx">
+		update TB_XXXX
+		<set>
+			<if test="xxbt != null">
+				XXBT = #{xxbt,jdbcType=VARCHAR},
+			</if>
+			<if test="xxnr != null">
+				XXNR = #{xxnr,jdbcType=VARCHAR},
+			</if>
+			<if test="xxlx != null">
+				XXLX = #{xxlx,jdbcType=VARCHAR},
+			</if>
+			<if test="stid != null">
+				STID = #{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwid != null">
+				RWID = #{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="qzid != null">
+				QZID = #{qzid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwjlid != null">
+				RWJLID = #{rwjlid,jdbcType=VARCHAR},
+			</if>
+			<if test="xxglnr != null">
+				XXGLNR = #{xxglnr,jdbcType=VARCHAR},
+			</if>
+			<if test="xxgllx != null">
+				XXGLLX = #{xxgllx,jdbcType=VARCHAR},
+			</if>
+			<if test="ydzt != null">
+				YDZT = #{ydzt,jdbcType=VARCHAR},
+			</if>
+			<if test="fssj != null">
+				FSSJ = #{fssj,jdbcType=VARCHAR},
+			</if>
+			<if test="gqsj != null">
+				GQSJ = #{gqsj,jdbcType=VARCHAR},
+			</if>
+			<if test="fsfid != null">
+				FSFID = #{fsfid,jdbcType=VARCHAR},
+			</if>
+			<if test="jsfid != null">
+				JSFID = #{jsfid,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStamp != null">
+				TIME_STAMP = #{timeStamp,jdbcType=BIGINT},
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where XXID = #{xxid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.Xxxx">
+		update TB_XXXX
+		set
+		XXBT = #{xxbt,jdbcType=VARCHAR},
+		XXNR = #{xxnr,jdbcType=VARCHAR},
+		XXLX =
+		#{xxlx,jdbcType=VARCHAR},
+		STID = #{stid,jdbcType=VARCHAR},
+		RWID =
+		#{rwid,jdbcType=VARCHAR},
+		QZID = #{qzid,jdbcType=VARCHAR},
+		RWJLID =
+		#{rwjlid,jdbcType=VARCHAR},
+		XXGLNR = #{xxglnr,jdbcType=VARCHAR},
+		XXGLLX
+		= #{xxgllx,jdbcType=VARCHAR},
+		YDZT = #{ydzt,jdbcType=VARCHAR},
+		FSSJ =
+		#{fssj,jdbcType=VARCHAR},
+		GQSJ = #{gqsj,jdbcType=VARCHAR},
+		FSFID =
+		#{fsfid,jdbcType=VARCHAR},
+		JSFID = #{jsfid,jdbcType=VARCHAR},
+		TIME_STAMP = #{timeStamp,jdbcType=BIGINT},
+		ENABLE_STATUS =
+		#{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS =
+		#{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=VARCHAR},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID =
+		#{updateId,jdbcType=VARCHAR}
+		where XXID = #{xxid,jdbcType=VARCHAR}
+	</update>
+
+
+
+	<!-- 查询分页数量 -->
+	<select id="searchXxxxOfSize" parameterType="map" resultType="Integer">
+		SELECT
+		COUNT(*)
+		FROM
+		TB_Xxxx
+		<include refid="whereList" />
+	</select>
+
+
+	<!-- 分页查询信息 -->
+	<select id="searchXxxxOfList" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		(SELECT *, ROW_NUMBER() OVER(Order by TIME_STAMP
+		<if test="oder == 'desc'">DESC</if>
+		<if test="oder == 'asc'">ASC</if>
+		) AS
+		RowNumber
+		FROM TB_XXXX
+		<include refid="whereList" />
+		) as xxxx
+		where xxxx.RowNumber BETWEEN (#{page.beginIndex}) and
+		#{page.closeIndex}
+	</select>
+
+	<insert id="autoInsertXxxx" parameterType="map">
+		INSERT INTO TB_XXXX
+		(XXID
+		,XXBT
+		,XXNR
+		,XXLX
+		,STID
+		,RWID
+		,QZID
+		,RWJLID
+		,XXGLNR
+		,XXGLLX
+		,YDZT
+		,FSSJ
+		,GQSJ
+		,FSFID
+		,JSFID
+		,ENABLE_STATUS
+		,DELETE_STATUS
+		,CREATE_TIME
+		,CREATE_ID
+		,UPDATE_TIME
+		,UPDATE_ID)
+		SELECT
+		LOWER(REPLACE(NEWID(),'-','')) as XXID
+		,strw.RWMC as XXBT
+		,'您的任务 ' +strw.RWMC + ' 还未完成，请尽快完成！' as XXNR
+		,#{xxlx,jdbcType=VARCHAR} as XXLX
+		,strw.STID as STID
+		,strw.RWID as RWID
+		,strw.QZID as QZID
+		,NULL as RWJLID
+		,NULL as XXGLNR
+		,NULL as XXGLLX
+		,#{ydzt,jdbcType=VARCHAR} as YDZT
+		,CONVERT(varchar(32), GETDATE(), 120) as FSSJ
+		,NULL as GQSJ
+		,strw.RWID as FSFID
+		,yhrw.YHID as JSFID
+		,#{enableStatus,jdbcType=VARCHAR} as ENABLE_STATUS
+		,#{deleteStatus,jdbcType=VARCHAR} as DELETE_STATUS
+		,CONVERT(varchar(32), GETDATE(), 120) as CREATE_TIME
+		,strw.RWID as CREATE_ID
+		,CONVERT(varchar(32), GETDATE(), 120) as UPDATE_TIME
+		,strw.RWID as UPDATE_ID
+		FROM TB_YH_RW yhrw
+		JOIN TB_STRW strw
+		on yhrw.RWID = strw.rwid AND yhrw.DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR} AND
+		strw.DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR} and WCZT = #{wczt,jdbcType=VARCHAR} and strw.TXLX
+		= #{txlx,jdbcType=VARCHAR} and strw.JLZQLX = #{jlzqlx,jdbcType=VARCHAR}
+		and (strw.JSSJ is null or strw.JSSJ = '' or
+		strw.JSSJ &gt;= CONVERT(varchar(32), GETDATE(), 120))
+		and (strw.KSSJ is null or strw.KSSJ = '' or
+		strw.KSSJ &lt;= CONVERT(varchar(32), GETDATE(), 120))
+	</insert>
+
+</mapper>

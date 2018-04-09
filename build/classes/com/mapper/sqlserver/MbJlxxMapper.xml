@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MbJlxxMapper">
+	<resultMap id="BaseResultMap" type="com.model.MbJlxx">
+		<id column="XXID" jdbcType="VARCHAR" property="xxid" />
+		<result column="TMID" jdbcType="VARCHAR" property="tmid" />
+		<result column="XXNR" jdbcType="VARCHAR" property="xxnr" />
+		<result column="XXBZ" jdbcType="VARCHAR" property="xxbz" />
+		<result column="BH" jdbcType="VARCHAR" property="bh" />
+		<result column="XXPX" jdbcType="INTEGER" property="xxpx" />
+		<result column="MRXZ" jdbcType="VARCHAR" property="mrxz" />
+		<result column="XXKZBZ" jdbcType="VARCHAR" property="xxkzbz" />
+		<result column="SUBSET_SYMBOL" jdbcType="VARCHAR" property="subsetSymbol" />
+		<result column="FJXXID" jdbcType="VARCHAR" property="fjxxid" />
+		<result column="XXCJ" jdbcType="INTEGER" property="xxcj" />
+		<result column="XXBS" jdbcType="VARCHAR" property="xxbs" />
+		<result column="XXCJMC" jdbcType="VARCHAR" property="xxcjmc" />
+		<result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+		<result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+		<result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		XXID, TMID, XXNR, XXBZ, BH, XXPX, MRXZ, XXKZBZ, SUBSET_SYMBOL, FJXXID,
+		XXCJ, XXBS,
+		XXCJMC, ENABLE_STATUS, DELETE_STATUS, CREATE_TIME, CREATE_ID, UPDATE_TIME,
+		UPDATE_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_MB_JLXX
+		where XXID = #{xxid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from TB_MB_JLXX
+		where XXID = #{xxid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.MbJlxx">
+		insert into TB_MB_JLXX (XXID, TMID, XXNR,
+		XXBZ, BH, XXPX, MRXZ,
+		XXKZBZ, SUBSET_SYMBOL, FJXXID,
+		XXCJ, XXBS, XXCJMC,
+		ENABLE_STATUS, DELETE_STATUS, CREATE_TIME,
+		CREATE_ID, UPDATE_TIME, UPDATE_ID
+		)
+		values (#{xxid,jdbcType=VARCHAR}, #{tmid,jdbcType=VARCHAR},
+		#{xxnr,jdbcType=VARCHAR},
+		#{xxbz,jdbcType=VARCHAR}, #{bh,jdbcType=VARCHAR}, #{xxpx,jdbcType=INTEGER},
+		#{mrxz,jdbcType=VARCHAR},
+		#{xxkzbz,jdbcType=VARCHAR}, #{subsetSymbol,jdbcType=VARCHAR}, #{fjxxid,jdbcType=VARCHAR},
+		#{xxcj,jdbcType=INTEGER}, #{xxbs,jdbcType=VARCHAR},
+		#{xxcjmc,jdbcType=VARCHAR},
+		#{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR},
+		#{updateId,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.MbJlxx">
+		insert into TB_MB_JLXX
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="xxid != null">
+				XXID,
+			</if>
+			<if test="tmid != null">
+				TMID,
+			</if>
+			<if test="xxnr != null">
+				XXNR,
+			</if>
+			<if test="xxbz != null">
+				XXBZ,
+			</if>
+			<if test="bh != null">
+				BH,
+			</if>
+			<if test="xxpx != null">
+				XXPX,
+			</if>
+			<if test="mrxz != null">
+				MRXZ,
+			</if>
+			<if test="xxkzbz != null">
+				XXKZBZ,
+			</if>
+			<if test="subsetSymbol != null">
+				SUBSET_SYMBOL,
+			</if>
+			<if test="fjxxid != null">
+				FJXXID,
+			</if>
+			<if test="xxcj != null">
+				XXCJ,
+			</if>
+			<if test="xxbs != null">
+				XXBS,
+			</if>
+			<if test="xxcjmc != null">
+				XXCJMC,
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS,
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="xxid != null">
+				#{xxid,jdbcType=VARCHAR},
+			</if>
+			<if test="tmid != null">
+				#{tmid,jdbcType=VARCHAR},
+			</if>
+			<if test="xxnr != null">
+				#{xxnr,jdbcType=VARCHAR},
+			</if>
+			<if test="xxbz != null">
+				#{xxbz,jdbcType=VARCHAR},
+			</if>
+			<if test="bh != null">
+				#{bh,jdbcType=VARCHAR},
+			</if>
+			<if test="xxpx != null">
+				#{xxpx,jdbcType=INTEGER},
+			</if>
+			<if test="mrxz != null">
+				#{mrxz,jdbcType=VARCHAR},
+			</if>
+			<if test="xxkzbz != null">
+				#{xxkzbz,jdbcType=VARCHAR},
+			</if>
+			<if test="subsetSymbol != null">
+				#{subsetSymbol,jdbcType=VARCHAR},
+			</if>
+			<if test="fjxxid != null">
+				#{fjxxid,jdbcType=VARCHAR},
+			</if>
+			<if test="xxcj != null">
+				#{xxcj,jdbcType=INTEGER},
+			</if>
+			<if test="xxbs != null">
+				#{xxbs,jdbcType=VARCHAR},
+			</if>
+			<if test="xxcjmc != null">
+				#{xxcjmc,jdbcType=VARCHAR},
+			</if>
+			<if test="enableStatus != null">
+				#{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				#{updateId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.MbJlxx">
+		update TB_MB_JLXX
+		<set>
+			<if test="tmid != null">
+				TMID = #{tmid,jdbcType=VARCHAR},
+			</if>
+			<if test="xxnr != null">
+				XXNR = #{xxnr,jdbcType=VARCHAR},
+			</if>
+			<if test="xxbz != null">
+				XXBZ = #{xxbz,jdbcType=VARCHAR},
+			</if>
+			<if test="bh != null">
+				BH = #{bh,jdbcType=VARCHAR},
+			</if>
+			<if test="xxpx != null">
+				XXPX = #{xxpx,jdbcType=INTEGER},
+			</if>
+			<if test="mrxz != null">
+				MRXZ = #{mrxz,jdbcType=VARCHAR},
+			</if>
+			<if test="xxkzbz != null">
+				XXKZBZ = #{xxkzbz,jdbcType=VARCHAR},
+			</if>
+			<if test="subsetSymbol != null">
+				SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+			</if>
+			<if test="fjxxid != null">
+				FJXXID = #{fjxxid,jdbcType=VARCHAR},
+			</if>
+			<if test="xxcj != null">
+				XXCJ = #{xxcj,jdbcType=INTEGER},
+			</if>
+			<if test="xxbs != null">
+				XXBS = #{xxbs,jdbcType=VARCHAR},
+			</if>
+			<if test="xxcjmc != null">
+				XXCJMC = #{xxcjmc,jdbcType=VARCHAR},
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where XXID = #{xxid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.MbJlxx">
+		update TB_MB_JLXX
+		set TMID = #{tmid,jdbcType=VARCHAR},
+		XXNR = #{xxnr,jdbcType=VARCHAR},
+		XXBZ = #{xxbz,jdbcType=VARCHAR},
+		BH = #{bh,jdbcType=VARCHAR},
+		XXPX = #{xxpx,jdbcType=INTEGER},
+		MRXZ = #{mrxz,jdbcType=VARCHAR},
+		XXKZBZ = #{xxkzbz,jdbcType=VARCHAR},
+		SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+		FJXXID = #{fjxxid,jdbcType=VARCHAR},
+		XXCJ = #{xxcj,jdbcType=INTEGER},
+		XXBS = #{xxbs,jdbcType=VARCHAR},
+		XXCJMC = #{xxcjmc,jdbcType=VARCHAR},
+		ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+		CREATE_ID = #{createId,jdbcType=VARCHAR},
+		UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+		where XXID = #{xxid,jdbcType=VARCHAR}
+	</update>
+
+	<sql id="whereList">
+		<where>
+			<if test="xxid != null">
+				AND XXID = #{xxid,jdbcType=VARCHAR}
+			</if>
+			<if test="tmid != null">
+				AND TMID = #{tmid,jdbcType=VARCHAR}
+			</if>
+			<if test="xxnr != null">
+				AND XXNR = #{xxnr,jdbcType=VARCHAR}
+			</if>
+			<if test="xxbz != null">
+				AND XXBZ = #{xxbz,jdbcType=VARCHAR}
+			</if>
+			<if test="bh != null">
+				AND BH = #{bh,jdbcType=VARCHAR}
+			</if>
+			<if test="xxpx != null">
+				AND XXPX = #{xxpx,jdbcType=INTEGER}
+			</if>
+			<if test="mrxz != null">
+				AND MRXZ = #{mrxz,jdbcType=VARCHAR}
+			</if>
+			<if test="xxkzbz != null">
+				AND XXKZBZ = #{xxkzbz,jdbcType=VARCHAR}
+			</if>
+			<if test="subsetSymbol != null">
+				AND SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR}
+			</if>
+			<if test="fjxxid != null">
+				AND FJXXID = #{fjxxid,jdbcType=VARCHAR}
+			</if>
+			<if test="xxcj != null">
+				AND XXCJ = #{xxcj,jdbcType=INTEGER}
+			</if>
+			<if test="xxbs != null">
+				AND XXBS = #{xxbs,jdbcType=VARCHAR}
+			</if>
+			<if test="xxcjmc != null">
+				AND XXCJMC = #{xxcjmc,jdbcType=VARCHAR}
+			</if>
+			<if test="enableStatus != null">
+				AND ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="deleteStatus != null">
+				AND DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test="createId != null">
+				AND CREATE_ID = #{createId,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				AND UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+			<if test="updateId != null">
+				AND UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+			</if>
+
+		</where>
+	</sql>
+
+	<select id="selectMbjlxx" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_MB_JLXX
+		<include refid="whereList" />
+	</select>
+</mapper>

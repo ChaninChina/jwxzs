@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.RwjlTmTjmxMapper">
+	<resultMap id="BaseResultMap" type="com.model.RwjlTmTjmx">
+		<id column="MXID" jdbcType="VARCHAR" property="mxid" />
+		<result column="QZID" jdbcType="VARCHAR" property="qzid" />
+		<result column="RWID" jdbcType="VARCHAR" property="rwid" />
+		<result column="STID" jdbcType="VARCHAR" property="stid" />
+		<result column="STMC" jdbcType="VARCHAR" property="stmc" />
+		<result column="MBID" jdbcType="VARCHAR" property="mbid" />
+		<result column="TMID" jdbcType="VARCHAR" property="tmid" />
+		<result column="DTCS" jdbcType="INTEGER" property="dtcs" />
+		<result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+		<result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+		<result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		MXID, QZID, RWID, STID, STMC, MBID, TMID, DTCS,
+		ENABLE_STATUS,
+		DELETE_STATUS, CREATE_TIME,
+		CREATE_ID, UPDATE_TIME,
+		UPDATE_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_RWJL_TM_TJMX
+		where MXID = #{mxid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		TB_RWJL_TM_TJMX
+		where MXID = #{mxid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.RwjlTmTjmx">
+		insert into TB_RWJL_TM_TJMX
+		(MXID, QZID, RWID,
+		STID, STMC, MBID, TMID,
+		DTCS, ENABLE_STATUS,
+		DELETE_STATUS,
+		CREATE_TIME, CREATE_ID, UPDATE_TIME,
+		UPDATE_ID)
+		values
+		(#{mxid,jdbcType=VARCHAR}, #{qzid,jdbcType=VARCHAR},
+		#{rwid,jdbcType=VARCHAR},
+		#{stid,jdbcType=VARCHAR},
+		#{stmc,jdbcType=VARCHAR}, #{mbid,jdbcType=VARCHAR},
+		#{tmid,jdbcType=VARCHAR},
+		#{dtcs,jdbcType=INTEGER},
+		#{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR},
+		#{updateId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.RwjlTmTjmx">
+		insert into TB_RWJL_TM_TJMX
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="mxid != null">
+				MXID,
+			</if>
+			<if test="qzid != null">
+				QZID,
+			</if>
+			<if test="rwid != null">
+				RWID,
+			</if>
+			<if test="stid != null">
+				STID,
+			</if>
+			<if test="stmc != null">
+				STMC,
+			</if>
+			<if test="mbid != null">
+				MBID,
+			</if>
+			<if test="tmid != null">
+				TMID,
+			</if>
+			<if test="dtcs != null">
+				DTCS,
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS,
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="mxid != null">
+				#{mxid,jdbcType=VARCHAR},
+			</if>
+			<if test="qzid != null">
+				#{qzid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwid != null">
+				#{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="stid != null">
+				#{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="stmc != null">
+				#{stmc,jdbcType=VARCHAR},
+			</if>
+			<if test="mbid != null">
+				#{mbid,jdbcType=VARCHAR},
+			</if>
+			<if test="tmid != null">
+				#{tmid,jdbcType=VARCHAR},
+			</if>
+			<if test="dtcs != null">
+				#{dtcs,jdbcType=INTEGER},
+			</if>
+			<if test="enableStatus != null">
+				#{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				#{updateId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.RwjlTmTjmx">
+		update TB_RWJL_TM_TJMX
+		<set>
+			<if test="qzid != null">
+				QZID = #{qzid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwid != null">
+				RWID = #{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="stid != null">
+				STID = #{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="stmc != null">
+				STMC = #{stmc,jdbcType=VARCHAR},
+			</if>
+			<if test="mbid != null">
+				MBID = #{mbid,jdbcType=VARCHAR},
+			</if>
+			<if test="tmid != null">
+				TMID = #{tmid,jdbcType=VARCHAR},
+			</if>
+			<if test="dtcs != null">
+				DTCS = #{dtcs,jdbcType=INTEGER},
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where MXID = #{mxid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.RwjlTmTjmx">
+		update
+		TB_RWJL_TM_TJMX
+		set QZID = #{qzid,jdbcType=VARCHAR},
+		RWID =
+		#{rwid,jdbcType=VARCHAR},
+		STID = #{stid,jdbcType=VARCHAR},
+		STMC =
+		#{stmc,jdbcType=VARCHAR},
+		MBID = #{mbid,jdbcType=VARCHAR},
+		TMID =
+		#{tmid,jdbcType=VARCHAR},
+		DTCS = #{dtcs,jdbcType=INTEGER},
+		ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS =
+		#{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=VARCHAR},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID =
+		#{updateId,jdbcType=VARCHAR}
+		where MXID = #{mxid,jdbcType=VARCHAR}
+	</update>
+
+	<sql id="whereList">
+		<where>
+			<if test="mxid != null">
+				and MXID = #{mxid,jdbcType=VARCHAR}
+			</if>
+			<if test="qzid != null">
+				and QZID = #{qzid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwid != null">
+				and RWID = #{rwid,jdbcType=VARCHAR}
+			</if>
+			<if test="stid != null">
+				and STID = #{stid,jdbcType=VARCHAR}
+			</if>
+			<if test="stmc != null">
+				and STMC = #{stmc,jdbcType=VARCHAR}
+			</if>
+			<if test="mbid != null">
+				and MBID = #{mbid,jdbcType=VARCHAR}
+			</if>
+			<if test="tmid != null">
+				and TMID = #{tmid,jdbcType=VARCHAR}
+			</if>
+			<if test="dtcs != null">
+				and DTCS = #{dtcs,jdbcType=INTEGER}
+			</if>
+			<if test="enableStatus != null">
+				and ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="deleteStatus != null">
+				and DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				and CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test="createId != null">
+				and CREATE_ID = #{createId,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				and UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+			<if test="updateId != null">
+				and UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+
+	<select id="selectRwjlTmTjmx" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_RWJL_TM_TJMX
+		<include refid="whereList" />
+	</select>
+
+
+
+</mapper>

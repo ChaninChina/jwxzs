@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.RwjlTmMapper">
+	<resultMap id="BaseResultMap" type="com.model.RwjlTm">
+		<id column="RWTMID" jdbcType="VARCHAR" property="rwtmid" />
+		<result column="RWJLID" jdbcType="VARCHAR" property="rwjlid" />
+		<result column="RWID" jdbcType="VARCHAR" property="rwid" />
+		<result column="RWMC" jdbcType="VARCHAR" property="rwmc" />
+		<result column="STID" jdbcType="VARCHAR" property="stid" />
+		<result column="STMC" jdbcType="VARCHAR" property="stmc" />
+		<result column="FJTMFZID" jdbcType="VARCHAR" property="fjtmfzid" />
+		<result column="FJTMFZMC" jdbcType="VARCHAR" property="fjtmfzmc" />
+		<result column="FJTMFZMS" jdbcType="VARCHAR" property="fjtmfzms" />
+		<result column="FJTMFZPX" jdbcType="INTEGER" property="fjtmfzpx" />
+		<result column="FJTMFZLX" jdbcType="VARCHAR" property="fjtmfzlx" />
+		<result column="TMFZID" jdbcType="VARCHAR" property="tmfzid" />
+		<result column="TMFZMC" jdbcType="VARCHAR" property="tmfzmc" />
+		<result column="TMFZMS" jdbcType="VARCHAR" property="tmfzms" />
+		<result column="TMFZPX" jdbcType="INTEGER" property="tmfzpx" />
+		<result column="SUBSET_SYMBOL" jdbcType="VARCHAR" property="subsetSymbol" />
+		<result column="TMFZCJ" jdbcType="INTEGER" property="tmfzcj" />
+		<result column="TMFZLX" jdbcType="VARCHAR" property="tmfzlx" />
+		<result column="TMID" jdbcType="VARCHAR" property="tmid" />
+		<result column="TMNR" jdbcType="VARCHAR" property="tmnr" />
+		<result column="TMMS" jdbcType="VARCHAR" property="tmms" />
+		<result column="TMPX" jdbcType="INTEGER" property="tmpx" />
+		<result column="TMLX" jdbcType="VARCHAR" property="tmlx" />
+		<result column="XXBZ" jdbcType="VARCHAR" property="xxbz" />
+		<result column="FJBZ" jdbcType="VARCHAR" property="fjbz" />
+		<result column="LBPX" jdbcType="INTEGER" property="lbpx" />
+		<result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+		<result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+		<result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.model.RwjlTm">
+		<result column="TMJG" jdbcType="LONGVARCHAR" property="tmjg" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		RWTMID, RWJLID, RWID, RWMC, STID, STMC, FJTMFZID, FJTMFZMC,
+		FJTMFZMS,
+		FJTMFZPX, FJTMFZLX,
+		TMFZID, TMFZMC, TMFZMS, TMFZPX,
+		SUBSET_SYMBOL, TMFZCJ, TMFZLX, TMID, TMNR,
+		TMMS,
+		TMPX, TMLX, XXBZ, FJBZ,
+		LBPX, ENABLE_STATUS, DELETE_STATUS, CREATE_TIME,
+		CREATE_ID,
+		UPDATE_TIME, UPDATE_ID
+	</sql>
+	<sql id="Blob_Column_List">
+		TMJG
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from TB_RWJL_TM
+		where RWTMID = #{rwtmid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		TB_RWJL_TM
+		where RWTMID = #{rwtmid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.RwjlTm">
+		insert into TB_RWJL_TM
+		(RWTMID, RWJLID, RWID,
+		RWMC, STID, STMC, FJTMFZID,
+		FJTMFZMC, FJTMFZMS,
+		FJTMFZPX,
+		FJTMFZLX, TMFZID, TMFZMC,
+		TMFZMS, TMFZPX, SUBSET_SYMBOL,
+		TMFZCJ, TMFZLX, TMID,
+		TMNR, TMMS, TMPX, TMLX,
+		XXBZ, FJBZ, LBPX,
+		ENABLE_STATUS,
+		DELETE_STATUS, CREATE_TIME, CREATE_ID,
+		UPDATE_TIME,
+		UPDATE_ID, TMJG
+		)
+		values (#{rwtmid,jdbcType=VARCHAR},
+		#{rwjlid,jdbcType=VARCHAR},
+		#{rwid,jdbcType=VARCHAR},
+		#{rwmc,jdbcType=VARCHAR}, #{stid,jdbcType=VARCHAR},
+		#{stmc,jdbcType=VARCHAR},
+		#{fjtmfzid,jdbcType=VARCHAR},
+		#{fjtmfzmc,jdbcType=VARCHAR}, #{fjtmfzms,jdbcType=VARCHAR},
+		#{fjtmfzpx,jdbcType=INTEGER},
+		#{fjtmfzlx,jdbcType=VARCHAR},
+		#{tmfzid,jdbcType=VARCHAR},
+		#{tmfzmc,jdbcType=VARCHAR},
+		#{tmfzms,jdbcType=VARCHAR}, #{tmfzpx,jdbcType=INTEGER},
+		#{subsetSymbol,jdbcType=VARCHAR},
+		#{tmfzcj,jdbcType=INTEGER},
+		#{tmfzlx,jdbcType=VARCHAR},
+		#{tmid,jdbcType=VARCHAR},
+		#{tmnr,jdbcType=VARCHAR}, #{tmms,jdbcType=VARCHAR},
+		#{tmpx,jdbcType=INTEGER},
+		#{tmlx,jdbcType=VARCHAR},
+		#{xxbz,jdbcType=VARCHAR}, #{fjbz,jdbcType=VARCHAR},
+		#{lbpx,jdbcType=INTEGER},
+		#{enableStatus,jdbcType=VARCHAR},
+		#{deleteStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR},
+		#{updateId,jdbcType=VARCHAR},
+		#{tmjg,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.RwjlTm">
+		insert into TB_RWJL_TM
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="rwtmid != null">
+				RWTMID,
+			</if>
+			<if test="rwjlid != null">
+				RWJLID,
+			</if>
+			<if test="rwid != null">
+				RWID,
+			</if>
+			<if test="rwmc != null">
+				RWMC,
+			</if>
+			<if test="stid != null">
+				STID,
+			</if>
+			<if test="stmc != null">
+				STMC,
+			</if>
+			<if test="fjtmfzid != null">
+				FJTMFZID,
+			</if>
+			<if test="fjtmfzmc != null">
+				FJTMFZMC,
+			</if>
+			<if test="fjtmfzms != null">
+				FJTMFZMS,
+			</if>
+			<if test="fjtmfzpx != null">
+				FJTMFZPX,
+			</if>
+			<if test="fjtmfzlx != null">
+				FJTMFZLX,
+			</if>
+			<if test="tmfzid != null">
+				TMFZID,
+			</if>
+			<if test="tmfzmc != null">
+				TMFZMC,
+			</if>
+			<if test="tmfzms != null">
+				TMFZMS,
+			</if>
+			<if test="tmfzpx != null">
+				TMFZPX,
+			</if>
+			<if test="subsetSymbol != null">
+				SUBSET_SYMBOL,
+			</if>
+			<if test="tmfzcj != null">
+				TMFZCJ,
+			</if>
+			<if test="tmfzlx != null">
+				TMFZLX,
+			</if>
+			<if test="tmid != null">
+				TMID,
+			</if>
+			<if test="tmnr != null">
+				TMNR,
+			</if>
+			<if test="tmms != null">
+				TMMS,
+			</if>
+			<if test="tmpx != null">
+				TMPX,
+			</if>
+			<if test="tmlx != null">
+				TMLX,
+			</if>
+			<if test="xxbz != null">
+				XXBZ,
+			</if>
+			<if test="fjbz != null">
+				FJBZ,
+			</if>
+			<if test="lbpx != null">
+				LBPX,
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS,
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID,
+			</if>
+			<if test="tmjg != null">
+				TMJG,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="rwtmid != null">
+				#{rwtmid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwjlid != null">
+				#{rwjlid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwid != null">
+				#{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwmc != null">
+				#{rwmc,jdbcType=VARCHAR},
+			</if>
+			<if test="stid != null">
+				#{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="stmc != null">
+				#{stmc,jdbcType=VARCHAR},
+			</if>
+			<if test="fjtmfzid != null">
+				#{fjtmfzid,jdbcType=VARCHAR},
+			</if>
+			<if test="fjtmfzmc != null">
+				#{fjtmfzmc,jdbcType=VARCHAR},
+			</if>
+			<if test="fjtmfzms != null">
+				#{fjtmfzms,jdbcType=VARCHAR},
+			</if>
+			<if test="fjtmfzpx != null">
+				#{fjtmfzpx,jdbcType=INTEGER},
+			</if>
+			<if test="fjtmfzlx != null">
+				#{fjtmfzlx,jdbcType=VARCHAR},
+			</if>
+			<if test="tmfzid != null">
+				#{tmfzid,jdbcType=VARCHAR},
+			</if>
+			<if test="tmfzmc != null">
+				#{tmfzmc,jdbcType=VARCHAR},
+			</if>
+			<if test="tmfzms != null">
+				#{tmfzms,jdbcType=VARCHAR},
+			</if>
+			<if test="tmfzpx != null">
+				#{tmfzpx,jdbcType=INTEGER},
+			</if>
+			<if test="subsetSymbol != null">
+				#{subsetSymbol,jdbcType=VARCHAR},
+			</if>
+			<if test="tmfzcj != null">
+				#{tmfzcj,jdbcType=INTEGER},
+			</if>
+			<if test="tmfzlx != null">
+				#{tmfzlx,jdbcType=VARCHAR},
+			</if>
+			<if test="tmid != null">
+				#{tmid,jdbcType=VARCHAR},
+			</if>
+			<if test="tmnr != null">
+				#{tmnr,jdbcType=VARCHAR},
+			</if>
+			<if test="tmms != null">
+				#{tmms,jdbcType=VARCHAR},
+			</if>
+			<if test="tmpx != null">
+				#{tmpx,jdbcType=INTEGER},
+			</if>
+			<if test="tmlx != null">
+				#{tmlx,jdbcType=VARCHAR},
+			</if>
+			<if test="xxbz != null">
+				#{xxbz,jdbcType=VARCHAR},
+			</if>
+			<if test="fjbz != null">
+				#{fjbz,jdbcType=VARCHAR},
+			</if>
+			<if test="lbpx != null">
+				#{lbpx,jdbcType=INTEGER},
+			</if>
+			<if test="enableStatus != null">
+				#{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				#{updateId,jdbcType=VARCHAR},
+			</if>
+			<if test="tmjg != null">
+				#{tmjg,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.RwjlTm">
+		update TB_RWJL_TM
+		<set>
+			<if test="rwjlid != null">
+				RWJLID = #{rwjlid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwid != null">
+				RWID = #{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwmc != null">
+				RWMC = #{rwmc,jdbcType=VARCHAR},
+			</if>
+			<if test="stid != null">
+				STID = #{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="stmc != null">
+				STMC = #{stmc,jdbcType=VARCHAR},
+			</if>
+			<if test="fjtmfzid != null">
+				FJTMFZID = #{fjtmfzid,jdbcType=VARCHAR},
+			</if>
+			<if test="fjtmfzmc != null">
+				FJTMFZMC = #{fjtmfzmc,jdbcType=VARCHAR},
+			</if>
+			<if test="fjtmfzms != null">
+				FJTMFZMS = #{fjtmfzms,jdbcType=VARCHAR},
+			</if>
+			<if test="fjtmfzpx != null">
+				FJTMFZPX = #{fjtmfzpx,jdbcType=INTEGER},
+			</if>
+			<if test="fjtmfzlx != null">
+				FJTMFZLX = #{fjtmfzlx,jdbcType=VARCHAR},
+			</if>
+			<if test="tmfzid != null">
+				TMFZID = #{tmfzid,jdbcType=VARCHAR},
+			</if>
+			<if test="tmfzmc != null">
+				TMFZMC = #{tmfzmc,jdbcType=VARCHAR},
+			</if>
+			<if test="tmfzms != null">
+				TMFZMS = #{tmfzms,jdbcType=VARCHAR},
+			</if>
+			<if test="tmfzpx != null">
+				TMFZPX = #{tmfzpx,jdbcType=INTEGER},
+			</if>
+			<if test="subsetSymbol != null">
+				SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+			</if>
+			<if test="tmfzcj != null">
+				TMFZCJ = #{tmfzcj,jdbcType=INTEGER},
+			</if>
+			<if test="tmfzlx != null">
+				TMFZLX = #{tmfzlx,jdbcType=VARCHAR},
+			</if>
+			<if test="tmid != null">
+				TMID = #{tmid,jdbcType=VARCHAR},
+			</if>
+			<if test="tmnr != null">
+				TMNR = #{tmnr,jdbcType=VARCHAR},
+			</if>
+			<if test="tmms != null">
+				TMMS = #{tmms,jdbcType=VARCHAR},
+			</if>
+			<if test="tmpx != null">
+				TMPX = #{tmpx,jdbcType=INTEGER},
+			</if>
+			<if test="tmlx != null">
+				TMLX = #{tmlx,jdbcType=VARCHAR},
+			</if>
+			<if test="xxbz != null">
+				XXBZ = #{xxbz,jdbcType=VARCHAR},
+			</if>
+			<if test="fjbz != null">
+				FJBZ = #{fjbz,jdbcType=VARCHAR},
+			</if>
+			<if test="lbpx != null">
+				LBPX = #{lbpx,jdbcType=INTEGER},
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+			<if test="tmjg != null">
+				TMJG = #{tmjg,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where RWTMID = #{rwtmid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.model.RwjlTm">
+		update
+		TB_RWJL_TM
+		set RWJLID = #{rwjlid,jdbcType=VARCHAR},
+		RWID =
+		#{rwid,jdbcType=VARCHAR},
+		RWMC = #{rwmc,jdbcType=VARCHAR},
+		STID =
+		#{stid,jdbcType=VARCHAR},
+		STMC = #{stmc,jdbcType=VARCHAR},
+		FJTMFZID =
+		#{fjtmfzid,jdbcType=VARCHAR},
+		FJTMFZMC = #{fjtmfzmc,jdbcType=VARCHAR},
+		FJTMFZMS = #{fjtmfzms,jdbcType=VARCHAR},
+		FJTMFZPX =
+		#{fjtmfzpx,jdbcType=INTEGER},
+		FJTMFZLX = #{fjtmfzlx,jdbcType=VARCHAR},
+		TMFZID = #{tmfzid,jdbcType=VARCHAR},
+		TMFZMC =
+		#{tmfzmc,jdbcType=VARCHAR},
+		TMFZMS = #{tmfzms,jdbcType=VARCHAR},
+		TMFZPX
+		= #{tmfzpx,jdbcType=INTEGER},
+		SUBSET_SYMBOL =
+		#{subsetSymbol,jdbcType=VARCHAR},
+		TMFZCJ = #{tmfzcj,jdbcType=INTEGER},
+		TMFZLX = #{tmfzlx,jdbcType=VARCHAR},
+		TMID = #{tmid,jdbcType=VARCHAR},
+		TMNR = #{tmnr,jdbcType=VARCHAR},
+		TMMS = #{tmms,jdbcType=VARCHAR},
+		TMPX =
+		#{tmpx,jdbcType=INTEGER},
+		TMLX = #{tmlx,jdbcType=VARCHAR},
+		XXBZ =
+		#{xxbz,jdbcType=VARCHAR},
+		FJBZ = #{fjbz,jdbcType=VARCHAR},
+		LBPX =
+		#{lbpx,jdbcType=INTEGER},
+		ENABLE_STATUS =
+		#{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS =
+		#{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=VARCHAR},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID =
+		#{updateId,jdbcType=VARCHAR},
+		TMJG = #{tmjg,jdbcType=LONGVARCHAR}
+		where
+		RWTMID = #{rwtmid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.RwjlTm">
+		update TB_RWJL_TM
+		set RWJLID = #{rwjlid,jdbcType=VARCHAR},
+		RWID =
+		#{rwid,jdbcType=VARCHAR},
+		RWMC = #{rwmc,jdbcType=VARCHAR},
+		STID =
+		#{stid,jdbcType=VARCHAR},
+		STMC = #{stmc,jdbcType=VARCHAR},
+		FJTMFZID =
+		#{fjtmfzid,jdbcType=VARCHAR},
+		FJTMFZMC = #{fjtmfzmc,jdbcType=VARCHAR},
+		FJTMFZMS = #{fjtmfzms,jdbcType=VARCHAR},
+		FJTMFZPX =
+		#{fjtmfzpx,jdbcType=INTEGER},
+		FJTMFZLX = #{fjtmfzlx,jdbcType=VARCHAR},
+		TMFZID = #{tmfzid,jdbcType=VARCHAR},
+		TMFZMC =
+		#{tmfzmc,jdbcType=VARCHAR},
+		TMFZMS = #{tmfzms,jdbcType=VARCHAR},
+		TMFZPX
+		= #{tmfzpx,jdbcType=INTEGER},
+		SUBSET_SYMBOL =
+		#{subsetSymbol,jdbcType=VARCHAR},
+		TMFZCJ = #{tmfzcj,jdbcType=INTEGER},
+		TMFZLX = #{tmfzlx,jdbcType=VARCHAR},
+		TMID = #{tmid,jdbcType=VARCHAR},
+		TMNR = #{tmnr,jdbcType=VARCHAR},
+		TMMS = #{tmms,jdbcType=VARCHAR},
+		TMPX =
+		#{tmpx,jdbcType=INTEGER},
+		TMLX = #{tmlx,jdbcType=VARCHAR},
+		XXBZ =
+		#{xxbz,jdbcType=VARCHAR},
+		FJBZ = #{fjbz,jdbcType=VARCHAR},
+		LBPX =
+		#{lbpx,jdbcType=INTEGER},
+		ENABLE_STATUS =
+		#{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS =
+		#{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=VARCHAR},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID =
+		#{updateId,jdbcType=VARCHAR}
+		where RWTMID = #{rwtmid,jdbcType=VARCHAR}
+	</update>
+	<sql id="whereList">
+		<where>
+			<if test="rwtmid != null">
+				AND RWTMID = #{rwtmid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwjlid != null">
+				AND RWJLID = #{rwjlid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwid != null">
+				AND RWID = #{rwid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwmc != null">
+				AND RWMC = #{rwmc,jdbcType=VARCHAR}
+			</if>
+			<if test="stid != null">
+				AND STID = #{stid,jdbcType=VARCHAR}
+			</if>
+			<if test="stmc != null">
+				AND STMC = #{stmc,jdbcType=VARCHAR}
+			</if>
+			<if test="fjtmfzid != null">
+				AND FJTMFZID = #{fjtmfzid,jdbcType=VARCHAR}
+			</if>
+			<if test="notfjtmfzid != null">
+				AND (FJTMFZID = '' or FJTMFZID is null)
+			</if>
+			<if test="fjtmfzmc != null">
+				AND FJTMFZMC = #{fjtmfzmc,jdbcType=VARCHAR}
+			</if>
+			<if test="fjtmfzms != null">
+				AND FJTMFZMS = #{fjtmfzms,jdbcType=VARCHAR}
+			</if>
+			<if test="fjtmfzpx != null">
+				AND FJTMFZPX = #{fjtmfzpx,jdbcType=INTEGER}
+			</if>
+			<if test="fjtmfzlx != null">
+				AND FJTMFZLX = #{fjtmfzlx,jdbcType=VARCHAR}
+			</if>
+			<if test="tmfzid != null">
+				AND TMFZID = #{tmfzid,jdbcType=VARCHAR}
+			</if>
+			<if test="tmfzmc != null">
+				AND TMFZMC = #{tmfzmc,jdbcType=VARCHAR}
+			</if>
+			<if test="tmfzms != null">
+				AND TMFZMS = #{tmfzms,jdbcType=VARCHAR}
+			</if>
+			<if test="tmfzpx != null">
+				AND TMFZPX = #{tmfzpx,jdbcType=INTEGER}
+			</if>
+			<if test="subsetSymbol != null">
+				AND SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR}
+			</if>
+			<if test="tmfzcj != null">
+				AND TMFZCJ = #{tmfzcj,jdbcType=INTEGER}
+			</if>
+			<if test="tmfzlx != null">
+				AND TMFZLX = #{tmfzlx,jdbcType=VARCHAR}
+			</if>
+			<if test="tmid != null">
+				AND TMID = #{tmid,jdbcType=VARCHAR}
+			</if>
+			<if test="tmnr != null">
+				AND TMNR = #{tmnr,jdbcType=VARCHAR}
+			</if>
+			<if test="tmms != null">
+				AND TMMS = #{tmms,jdbcType=VARCHAR}
+			</if>
+			<if test="tmpx != null">
+				AND TMPX = #{tmpx,jdbcType=INTEGER}
+			</if>
+			<if test="tmlx != null">
+				AND TMLX = #{tmlx,jdbcType=VARCHAR}
+			</if>
+			<if test="xxbz != null">
+				AND XXBZ = #{xxbz,jdbcType=VARCHAR}
+			</if>
+			<if test="fjbz != null">
+				AND FJBZ = #{fjbz,jdbcType=VARCHAR}
+			</if>
+			<if test="lbpx != null">
+				AND LBPX = #{lbpx,jdbcType=INTEGER}
+			</if>
+			<if test="enableStatus != null">
+				AND ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="deleteStatus != null">
+				AND DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test="createId != null">
+				AND CREATE_ID = #{createId,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				AND UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+			<if test="updateId != null">
+				AND UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+			</if>
+			<if test="tmjg != null">
+				AND TMJG = #{tmjg,jdbcType=LONGVARCHAR}
+			</if>
+		</where>
+	</sql>
+	<select id="selectRwjlTm" parameterType="map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from TB_RWJL_TM
+		<include refid="whereList" />
+	</select>
+</mapper>

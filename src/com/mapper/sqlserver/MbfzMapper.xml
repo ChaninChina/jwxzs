@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MbfzMapper">
+  <resultMap id="BaseResultMap" type="com.model.Mbfz">
+    <id column="MBFZID" jdbcType="VARCHAR" property="mbfzid" />
+    <result column="FJMBFZID" jdbcType="VARCHAR" property="fjmbfzid" />
+    <result column="YHID" jdbcType="VARCHAR" property="yhid" />
+    <result column="MBFZMC" jdbcType="VARCHAR" property="mbfzmc" />
+    <result column="MBFZSP" jdbcType="VARCHAR" property="mbfzsp" />
+    <result column="MBFZMS" jdbcType="VARCHAR" property="mbfzms" />
+    <result column="MBFZCJ" jdbcType="INTEGER" property="mbfzcj" />
+    <result column="MBFZPX" jdbcType="INTEGER" property="mbfzpx" />
+    <result column="MBFZBZ" jdbcType="VARCHAR" property="mbfzbz" />
+    <result column="SUBSET_SYMBOL" jdbcType="VARCHAR" property="subsetSymbol" />
+    <result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+    <result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MBFZID, FJMBFZID, YHID, MBFZMC, MBFZSP, MBFZMS, MBFZCJ, MBFZPX, MBFZBZ, SUBSET_SYMBOL, 
+    ENABLE_STATUS, DELETE_STATUS, CREATE_TIME, CREATE_ID, UPDATE_TIME, UPDATE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_MBFZ
+    where MBFZID = #{mbfzid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_MBFZ
+    where MBFZID = #{mbfzid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Mbfz">
+    insert into TB_MBFZ (MBFZID, FJMBFZID, YHID, 
+      MBFZMC, MBFZSP, MBFZMS, 
+      MBFZCJ, MBFZPX, MBFZBZ, 
+      SUBSET_SYMBOL, ENABLE_STATUS, DELETE_STATUS, 
+      CREATE_TIME, CREATE_ID, UPDATE_TIME, 
+      UPDATE_ID)
+    values (#{mbfzid,jdbcType=VARCHAR}, #{fjmbfzid,jdbcType=VARCHAR}, #{yhid,jdbcType=VARCHAR}, 
+      #{mbfzmc,jdbcType=VARCHAR}, #{mbfzsp,jdbcType=VARCHAR}, #{mbfzms,jdbcType=VARCHAR}, 
+      #{mbfzcj,jdbcType=INTEGER}, #{mbfzpx,jdbcType=INTEGER}, #{mbfzbz,jdbcType=VARCHAR}, 
+      #{subsetSymbol,jdbcType=VARCHAR}, #{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{updateId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Mbfz">
+    insert into TB_MBFZ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mbfzid != null">
+        MBFZID,
+      </if>
+      <if test="fjmbfzid != null">
+        FJMBFZID,
+      </if>
+      <if test="yhid != null">
+        YHID,
+      </if>
+      <if test="mbfzmc != null">
+        MBFZMC,
+      </if>
+      <if test="mbfzsp != null">
+        MBFZSP,
+      </if>
+      <if test="mbfzms != null">
+        MBFZMS,
+      </if>
+      <if test="mbfzcj != null">
+        MBFZCJ,
+      </if>
+      <if test="mbfzpx != null">
+        MBFZPX,
+      </if>
+      <if test="mbfzbz != null">
+        MBFZBZ,
+      </if>
+      <if test="subsetSymbol != null">
+        SUBSET_SYMBOL,
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mbfzid != null">
+        #{mbfzid,jdbcType=VARCHAR},
+      </if>
+      <if test="fjmbfzid != null">
+        #{fjmbfzid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhid != null">
+        #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="mbfzmc != null">
+        #{mbfzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="mbfzsp != null">
+        #{mbfzsp,jdbcType=VARCHAR},
+      </if>
+      <if test="mbfzms != null">
+        #{mbfzms,jdbcType=VARCHAR},
+      </if>
+      <if test="mbfzcj != null">
+        #{mbfzcj,jdbcType=INTEGER},
+      </if>
+      <if test="mbfzpx != null">
+        #{mbfzpx,jdbcType=INTEGER},
+      </if>
+      <if test="mbfzbz != null">
+        #{mbfzbz,jdbcType=VARCHAR},
+      </if>
+      <if test="subsetSymbol != null">
+        #{subsetSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Mbfz">
+    update TB_MBFZ
+    <set>
+      <if test="fjmbfzid != null">
+        FJMBFZID = #{fjmbfzid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhid != null">
+        YHID = #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="mbfzmc != null">
+        MBFZMC = #{mbfzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="mbfzsp != null">
+        MBFZSP = #{mbfzsp,jdbcType=VARCHAR},
+      </if>
+      <if test="mbfzms != null">
+        MBFZMS = #{mbfzms,jdbcType=VARCHAR},
+      </if>
+      <if test="mbfzcj != null">
+        MBFZCJ = #{mbfzcj,jdbcType=INTEGER},
+      </if>
+      <if test="mbfzpx != null">
+        MBFZPX = #{mbfzpx,jdbcType=INTEGER},
+      </if>
+      <if test="mbfzbz != null">
+        MBFZBZ = #{mbfzbz,jdbcType=VARCHAR},
+      </if>
+      <if test="subsetSymbol != null">
+        SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MBFZID = #{mbfzid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Mbfz">
+    update TB_MBFZ
+    set FJMBFZID = #{fjmbfzid,jdbcType=VARCHAR},
+      YHID = #{yhid,jdbcType=VARCHAR},
+      MBFZMC = #{mbfzmc,jdbcType=VARCHAR},
+      MBFZSP = #{mbfzsp,jdbcType=VARCHAR},
+      MBFZMS = #{mbfzms,jdbcType=VARCHAR},
+      MBFZCJ = #{mbfzcj,jdbcType=INTEGER},
+      MBFZPX = #{mbfzpx,jdbcType=INTEGER},
+      MBFZBZ = #{mbfzbz,jdbcType=VARCHAR},
+      SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+    where MBFZID = #{mbfzid,jdbcType=VARCHAR}
+  </update>
+</mapper>

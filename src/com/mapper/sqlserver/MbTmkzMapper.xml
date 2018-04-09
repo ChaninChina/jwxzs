@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MbTmkzMapper">
+	<resultMap id="BaseResultMap" type="com.model.MbTmkz">
+		<id column="KZID" jdbcType="VARCHAR" property="kzid" />
+		<result column="MBID" jdbcType="VARCHAR" property="mbid" />
+		<result column="KZXID" jdbcType="VARCHAR" property="kzxid" />
+		<result column="KZXSX" jdbcType="VARCHAR" property="kzxsx" />
+		<result column="KZXLX" jdbcType="VARCHAR" property="kzxlx" />
+		<result column="BKZXID" jdbcType="VARCHAR" property="bkzxid" />
+		<result column="BKZXLX" jdbcType="VARCHAR" property="bkzxlx" />
+		<result column="MRZT" jdbcType="VARCHAR" property="mrzt" />
+		<result column="KZTJ" jdbcType="VARCHAR" property="kztj" />
+		<result column="KZJG" jdbcType="VARCHAR" property="kzjg" />
+		<result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+		<result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+		<result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		KZID, MBID, KZXID, KZXSX, KZXLX, BKZXID, BKZXLX, MRZT,
+		KZTJ, KZJG,
+		ENABLE_STATUS,
+		DELETE_STATUS, CREATE_TIME, CREATE_ID,
+		UPDATE_TIME, UPDATE_ID
+	</sql>
+
+	<sql id="whereList">
+		<where>
+			<if test="kzid != null">
+				AND KZID = #{kzid,jdbcType=VARCHAR}
+			</if>
+			<if test="mbid != null">
+				AND MBID = #{mbid,jdbcType=VARCHAR}
+			</if>
+			<if test="kzxid != null">
+				AND KZXID = #{kzxid,jdbcType=VARCHAR}
+			</if>
+			<if test="kzxsx != null">
+				AND KZXSX = #{kzxsx,jdbcType=VARCHAR}
+			</if>
+			<if test="kzxlx != null">
+				AND KZXLX = #{kzxlx,jdbcType=VARCHAR}
+			</if>
+			<if test="bkzxid != null">
+				AND BKZXID = #{bkzxid,jdbcType=VARCHAR}
+			</if>
+			<if test="bkzxlx != null">
+				AND BKZXLX = #{bkzxlx,jdbcType=VARCHAR}
+			</if>
+			<if test="mrzt != null">
+				AND MRZT = #{mrzt,jdbcType=VARCHAR}
+			</if>
+			<if test="kztj != null">
+				AND KZTJ = #{kztj,jdbcType=VARCHAR}
+			</if>
+			<if test="kzjg != null">
+				AND KZJG = #{kzjg,jdbcType=VARCHAR}
+			</if>
+			<if test="enableStatus != null">
+				AND ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="deleteStatus != null">
+				AND DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test="createId != null">
+				AND CREATE_ID = #{createId,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				AND UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+			<if test="updateId != null">
+				AND UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+			</if>
+
+
+		</where>
+
+	</sql>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_MB_TMKZ
+		where KZID = #{kzid,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectMbTmKz" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_MB_TMKZ
+		<include refid="whereList" />
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		TB_MB_TMKZ
+		where KZID = #{kzid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.MbTmkz">
+		insert into TB_MB_TMKZ (KZID,
+		MBID, KZXID,
+		KZXSX, KZXLX, BKZXID,
+		BKZXLX, MRZT, KZTJ,
+		KZJG,
+		ENABLE_STATUS, DELETE_STATUS,
+		CREATE_TIME, CREATE_ID, UPDATE_TIME,
+		UPDATE_ID)
+		values (#{kzid,jdbcType=VARCHAR}, #{mbid,jdbcType=VARCHAR},
+		#{kzxid,jdbcType=VARCHAR},
+		#{kzxsx,jdbcType=VARCHAR},
+		#{kzxlx,jdbcType=VARCHAR}, #{bkzxid,jdbcType=VARCHAR},
+		#{bkzxlx,jdbcType=VARCHAR}, #{mrzt,jdbcType=VARCHAR},
+		#{kztj,jdbcType=VARCHAR},
+		#{kzjg,jdbcType=VARCHAR},
+		#{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR},
+		#{updateId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.MbTmkz">
+		insert into TB_MB_TMKZ
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="kzid != null">
+				KZID,
+			</if>
+			<if test="mbid != null">
+				MBID,
+			</if>
+			<if test="kzxid != null">
+				KZXID,
+			</if>
+			<if test="kzxsx != null">
+				KZXSX,
+			</if>
+			<if test="kzxlx != null">
+				KZXLX,
+			</if>
+			<if test="bkzxid != null">
+				BKZXID,
+			</if>
+			<if test="bkzxlx != null">
+				BKZXLX,
+			</if>
+			<if test="mrzt != null">
+				MRZT,
+			</if>
+			<if test="kztj != null">
+				KZTJ,
+			</if>
+			<if test="kzjg != null">
+				KZJG,
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS,
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="kzid != null">
+				#{kzid,jdbcType=VARCHAR},
+			</if>
+			<if test="mbid != null">
+				#{mbid,jdbcType=VARCHAR},
+			</if>
+			<if test="kzxid != null">
+				#{kzxid,jdbcType=VARCHAR},
+			</if>
+			<if test="kzxsx != null">
+				#{kzxsx,jdbcType=VARCHAR},
+			</if>
+			<if test="kzxlx != null">
+				#{kzxlx,jdbcType=VARCHAR},
+			</if>
+			<if test="bkzxid != null">
+				#{bkzxid,jdbcType=VARCHAR},
+			</if>
+			<if test="bkzxlx != null">
+				#{bkzxlx,jdbcType=VARCHAR},
+			</if>
+			<if test="mrzt != null">
+				#{mrzt,jdbcType=VARCHAR},
+			</if>
+			<if test="kztj != null">
+				#{kztj,jdbcType=VARCHAR},
+			</if>
+			<if test="kzjg != null">
+				#{kzjg,jdbcType=VARCHAR},
+			</if>
+			<if test="enableStatus != null">
+				#{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				#{updateId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.MbTmkz">
+		update TB_MB_TMKZ
+		<set>
+			<if test="mbid != null">
+				MBID = #{mbid,jdbcType=VARCHAR},
+			</if>
+			<if test="kzxid != null">
+				KZXID = #{kzxid,jdbcType=VARCHAR},
+			</if>
+			<if test="kzxsx != null">
+				KZXSX = #{kzxsx,jdbcType=VARCHAR},
+			</if>
+			<if test="kzxlx != null">
+				KZXLX = #{kzxlx,jdbcType=VARCHAR},
+			</if>
+			<if test="bkzxid != null">
+				BKZXID = #{bkzxid,jdbcType=VARCHAR},
+			</if>
+			<if test="bkzxlx != null">
+				BKZXLX = #{bkzxlx,jdbcType=VARCHAR},
+			</if>
+			<if test="mrzt != null">
+				MRZT = #{mrzt,jdbcType=VARCHAR},
+			</if>
+			<if test="kztj != null">
+				KZTJ = #{kztj,jdbcType=VARCHAR},
+			</if>
+			<if test="kzjg != null">
+				KZJG = #{kzjg,jdbcType=VARCHAR},
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where KZID = #{kzid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.MbTmkz">
+		update TB_MB_TMKZ
+		set MBID = #{mbid,jdbcType=VARCHAR},
+		KZXID = #{kzxid,jdbcType=VARCHAR},
+		KZXSX = #{kzxsx,jdbcType=VARCHAR},
+		KZXLX = #{kzxlx,jdbcType=VARCHAR},
+		BKZXID = #{bkzxid,jdbcType=VARCHAR},
+		BKZXLX =
+		#{bkzxlx,jdbcType=VARCHAR},
+		MRZT = #{mrzt,jdbcType=VARCHAR},
+		KZTJ =
+		#{kztj,jdbcType=VARCHAR},
+		KZJG = #{kzjg,jdbcType=VARCHAR},
+		ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS =
+		#{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=VARCHAR},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID =
+		#{updateId,jdbcType=VARCHAR}
+		where KZID = #{kzid,jdbcType=VARCHAR}
+	</update>
+</mapper>

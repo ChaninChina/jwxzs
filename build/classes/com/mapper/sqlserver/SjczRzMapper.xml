@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.SjczRzMapper">
+  <resultMap id="BaseResultMap" type="com.model.SjczRz">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="YHID" jdbcType="VARCHAR" property="yhid" />
+    <result column="CZ_LX" jdbcType="VARCHAR" property="czLx" />
+    <result column="CZ_MK" jdbcType="VARCHAR" property="czMk" />
+    <result column="SJ_LX" jdbcType="VARCHAR" property="sjLx" />
+    <result column="CZSJ" jdbcType="VARCHAR" property="czsj" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.model.SjczRz">
+    <result column="CZ_SJ" jdbcType="LONGVARCHAR" property="czSj" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, YHID, CZ_LX, CZ_MK, SJ_LX, CZSJ
+  </sql>
+  <sql id="Blob_Column_List">
+    CZ_SJ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from TB_SJCZ_RZ
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_SJCZ_RZ
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.SjczRz">
+    insert into TB_SJCZ_RZ (ID, YHID, CZ_LX, 
+      CZ_MK, SJ_LX, CZSJ, CZ_SJ
+      )
+    values (#{id,jdbcType=VARCHAR}, #{yhid,jdbcType=VARCHAR}, #{czLx,jdbcType=VARCHAR}, 
+      #{czMk,jdbcType=VARCHAR}, #{sjLx,jdbcType=VARCHAR}, #{czsj,jdbcType=VARCHAR}, #{czSj,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.SjczRz">
+    insert into TB_SJCZ_RZ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="yhid != null">
+        YHID,
+      </if>
+      <if test="czLx != null">
+        CZ_LX,
+      </if>
+      <if test="czMk != null">
+        CZ_MK,
+      </if>
+      <if test="sjLx != null">
+        SJ_LX,
+      </if>
+      <if test="czsj != null">
+        CZSJ,
+      </if>
+      <if test="czSj != null">
+        CZ_SJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="yhid != null">
+        #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="czLx != null">
+        #{czLx,jdbcType=VARCHAR},
+      </if>
+      <if test="czMk != null">
+        #{czMk,jdbcType=VARCHAR},
+      </if>
+      <if test="sjLx != null">
+        #{sjLx,jdbcType=VARCHAR},
+      </if>
+      <if test="czsj != null">
+        #{czsj,jdbcType=VARCHAR},
+      </if>
+      <if test="czSj != null">
+        #{czSj,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.SjczRz">
+    update TB_SJCZ_RZ
+    <set>
+      <if test="yhid != null">
+        YHID = #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="czLx != null">
+        CZ_LX = #{czLx,jdbcType=VARCHAR},
+      </if>
+      <if test="czMk != null">
+        CZ_MK = #{czMk,jdbcType=VARCHAR},
+      </if>
+      <if test="sjLx != null">
+        SJ_LX = #{sjLx,jdbcType=VARCHAR},
+      </if>
+      <if test="czsj != null">
+        CZSJ = #{czsj,jdbcType=VARCHAR},
+      </if>
+      <if test="czSj != null">
+        CZ_SJ = #{czSj,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.model.SjczRz">
+    update TB_SJCZ_RZ
+    set YHID = #{yhid,jdbcType=VARCHAR},
+      CZ_LX = #{czLx,jdbcType=VARCHAR},
+      CZ_MK = #{czMk,jdbcType=VARCHAR},
+      SJ_LX = #{sjLx,jdbcType=VARCHAR},
+      CZSJ = #{czsj,jdbcType=VARCHAR},
+      CZ_SJ = #{czSj,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.SjczRz">
+    update TB_SJCZ_RZ
+    set YHID = #{yhid,jdbcType=VARCHAR},
+      CZ_LX = #{czLx,jdbcType=VARCHAR},
+      CZ_MK = #{czMk,jdbcType=VARCHAR},
+      SJ_LX = #{sjLx,jdbcType=VARCHAR},
+      CZSJ = #{czsj,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

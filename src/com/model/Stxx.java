@@ -1,0 +1,667 @@
+package com.model;
+
+import com.util.model.BasicObject;
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * @TableName tb_stxx
+ * @Data 2017-12-28
+ * @Author chanin 
+ * 实体基本信息
+ */
+public class Stxx extends BasicObject implements Serializable {
+    // 实体主键 (主健ID)
+    private String stid;
+
+    // 实体分组主键(可选项)
+    private String stfzid;
+
+    // 区域主键(可选项)
+    private String areaId;
+
+    // 实体简介类型：文本、富文本(可选项)
+    private String stjjlx;
+
+    // 实体群组(可选项)
+    private String qzid;
+
+    // 实体名称(必填项)
+    private String stmc;
+
+    // 实体首拼(必填项)
+    private String stsp;
+
+    // 实体描述(可选项)
+    private String stms;
+
+    // 实体地址(可选项)
+    private String stdz;
+
+    // 实体联系人(必填项)
+    private String stlxr;
+
+    // 实体联系方式(必填项)
+    private String stlxfs;
+
+    // 实体类型：实物、虚拟(必填项)
+    private String stlx;
+    
+    // 时间戳：(默认值)
+    private Long timeStamp;
+
+    // 启用状态(必填项)
+    private String enableStatus;
+
+    // 删除状态(必填项)
+    private String deleteStatus;
+
+    // 创建时间(必填项)
+    private String createTime;
+
+    // 创建人员(必填项)
+    private String createId;
+
+    // 更新时间(必填项)
+    private String updateTime;
+
+    // 更新人员(必填项)
+    private String updateId;
+
+    // 实体简介(可选项)
+    private String stjj;
+    
+    
+    //------------------------
+  	//业务逻辑使用属性
+  	//------------------------
+    private List<Strw> strws;//实体相关的所有任务
+    
+    private List<Fjxx> fjxxs;//实体附件信息
+    
+    
+    
+
+    private static final long serialVersionUID = 1L;
+
+    public String getStid() {
+        return stid;
+    }
+
+    public void setStid(String stid) {
+        this.stid = stid == null ? null : stid.trim();
+    }
+
+    public String getStfzid() {
+        return stfzid;
+    }
+
+    public void setStfzid(String stfzid) {
+        this.stfzid = stfzid == null ? null : stfzid.trim();
+    }
+
+    public String getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(String areaId) {
+        this.areaId = areaId == null ? null : areaId.trim();
+    }
+
+    public String getStjjlx() {
+        return stjjlx;
+    }
+
+    public void setStjjlx(String stjjlx) {
+        this.stjjlx = stjjlx == null ? null : stjjlx.trim();
+    }
+
+    public String getQzid() {
+        return qzid;
+    }
+
+    public void setQzid(String qzid) {
+        this.qzid = qzid == null ? null : qzid.trim();
+    }
+
+    public String getStmc() {
+        return stmc;
+    }
+
+    public void setStmc(String stmc) {
+        this.stmc = stmc == null ? null : stmc.trim();
+    }
+
+    public String getStsp() {
+        return stsp;
+    }
+
+    public void setStsp(String stsp) {
+        this.stsp = stsp == null ? null : stsp.trim();
+    }
+
+    public String getStms() {
+        return stms;
+    }
+
+    public void setStms(String stms) {
+        this.stms = stms == null ? null : stms.trim();
+    }
+
+    public String getStdz() {
+        return stdz;
+    }
+
+    public void setStdz(String stdz) {
+        this.stdz = stdz == null ? null : stdz.trim();
+    }
+
+    public String getStlxr() {
+        return stlxr;
+    }
+
+    public void setStlxr(String stlxr) {
+        this.stlxr = stlxr == null ? null : stlxr.trim();
+    }
+
+    public String getStlxfs() {
+        return stlxfs;
+    }
+
+    public void setStlxfs(String stlxfs) {
+        this.stlxfs = stlxfs == null ? null : stlxfs.trim();
+    }
+
+    public String getStlx() {
+        return stlx;
+    }
+
+    public void setStlx(String stlx) {
+        this.stlx = stlx == null ? null : stlx.trim();
+    }
+
+    public String getEnableStatus() {
+        return enableStatus;
+    }
+
+    public void setEnableStatus(String enableStatus) {
+        this.enableStatus = enableStatus == null ? null : enableStatus.trim();
+    }
+
+    public String getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(String deleteStatus) {
+        this.deleteStatus = deleteStatus == null ? null : deleteStatus.trim();
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
+    }
+
+    public String getCreateId() {
+        return createId;
+    }
+
+    public void setCreateId(String createId) {
+        this.createId = createId == null ? null : createId.trim();
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime == null ? null : updateTime.trim();
+    }
+
+    public String getUpdateId() {
+        return updateId;
+    }
+
+    public void setUpdateId(String updateId) {
+        this.updateId = updateId == null ? null : updateId.trim();
+    }
+
+    public String getStjj() {
+        return stjj;
+    }
+
+    public void setStjj(String stjj) {
+        this.stjj = stjj == null ? null : stjj.trim();
+    }
+
+    /**
+     * This method was generated by MyBatis Generator.
+     * This method corresponds to the database table tb_stxx
+     *
+     * @mbg.generated
+     * @project https://github.com/itfsw/mybatis-generator-plugin
+     */
+    public static Stxx.Builder builder() {
+        return new Stxx.Builder();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", stid=").append(stid);
+        sb.append(", stfzid=").append(stfzid);
+        sb.append(", areaId=").append(areaId);
+        sb.append(", stjjlx=").append(stjjlx);
+        sb.append(", qzid=").append(qzid);
+        sb.append(", stmc=").append(stmc);
+        sb.append(", stsp=").append(stsp);
+        sb.append(", stms=").append(stms);
+        sb.append(", stdz=").append(stdz);
+        sb.append(", stlxr=").append(stlxr);
+        sb.append(", stlxfs=").append(stlxfs);
+        sb.append(", stlx=").append(stlx);
+        sb.append(", enableStatus=").append(enableStatus);
+        sb.append(", deleteStatus=").append(deleteStatus);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", createId=").append(createId);
+        sb.append(", updateTime=").append(updateTime);
+        sb.append(", updateId=").append(updateId);
+        sb.append(", stjj=").append(stjj);
+        sb.append("]");
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        Stxx other = (Stxx) that;
+        return (this.getStid() == null ? other.getStid() == null : this.getStid().equals(other.getStid()))
+            && (this.getStfzid() == null ? other.getStfzid() == null : this.getStfzid().equals(other.getStfzid()))
+            && (this.getAreaId() == null ? other.getAreaId() == null : this.getAreaId().equals(other.getAreaId()))
+            && (this.getStjjlx() == null ? other.getStjjlx() == null : this.getStjjlx().equals(other.getStjjlx()))
+            && (this.getQzid() == null ? other.getQzid() == null : this.getQzid().equals(other.getQzid()))
+            && (this.getStmc() == null ? other.getStmc() == null : this.getStmc().equals(other.getStmc()))
+            && (this.getStsp() == null ? other.getStsp() == null : this.getStsp().equals(other.getStsp()))
+            && (this.getStms() == null ? other.getStms() == null : this.getStms().equals(other.getStms()))
+            && (this.getStdz() == null ? other.getStdz() == null : this.getStdz().equals(other.getStdz()))
+            && (this.getStlxr() == null ? other.getStlxr() == null : this.getStlxr().equals(other.getStlxr()))
+            && (this.getStlxfs() == null ? other.getStlxfs() == null : this.getStlxfs().equals(other.getStlxfs()))
+            && (this.getStlx() == null ? other.getStlx() == null : this.getStlx().equals(other.getStlx()))
+            && (this.getEnableStatus() == null ? other.getEnableStatus() == null : this.getEnableStatus().equals(other.getEnableStatus()))
+            && (this.getDeleteStatus() == null ? other.getDeleteStatus() == null : this.getDeleteStatus().equals(other.getDeleteStatus()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getCreateId() == null ? other.getCreateId() == null : this.getCreateId().equals(other.getCreateId()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getUpdateId() == null ? other.getUpdateId() == null : this.getUpdateId().equals(other.getUpdateId()))
+            && (this.getStjj() == null ? other.getStjj() == null : this.getStjj().equals(other.getStjj()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getStid() == null) ? 0 : getStid().hashCode());
+        result = prime * result + ((getStfzid() == null) ? 0 : getStfzid().hashCode());
+        result = prime * result + ((getAreaId() == null) ? 0 : getAreaId().hashCode());
+        result = prime * result + ((getStjjlx() == null) ? 0 : getStjjlx().hashCode());
+        result = prime * result + ((getQzid() == null) ? 0 : getQzid().hashCode());
+        result = prime * result + ((getStmc() == null) ? 0 : getStmc().hashCode());
+        result = prime * result + ((getStsp() == null) ? 0 : getStsp().hashCode());
+        result = prime * result + ((getStms() == null) ? 0 : getStms().hashCode());
+        result = prime * result + ((getStdz() == null) ? 0 : getStdz().hashCode());
+        result = prime * result + ((getStlxr() == null) ? 0 : getStlxr().hashCode());
+        result = prime * result + ((getStlxfs() == null) ? 0 : getStlxfs().hashCode());
+        result = prime * result + ((getStlx() == null) ? 0 : getStlx().hashCode());
+        result = prime * result + ((getEnableStatus() == null) ? 0 : getEnableStatus().hashCode());
+        result = prime * result + ((getDeleteStatus() == null) ? 0 : getDeleteStatus().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        result = prime * result + ((getCreateId() == null) ? 0 : getCreateId().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getUpdateId() == null) ? 0 : getUpdateId().hashCode());
+        result = prime * result + ((getStjj() == null) ? 0 : getStjj().hashCode());
+        return result;
+    }
+
+    /**
+     * This class was generated by MyBatis Generator.
+     * This class corresponds to the database table tb_stxx
+     *
+     * @mbg.generated
+     * @project https://github.com/itfsw/mybatis-generator-plugin
+     */
+    public static class Builder {
+        /**
+         * This field was generated by MyBatis Generator.
+         * This field corresponds to the database table tb_stxx
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        private Stxx obj;
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method corresponds to the database table tb_stxx
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder() {
+            this.obj = new Stxx();
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STID
+         *
+         * @param stid the value for tb_stxx.STID
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stid(String stid) {
+            obj.setStid(stid);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STFZID
+         *
+         * @param stfzid the value for tb_stxx.STFZID
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stfzid(String stfzid) {
+            obj.setStfzid(stfzid);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.AREA_ID
+         *
+         * @param areaId the value for tb_stxx.AREA_ID
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder areaId(String areaId) {
+            obj.setAreaId(areaId);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STJJLX
+         *
+         * @param stjjlx the value for tb_stxx.STJJLX
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stjjlx(String stjjlx) {
+            obj.setStjjlx(stjjlx);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.QZID
+         *
+         * @param qzid the value for tb_stxx.QZID
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder qzid(String qzid) {
+            obj.setQzid(qzid);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STMC
+         *
+         * @param stmc the value for tb_stxx.STMC
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stmc(String stmc) {
+            obj.setStmc(stmc);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STSP
+         *
+         * @param stsp the value for tb_stxx.STSP
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stsp(String stsp) {
+            obj.setStsp(stsp);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STMS
+         *
+         * @param stms the value for tb_stxx.STMS
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stms(String stms) {
+            obj.setStms(stms);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STDZ
+         *
+         * @param stdz the value for tb_stxx.STDZ
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stdz(String stdz) {
+            obj.setStdz(stdz);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STLXR
+         *
+         * @param stlxr the value for tb_stxx.STLXR
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stlxr(String stlxr) {
+            obj.setStlxr(stlxr);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STLXFS
+         *
+         * @param stlxfs the value for tb_stxx.STLXFS
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stlxfs(String stlxfs) {
+            obj.setStlxfs(stlxfs);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STLX
+         *
+         * @param stlx the value for tb_stxx.STLX
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stlx(String stlx) {
+            obj.setStlx(stlx);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.ENABLE_STATUS
+         *
+         * @param enableStatus the value for tb_stxx.ENABLE_STATUS
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder enableStatus(String enableStatus) {
+            obj.setEnableStatus(enableStatus);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.DELETE_STATUS
+         *
+         * @param deleteStatus the value for tb_stxx.DELETE_STATUS
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder deleteStatus(String deleteStatus) {
+            obj.setDeleteStatus(deleteStatus);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.CREATE_TIME
+         *
+         * @param createTime the value for tb_stxx.CREATE_TIME
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder createTime(String createTime) {
+            obj.setCreateTime(createTime);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.CREATE_ID
+         *
+         * @param createId the value for tb_stxx.CREATE_ID
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder createId(String createId) {
+            obj.setCreateId(createId);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.UPDATE_TIME
+         *
+         * @param updateTime the value for tb_stxx.UPDATE_TIME
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder updateTime(String updateTime) {
+            obj.setUpdateTime(updateTime);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.UPDATE_ID
+         *
+         * @param updateId the value for tb_stxx.UPDATE_ID
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder updateId(String updateId) {
+            obj.setUpdateId(updateId);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method sets the value of the database column tb_stxx.STJJ
+         *
+         * @param stjj the value for tb_stxx.STJJ
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Builder stjj(String stjj) {
+            obj.setStjj(stjj);
+            return this;
+        }
+
+        /**
+         * This method was generated by MyBatis Generator.
+         * This method corresponds to the database table tb_stxx
+         *
+         * @mbg.generated
+         * @project https://github.com/itfsw/mybatis-generator-plugin
+         */
+        public Stxx build() {
+            return this.obj;
+        }
+    }
+
+	public List<Strw> getStrws() {
+		return strws;
+	}
+
+	public void setStrws(List<Strw> strws) {
+		this.strws = strws;
+	}
+
+	public Long getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(Long timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+	public List<Fjxx> getFjxxs() {
+		return fjxxs;
+	}
+
+	public void setFjxxs(List<Fjxx> fjxxs) {
+		this.fjxxs = fjxxs;
+	}
+}

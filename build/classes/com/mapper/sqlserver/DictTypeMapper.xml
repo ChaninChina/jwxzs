@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.DictTypeMapper">
+	
+	<resultMap id="dictTypeResultMap" type="DictType">  
+		<id column="DICTTYPE_TYPE_ID" property="typeId"/>
+		<result column="DICTTYPE_TYPE_CODE" property="typeCode"/>
+		<result column="DICTTYPE_TYPE_NAME" property="typeName"/>
+	    <result column="DICTTYPE_TYPE_PINY" property="typePiny"/>
+	    <result column="DICTTYPE_TYPE_DESC" property="typeDesc"/>
+	    <result column="DICTTYPE_TYPE_SPOT" property="typeSpot"/>
+	    <result column="DICTTYPE_TYPE_SORT" property="typeSort"/>
+	    <result column="DICTTYPE_ENABLE_STATUS" property="enableStatus"/>
+	    <result column="DICTTYPE_DELETE_STATUS" property="deleteStatus"/>
+	    <result column="DICTTYPE_CREATE_USER_ID" property="createUserId"/>
+	    <result column="DICTTYPE_CREATE_TIME" property="createTime"/>
+	    <result column="DICTTYPE_UPDATE_USER_ID" property="updateUserId"/>
+	    <result column="DICTTYPE_UPDATE_TIME" property="updateTime"/>
+	</resultMap>
+	
+	<sql id="columnsOfDictType">
+		dictType.TYPE_ID AS DICTTYPE_TYPE_ID,
+		dictType.TYPE_CODE AS DICTTYPE_TYPE_CODE,
+		dictType.TYPE_NAME AS DICTTYPE_TYPE_NAME,
+		dictType.TYPE_PINY AS DICTTYPE_TYPE_PINY,
+		dictType.TYPE_DESC AS DICTTYPE_TYPE_DESC,
+		dictType.TYPE_SPOT AS DICTTYPE_TYPE_SPOT,
+		dictType.TYPE_SORT AS DICTTYPE_TYPE_SORT,
+		dictType.EDIT_SYMBOL AS DICTTYPE_EDIT_SYMBOL,
+		dictType.ENABLE_STATUS AS DICTTYPE_ENABLE_STATUS,
+		dictType.DELETE_STATUS AS DICTTYPE_DELETE_STATUS,
+    	dictType.CREATE_USER_ID AS DICTTYPE_CREATE_USER_ID,
+    	dictType.CREATE_TIME AS DICTTYPE_CREATE_TIME,
+    	dictType.UPDATE_USER_ID AS DICTTYPE_UPDATE_USER_ID,
+    	dictType.UPDATE_TIME AS DICTTYPE_UPDATE_TIME
+	</sql>
+	
+	<!-- 保存字典类型信息  -->
+	<insert id="insert" parameterType="DictType">
+		INSERT INTO TS_DICT_TYPE
+           (TYPE_ID
+           ,TYPE_CODE
+           ,TYPE_NAME
+           ,TYPE_PINY
+           ,TYPE_DESC
+           ,TYPE_SPOT
+           ,TYPE_SORT
+           ,ENABLE_STATUS
+           ,DELETE_STATUS
+           ,CREATE_USER_ID
+           ,CREATE_TIME
+           ,UPDATE_USER_ID
+           ,UPDATE_TIME)
+		VALUES(
+     	    #{typeId}
+     	   ,#{typeCode}
+     	   ,#{typeName}
+     	   ,#{typePiny}
+     	   ,#{typeDesc}
+     	   ,#{typeSpot}
+     	   ,#{typeSort}
+     	   ,#{enableStatus}
+     	   ,#{deleteStatus}
+     	   ,#{createUserId}
+     	   ,#{createTime}
+     	   ,#{createUserId}
+     	   ,#{createTime})
+	</insert>
+	
+	<!-- 删除字典类型信息(通过类型主键)  -->
+	<delete id="deleteByTypeId" parameterType="string">
+	    DELETE FROM TS_DICT_TYPE
+	    WHERE TYPE_ID = #{typeId}
+	</delete>
+	
+	<!-- 更新字典类型信息(通过类型主键)  -->
+	<update id="updateByTypeIdSelective" parameterType="DictType">
+		UPDATE TS_DICT_TYPE
+		<set>
+			<if test="typeCode != null">
+		        TYPE_CODE = #{typeCode},
+		    </if>
+		    <if test="typeName != null">
+		        TYPE_NAME = #{typeName},
+		    </if>
+		    <if test="typePiny != null">
+		        TYPE_PINY = #{typePiny},
+		    </if>
+		    <if test="typeDesc != null">
+		        TYPE_DESC = #{typeDesc},
+		    </if>
+		    <if test="typeSpot != null">
+		        TYPE_SPOT = #{typeSpot},
+		    </if>
+		    <if test="typeSort != null">
+		        TYPE_SORT = #{typeSort},
+		    </if>
+		    <if test="enableStatus != null">
+		        ENABLE_STATUS = #{enableStatus},
+		    </if>
+		    <if test="deleteStatus != null">
+		        DELETE_STATUS = #{deleteStatus},
+		    </if>
+		    <if test="createUserId != null">
+		        CREATE_USER_ID = #{createUserId},
+		    </if>
+		    <if test="createTime != null">
+		        CREATE_TIME = #{createTime},
+		    </if>
+		    <if test="updateUserId != null">
+		        UPDATE_USER_ID = #{updateUserId},
+		    </if>
+		    <if test="updateTime != null">
+		        UPDATE_TIME = #{updateTime}
+		    </if>
+		</set>
+		<where>
+		    TYPE_ID = #{typeId}
+		</where>
+	</update>
+	
+  	<!-- 查询字典类型信息  -->
+	<select id="select" parameterType="DictType" resultMap="dictTypeResultMap">
+		SELECT <include refid="columnsOfDictType"/>
+		FROM TS_DICT_TYPE dictType
+		<where>
+		    <if test="typeId != null">
+		    	AND dictType.TYPE_ID = #{typeId}
+		    </if>
+		    <if test="typeCode != null">
+		    	AND dictType.TYPE_CODE = #{typeCode}
+		    </if>
+		    <if test="typeSpot != null">
+		    	AND dictType.TYPE_SPOT = #{typeSpot}
+		    </if>
+		    <if test="enableStatus != null">
+		        AND dictType.ENABLE_STATUS = #{enableStatus}
+		    </if>
+		    <if test="deleteStatus != null">
+		        AND dictType.DELETE_STATUS = #{deleteStatus}
+		    </if>
+		    <if test="createUserId != null">
+		        AND dictType.CREATE_USER_ID = #{createUserId}
+		    </if>
+		</where>
+	</select>
+	
+	<!-- 查询字典类型信息(通过类型主键) -->
+	<select id="selectByTypeId" parameterType="string" resultMap="dictTypeResultMap">
+		SELECT <include refid="columnsOfDictType"/>
+		FROM TS_DICT_TYPE dictType
+		WHERE dictType.TYPE_ID = #{typeId}
+	</select>
+	
+	<!-- 查询字典类型信息(通过字典主键) -->
+	<select id="selectByDictId" parameterType="string" resultMap="dictTypeResultMap">
+		SELECT <include refid="columnsOfDictType"/>
+		FROM TS_DICT_INTO dictInfo
+		INNER JOIN TS_DICT_TYPE dictType
+		ON dictType.TYPE_ID = dictInfo.TYPE_ID
+		WHERE dictInfo.DICT_ID = #{dictId}
+	</select>
+	
+	<!-- 查询字典类型信息(通过类型编号) -->
+	<select id="selectByTypeCode" parameterType="string" resultMap="dictTypeResultMap">
+		SELECT <include refid="columnsOfDictType"/>
+		FROM TS_DICT_TYPE dictType
+		WHERE dictType.TYPE_CODE = #{typeCode}
+	</select>
+	
+	<!-- 查询字典类型信息(通过字典编号) -->
+	<select id="selectByDictCode" parameterType="string" resultMap="dictTypeResultMap">
+		SELECT <include refid="columnsOfDictType"/>
+		FROM TS_DICT_INTO dictInfo
+		INNER JOIN TS_DICT_TYPE dictType
+		ON dictType.TYPE_ID = dictInfo.TYPE_ID
+		WHERE dictInfo.DICT_CODE = #{dictCode}
+	</select>
+</mapper>

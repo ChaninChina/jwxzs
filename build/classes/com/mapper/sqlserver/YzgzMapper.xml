@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.YzgzMapper">
+  <resultMap id="BaseResultMap" type="com.model.Yzgz">
+    <id column="YZGZID" jdbcType="VARCHAR" property="yzgzid" />
+    <result column="YZGZLX" jdbcType="VARCHAR" property="yzgzlx" />
+    <result column="YZGZMC" jdbcType="VARCHAR" property="yzgzmc" />
+    <result column="YZGZMS" jdbcType="VARCHAR" property="yzgzms" />
+    <result column="YZGZBZ" jdbcType="VARCHAR" property="yzgzbz" />
+    <result column="YZGZSYLX" jdbcType="VARCHAR" property="yzgzsylx" />
+    <result column="YZGZNR" jdbcType="VARCHAR" property="yzgznr" />
+    <result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+    <result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    YZGZID, YZGZLX, YZGZMC, YZGZMS, YZGZBZ, YZGZSYLX, YZGZNR, ENABLE_STATUS, DELETE_STATUS, 
+    CREATE_TIME, CREATE_ID, UPDATE_TIME, UPDATE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_YZGZ
+    where YZGZID = #{yzgzid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_YZGZ
+    where YZGZID = #{yzgzid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Yzgz">
+    insert into TB_YZGZ (YZGZID, YZGZLX, YZGZMC, 
+      YZGZMS, YZGZBZ, YZGZSYLX, 
+      YZGZNR, ENABLE_STATUS, DELETE_STATUS, 
+      CREATE_TIME, CREATE_ID, UPDATE_TIME, 
+      UPDATE_ID)
+    values (#{yzgzid,jdbcType=VARCHAR}, #{yzgzlx,jdbcType=VARCHAR}, #{yzgzmc,jdbcType=VARCHAR}, 
+      #{yzgzms,jdbcType=VARCHAR}, #{yzgzbz,jdbcType=VARCHAR}, #{yzgzsylx,jdbcType=VARCHAR}, 
+      #{yzgznr,jdbcType=VARCHAR}, #{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{updateId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Yzgz">
+    insert into TB_YZGZ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="yzgzid != null">
+        YZGZID,
+      </if>
+      <if test="yzgzlx != null">
+        YZGZLX,
+      </if>
+      <if test="yzgzmc != null">
+        YZGZMC,
+      </if>
+      <if test="yzgzms != null">
+        YZGZMS,
+      </if>
+      <if test="yzgzbz != null">
+        YZGZBZ,
+      </if>
+      <if test="yzgzsylx != null">
+        YZGZSYLX,
+      </if>
+      <if test="yzgznr != null">
+        YZGZNR,
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="yzgzid != null">
+        #{yzgzid,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgzlx != null">
+        #{yzgzlx,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgzmc != null">
+        #{yzgzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgzms != null">
+        #{yzgzms,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgzbz != null">
+        #{yzgzbz,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgzsylx != null">
+        #{yzgzsylx,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgznr != null">
+        #{yzgznr,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Yzgz">
+    update TB_YZGZ
+    <set>
+      <if test="yzgzlx != null">
+        YZGZLX = #{yzgzlx,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgzmc != null">
+        YZGZMC = #{yzgzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgzms != null">
+        YZGZMS = #{yzgzms,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgzbz != null">
+        YZGZBZ = #{yzgzbz,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgzsylx != null">
+        YZGZSYLX = #{yzgzsylx,jdbcType=VARCHAR},
+      </if>
+      <if test="yzgznr != null">
+        YZGZNR = #{yzgznr,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where YZGZID = #{yzgzid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Yzgz">
+    update TB_YZGZ
+    set YZGZLX = #{yzgzlx,jdbcType=VARCHAR},
+      YZGZMC = #{yzgzmc,jdbcType=VARCHAR},
+      YZGZMS = #{yzgzms,jdbcType=VARCHAR},
+      YZGZBZ = #{yzgzbz,jdbcType=VARCHAR},
+      YZGZSYLX = #{yzgzsylx,jdbcType=VARCHAR},
+      YZGZNR = #{yzgznr,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+    where YZGZID = #{yzgzid,jdbcType=VARCHAR}
+  </update>
+</mapper>

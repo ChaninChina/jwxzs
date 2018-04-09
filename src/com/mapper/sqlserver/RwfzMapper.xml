@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.RwfzMapper">
+  <resultMap id="BaseResultMap" type="com.model.Rwfz">
+    <id column="RWFZID" jdbcType="VARCHAR" property="rwfzid" />
+    <result column="FJRWFZID" jdbcType="VARCHAR" property="fjrwfzid" />
+    <result column="YHID" jdbcType="VARCHAR" property="yhid" />
+    <result column="RWFZMC" jdbcType="VARCHAR" property="rwfzmc" />
+    <result column="RWFZSP" jdbcType="VARCHAR" property="rwfzsp" />
+    <result column="RWFZMS" jdbcType="VARCHAR" property="rwfzms" />
+    <result column="RWFZCJ" jdbcType="INTEGER" property="rwfzcj" />
+    <result column="RWFZPX" jdbcType="INTEGER" property="rwfzpx" />
+    <result column="RWFZBZ" jdbcType="VARCHAR" property="rwfzbz" />
+    <result column="SUBSET_SYMBOL" jdbcType="VARCHAR" property="subsetSymbol" />
+    <result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+    <result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RWFZID, FJRWFZID, YHID, RWFZMC, RWFZSP, RWFZMS, RWFZCJ, RWFZPX, RWFZBZ, SUBSET_SYMBOL, 
+    ENABLE_STATUS, DELETE_STATUS, CREATE_TIME, CREATE_ID, UPDATE_TIME, UPDATE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_RWFZ
+    where RWFZID = #{rwfzid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_RWFZ
+    where RWFZID = #{rwfzid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Rwfz">
+    insert into TB_RWFZ (RWFZID, FJRWFZID, YHID, 
+      RWFZMC, RWFZSP, RWFZMS, 
+      RWFZCJ, RWFZPX, RWFZBZ, 
+      SUBSET_SYMBOL, ENABLE_STATUS, DELETE_STATUS, 
+      CREATE_TIME, CREATE_ID, UPDATE_TIME, 
+      UPDATE_ID)
+    values (#{rwfzid,jdbcType=VARCHAR}, #{fjrwfzid,jdbcType=VARCHAR}, #{yhid,jdbcType=VARCHAR}, 
+      #{rwfzmc,jdbcType=VARCHAR}, #{rwfzsp,jdbcType=VARCHAR}, #{rwfzms,jdbcType=VARCHAR}, 
+      #{rwfzcj,jdbcType=INTEGER}, #{rwfzpx,jdbcType=INTEGER}, #{rwfzbz,jdbcType=VARCHAR}, 
+      #{subsetSymbol,jdbcType=VARCHAR}, #{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{updateId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Rwfz">
+    insert into TB_RWFZ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rwfzid != null">
+        RWFZID,
+      </if>
+      <if test="fjrwfzid != null">
+        FJRWFZID,
+      </if>
+      <if test="yhid != null">
+        YHID,
+      </if>
+      <if test="rwfzmc != null">
+        RWFZMC,
+      </if>
+      <if test="rwfzsp != null">
+        RWFZSP,
+      </if>
+      <if test="rwfzms != null">
+        RWFZMS,
+      </if>
+      <if test="rwfzcj != null">
+        RWFZCJ,
+      </if>
+      <if test="rwfzpx != null">
+        RWFZPX,
+      </if>
+      <if test="rwfzbz != null">
+        RWFZBZ,
+      </if>
+      <if test="subsetSymbol != null">
+        SUBSET_SYMBOL,
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rwfzid != null">
+        #{rwfzid,jdbcType=VARCHAR},
+      </if>
+      <if test="fjrwfzid != null">
+        #{fjrwfzid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhid != null">
+        #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="rwfzmc != null">
+        #{rwfzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="rwfzsp != null">
+        #{rwfzsp,jdbcType=VARCHAR},
+      </if>
+      <if test="rwfzms != null">
+        #{rwfzms,jdbcType=VARCHAR},
+      </if>
+      <if test="rwfzcj != null">
+        #{rwfzcj,jdbcType=INTEGER},
+      </if>
+      <if test="rwfzpx != null">
+        #{rwfzpx,jdbcType=INTEGER},
+      </if>
+      <if test="rwfzbz != null">
+        #{rwfzbz,jdbcType=VARCHAR},
+      </if>
+      <if test="subsetSymbol != null">
+        #{subsetSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Rwfz">
+    update TB_RWFZ
+    <set>
+      <if test="fjrwfzid != null">
+        FJRWFZID = #{fjrwfzid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhid != null">
+        YHID = #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="rwfzmc != null">
+        RWFZMC = #{rwfzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="rwfzsp != null">
+        RWFZSP = #{rwfzsp,jdbcType=VARCHAR},
+      </if>
+      <if test="rwfzms != null">
+        RWFZMS = #{rwfzms,jdbcType=VARCHAR},
+      </if>
+      <if test="rwfzcj != null">
+        RWFZCJ = #{rwfzcj,jdbcType=INTEGER},
+      </if>
+      <if test="rwfzpx != null">
+        RWFZPX = #{rwfzpx,jdbcType=INTEGER},
+      </if>
+      <if test="rwfzbz != null">
+        RWFZBZ = #{rwfzbz,jdbcType=VARCHAR},
+      </if>
+      <if test="subsetSymbol != null">
+        SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RWFZID = #{rwfzid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Rwfz">
+    update TB_RWFZ
+    set FJRWFZID = #{fjrwfzid,jdbcType=VARCHAR},
+      YHID = #{yhid,jdbcType=VARCHAR},
+      RWFZMC = #{rwfzmc,jdbcType=VARCHAR},
+      RWFZSP = #{rwfzsp,jdbcType=VARCHAR},
+      RWFZMS = #{rwfzms,jdbcType=VARCHAR},
+      RWFZCJ = #{rwfzcj,jdbcType=INTEGER},
+      RWFZPX = #{rwfzpx,jdbcType=INTEGER},
+      RWFZBZ = #{rwfzbz,jdbcType=VARCHAR},
+      SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+    where RWFZID = #{rwfzid,jdbcType=VARCHAR}
+  </update>
+</mapper>

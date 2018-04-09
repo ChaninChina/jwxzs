@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.YhczRzMapper">
+  <resultMap id="BaseResultMap" type="com.model.YhczRz">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="YHID" jdbcType="VARCHAR" property="yhid" />
+    <result column="QXBH" jdbcType="VARCHAR" property="qxbh" />
+    <result column="QXMC" jdbcType="VARCHAR" property="qxmc" />
+    <result column="QXLJ" jdbcType="VARCHAR" property="qxlj" />
+    <result column="CZSJ" jdbcType="VARCHAR" property="czsj" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, YHID, QXBH, QXMC, QXLJ, CZSJ
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_YHCZ_RZ
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_YHCZ_RZ
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.YhczRz">
+    insert into TB_YHCZ_RZ (ID, YHID, QXBH, 
+      QXMC, QXLJ, CZSJ)
+    values (#{id,jdbcType=VARCHAR}, #{yhid,jdbcType=VARCHAR}, #{qxbh,jdbcType=VARCHAR}, 
+      #{qxmc,jdbcType=VARCHAR}, #{qxlj,jdbcType=VARCHAR}, #{czsj,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.YhczRz">
+    insert into TB_YHCZ_RZ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="yhid != null">
+        YHID,
+      </if>
+      <if test="qxbh != null">
+        QXBH,
+      </if>
+      <if test="qxmc != null">
+        QXMC,
+      </if>
+      <if test="qxlj != null">
+        QXLJ,
+      </if>
+      <if test="czsj != null">
+        CZSJ,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="yhid != null">
+        #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="qxbh != null">
+        #{qxbh,jdbcType=VARCHAR},
+      </if>
+      <if test="qxmc != null">
+        #{qxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qxlj != null">
+        #{qxlj,jdbcType=VARCHAR},
+      </if>
+      <if test="czsj != null">
+        #{czsj,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.YhczRz">
+    update TB_YHCZ_RZ
+    <set>
+      <if test="yhid != null">
+        YHID = #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="qxbh != null">
+        QXBH = #{qxbh,jdbcType=VARCHAR},
+      </if>
+      <if test="qxmc != null">
+        QXMC = #{qxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qxlj != null">
+        QXLJ = #{qxlj,jdbcType=VARCHAR},
+      </if>
+      <if test="czsj != null">
+        CZSJ = #{czsj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.YhczRz">
+    update TB_YHCZ_RZ
+    set YHID = #{yhid,jdbcType=VARCHAR},
+      QXBH = #{qxbh,jdbcType=VARCHAR},
+      QXMC = #{qxmc,jdbcType=VARCHAR},
+      QXLJ = #{qxlj,jdbcType=VARCHAR},
+      CZSJ = #{czsj,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

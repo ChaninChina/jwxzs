@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.AreaInfoMapper">
+	
+	<resultMap id="areaInfoResultMap" type="AreaInfo">
+		<id property="areaId" column="AREAINFO_AREA_ID"/>
+		<result property="prevId" column="AREAINFO_PREV_ID"/>
+		<result property="areaCode" column="AREAINFO_AREA_CODE"/>
+		<result property="areaType" column="AREAINFO_AREA_TYPE"/>
+		<result property="areaName" column="AREAINFO_AREA_NAME"/>
+		<result property="areaPiny" column="AREAINFO_AREA_PINY"/>
+		<result property="areaRank" column="AREAINFO_AREA_RANK"/>
+		<result property="areaSort" column="AREAINFO_AREA_SORT"/>
+		<result property="subsetSymbol" column="AREAINFO_SUBSET_SYMBOL"/>
+		<result property="enableStatus" column="AREAINFO_ENABLE_STATUS"/>
+		<result property="deleteStatus" column="AREAINFO_DELETE_STATUS"/>
+		<result property="createId" column="AREAINFO_CREATE_ID"/>
+		<result property="createTime" column="AREAINFO_CREATE_TIME"/>
+		<result property="updateId" column="AREAINFO_UPDATE_ID"/>
+		<result property="updateTime" column="AREAINFO_UPDATE_TIME"/>
+		<association property="prevArea" resultMap="prevAreaResultMap">
+		</association>
+	</resultMap>
+	
+	<resultMap id="prevAreaResultMap" type="AreaInfo">
+		<id property="areaId" column="PREVAREA_AREA_ID"/>
+		<result property="prevId" column="PREVAREA_PREV_ID"/>
+		<result property="areaCode" column="PREVAREA_AREA_CODE"/>
+		<result property="areaType" column="PREVAREA_AREA_TYPE"/>
+		<result property="areaName" column="PREVAREA_AREA_NAME"/>
+		<result property="areaPiny" column="PREVAREA_AREA_PINY"/>
+		<result property="areaRank" column="PREVAREA_AREA_RANK"/>
+		<result property="areaSort" column="PREVAREA_AREA_SORT"/>
+		<result property="subsetSymbol" column="PREVAREA_SUBSET_SYMBOL"/>
+		<result property="enableStatus" column="PREVAREA_ENABLE_STATUS"/>
+		<result property="deleteStatus" column="PREVAREA_DELETE_STATUS"/>
+		<result property="createId" column="PREVAREA_CREATE_ID"/>
+		<result property="createTime" column="PREVAREA_CREATE_TIME"/>
+		<result property="updateId" column="PREVAREA_UPDATE_ID"/>
+		<result property="updateTime" column="PREVAREA_UPDATE_TIME"/>
+	</resultMap>
+	
+	<sql id="columnsOfAreaInfo">
+	    areaInfo.AREA_ID AS AREAINFO_AREA_ID
+	    ,areaInfo.PREV_ID AS AREAINFO_PREV_ID
+	    ,areaInfo.AREA_CODE AS AREAINFO_AREA_CODE
+	    ,areaInfo.AREA_TYPE AS AREAINFO_AREA_TYPE
+	    ,areaInfo.AREA_NAME AS AREAINFO_AREA_NAME
+	    ,areaInfo.AREA_PINY AS AREAINFO_AREA_PINY
+	    ,areaInfo.AREA_RANK AS AREAINFO_AREA_RANK
+	    ,areaInfo.AREA_SORT AS AREAINFO_AREA_SORT
+	    ,areaInfo.SUBSET_SYMBOL AS AREAINFO_SUBSET_SYMBOL
+	    ,areaInfo.ENABLE_STATUS AS AREAINFO_ENABLE_STATUS
+	    ,areaInfo.DELETE_STATUS AS AREAINFO_DELETE_STATUS
+	    ,areaInfo.CREATE_ID AS AREAINFO_CREATE_ID
+	    ,areaInfo.CREATE_TIME AS AREAINFO_CREATE_TIME
+	    ,areaInfo.UPDATE_ID AS AREAINFO_UPDATE_ID
+	    ,areaInfo.UPDATE_TIME AS AREAINFO_UPDATE_TIME
+	</sql>
+	
+	<sql id="columnsOfPrevArea">
+	    prevArea.AREA_ID AS PREVAREA_AREA_ID
+	    ,prevArea.PREV_ID AS PREVAREA_PREV_ID
+	    ,prevArea.AREA_CODE AS PREVAREA_AREA_CODE
+	    ,prevArea.AREA_TYPE AS PREVAREA_AREA_TYPE
+	    ,prevArea.AREA_NAME AS PREVAREA_AREA_NAME
+	    ,prevArea.AREA_PINY AS PREVAREA_AREA_PINY
+	    ,prevArea.AREA_RANK AS PREVAREA_AREA_RANK
+	    ,prevArea.AREA_SORT AS PREVAREA_AREA_SORT
+	    ,prevArea.SUBSET_SYMBOL AS PREVAREA_SUBSET_SYMBOL
+	    ,prevArea.ENABLE_STATUS AS PREVAREA_ENABLE_STATUS
+	    ,prevArea.DELETE_STATUS AS PREVAREA_DELETE_STATUS
+	    ,prevArea.CREATE_ID AS PREVAREA_CREATE_ID
+	    ,prevArea.CREATE_TIME AS PREVAREA_CREATE_TIME
+	    ,prevArea.UPDATE_ID AS PREVAREA_UPDATE_ID
+	    ,prevArea.UPDATE_TIME AS PREVAREA_UPDATE_TIME
+	</sql>
+	
+	<!-- 保存区域基本信息 -->
+	<insert id="insert" parameterType="AreaInfo">
+		INSERT INTO TB_AREA_INFO
+           (AREA_ID
+           ,PREV_ID
+           ,AREA_CODE
+           ,AREA_TYPE
+           ,AREA_NAME
+           ,AREA_PINY
+           ,AREA_RANK
+           ,AREA_SORT
+           ,SUBSET_SYMBOL
+           ,ENABLE_STATUS
+           ,DELETE_STATUS
+           ,CREATE_ID
+           ,CREATE_TIME
+           ,UPDATE_ID
+           ,UPDATE_TIME)
+		VALUES
+           (#{areaId}
+           ,#{prevId}
+           ,#{areaCode}
+           ,#{areaType}
+           ,#{areaName}
+           ,#{areaPiny}
+           ,#{areaRank}
+           ,#{areaSort}
+           ,#{subsetSymbol}
+           ,#{enableStatus}
+           ,#{deleteStatus}
+           ,#{createId}
+           ,#{createTime}
+           ,#{createId}
+           ,#{createTime})
+	</insert>
+	
+	<!-- 删除区域基本信息(通过区域主键) -->
+	<delete id="deleteByAreaId" parameterType="string">
+	    DELETE FROM TB_AREA_INFO
+	    WHERE AREA_ID = #{areaId}
+	</delete>
+	
+	<!-- 删除区域基本信息(通过区域编号) -->
+	<delete id="deleteByAreaCode" parameterType="string">
+	    DELETE FROM TB_AREA_INFO
+	    WHERE AREA_CODE = #{areaCode}
+	</delete>
+	
+	<!-- 更新区域基本信息(通过区域主键) -->
+	<update id="updateByAreaIdSelective" parameterType="AreaInfo">
+		UPDATE TB_AREA_INFO
+		<set>
+			<if test="prevId != null">
+			  PREV_ID = #{prevId,jdbcType=VARCHAR},
+			</if>
+			<if test="areaCode != null">
+			  AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+			</if>
+			<if test="areaType != null">
+			  AREA_TYPE = #{areaType,jdbcType=VARCHAR},
+			</if>
+			<if test="areaName != null">
+			  AREA_NAME = #{areaName,jdbcType=VARCHAR},
+			</if>
+			<if test="areaPiny != null">
+			  AREA_PINY = #{areaPiny,jdbcType=VARCHAR},
+			</if>
+			<if test="areaRank != null">
+			  AREA_RANK = #{areaRank,jdbcType=INTEGER},
+			</if>
+			<if test="areaSort != null">
+			  AREA_SORT = #{areaSort,jdbcType=INTEGER},
+			</if>
+			<if test="subsetSymbol != null">
+			  SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+			</if>
+			<if test="enableStatus != null">
+			  ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+			  DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+			  CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+			  CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+			  UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+			  UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		WHERE AREA_ID = #{areaId}
+	</update>
+	
+	<!-- 查询区域基本信息 -->
+	<select id="select" parameterType="AreaInfo" resultMap="areaInfoResultMap">
+		SELECT <include refid="columnsOfAreaInfo"/>
+		FROM TB_AREA_INFO areaInfo
+		<where>
+			<if test="areaId != null">
+		    	AND areaInfo.AREA_ID = #{areaId}
+		    </if>
+		    <if test="prevId != null">
+		    	ANd areaInfo.PREV_ID = #{prevId}
+		    </if>
+		    <if test="areaCode != null">
+		    	ANd areaInfo.AREA_CODE = #{areaCode}
+		    </if>
+		    <if test="enableStatus != null">
+		    	AND areaInfo.ENABLE_STATUS = #{enableStatus}
+		    </if>
+		    <if test="deleteStatus != null">
+		    	AND areaInfo.DELETE_STATUS = #{deleteStatus}
+		    </if>
+		</where>
+	    ORDER BY areaInfo.AREA_CODE ASC
+	</select>
+	
+	<!-- 查询区域包括父级 -->
+	<select id="selectWithPrev" parameterType="AreaInfo" resultMap="areaInfoResultMap">
+		SELECT <include refid="columnsOfAreaInfo"/>
+			,prevArea.AREA_NAME AS PREVAREA_AREA_NAME
+			,prevArea.AREA_PINY AS PREVAREA_AREA_PINY
+		FROM TB_AREA_INFO areaInfo
+		LEFT JOIN TB_AREA_INFO prevArea
+		ON prevArea.AREA_CODE = areaInfo.PREV_CODE
+	    <where>
+	    	<if test="areaId != null">
+		    	AND areaInfo.AREA_ID = #{areaId}
+		    </if>
+		    <if test="prevId != null">
+		    	AND areaInfo.PREV_ID = #{prevId}
+		    </if>
+	    	<if test="areaCode != null">
+		    	AND areaInfo.AREA_CODE = #{areaCode}
+		    </if>
+		    <if test="areaType != null">
+		    	AND areaInfo.AREA_TYPE = #{areaType}
+		    </if>
+		    <if test="subsetSymbol != null">
+				AND areaInfo.SUBSET_SYMBOL = #{subsetSymbol}
+			</if>
+			<if test="enableStatus != null">
+				AND areaInfo.ENABLE_STATUS = #{enableStatus}
+			</if>
+			<if test="deleteStatus != null">
+				AND areaInfo.DELETE_STATUS = #{deleteStatus}
+			</if>
+	    </where>
+	    ORDER BY areaInfo.AREA_CODE ASC
+	</select>
+	
+	<!-- 查询区域基本信息(通过区域主键) -->
+	<select id="selectByAreaId" parameterType="string" resultMap="areaInfoResultMap">
+		SELECT <include refid="columnsOfAreaInfo"/>
+		FROM TB_AREA_INFO areaInfo
+		WHERE areaInfo.AREA_ID = #{_parameter}
+	</select>
+	
+	<!-- 查询区域基本信息(通过区域编号) -->
+	<select id="selectByAreaCode" parameterType="string" resultMap="areaInfoResultMap">
+		SELECT <include refid="columnsOfAreaInfo"/>
+		FROM TB_AREA_INFO areaInfo
+		WHERE areaInfo.AREA_CODE = #{_parameter}
+	</select>
+	
+	<!-- 查询区域基本信息(通过父级主键) -->
+	<select id="selectByPrevId" parameterType="string" resultMap="areaInfoResultMap">
+		SELECT <include refid="columnsOfAreaInfo"/>
+		FROM TB_AREA_INFO areaInfo
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					AND areaInfo.PREV_ID = #{_parameter}
+				</when>
+				<otherwise>
+					AND areaInfo.PREV_ID IS NULL
+				</otherwise>
+			</choose>
+		</where>
+		ORDER BY areaInfo.AREA_CODE ASC
+	</select>
+	
+	<!-- 查询区域基本信息(通过父级编号) -->
+	<select id="selectByPrevCode" parameterType="string" resultMap="areaInfoResultMap">
+		SELECT <include refid="columnsOfAreaInfo"/>
+		FROM TB_AREA_INFO areaInfo
+		LEFT JOIN TB_AREA_INFO prevArea
+		ON prevArea.AREA_ID = areaInfo.PREV_ID
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					AND prevArea.AREA_CODE = #{_parameter}
+				</when>
+				<otherwise>
+					AND prevArea.AREA_CODE IS NULL
+				</otherwise>
+			</choose>
+		</where>
+		ORDER BY areaInfo.AREA_CODE ASC
+	</select>
+	
+	<!-- 查询区域整级信息(通过父级编号) -->
+	<select id="selectRankByPrevCode" parameterType="string" resultMap="areaInfoResultMap">
+		SELECT <include refid="columnsOfAreaInfo"/>
+		FROM TB_AREA_INFO areaInfo
+		WHERE SUBSTR(areaInfo.AREA_CODE,0,LENGTH(#{_parameter})) = #{_parameter}
+		ORDER BY areaInfo.AREA_CODE ASC
+	</select>
+	
+	<!-- 搜索区域信息条件 -->
+	<sql id="clauseOfSearch">
+		<where>
+			<if test="areaId != null">
+				AND areaInfo.AREA_ID = #{areaId}
+			</if>
+			<if test="prevId != null">
+				AND areaInfo.PREV_ID = #{prevId}
+			</if>
+			<if test="areaCode != null">
+				AND areaInfo.AREA_CODE = #{areaCode}
+			</if>
+			<if test="areaName != null">
+				AND (LOWER(areaInfo.AREA_PINY) LIKE '%' + LOWER(#{areaName}) + '%'
+		 			OR areaInfo.AREA_NAME LIKE '%' + #{areaName} + '%'
+		 			OR areaInfo.AREA_CODE LIKE '%' + #{areaName})
+			</if>
+			<if test="rankArea != null">
+				AND SUBSTR(areaInfo.AREA_CODE, 0, LENGTH(#{rankArea})) = #{rankArea}
+			</if>
+			<if test="subsetSymbol != null">
+				AND areaInfo.SUBSET_SYMBOL = #{subsetSymbol}
+			</if>
+			<if test="enableStatus != null">
+				AND areaInfo.ENABLE_STATUS = #{enableStatus}
+			</if>
+			<if test="deleteStatus != null">
+				AND areaInfo.DELETE_STATUS = #{deleteStatus}
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 搜索区域信息数量 -->
+	<select id="searchSize" parameterType="map" resultType="java.lang.Integer">
+		SELECT COUNT(areaInfo.AREA_ID)
+		FROM TB_AREA_INFO areaInfo
+		<include refid="clauseOfSearch"/>
+	</select>
+	
+	<!-- 搜索区域信息数据 -->
+	<select id="searchList" parameterType="map" resultMap="areaInfoResultMap">
+		SELECT <include refid="columnsOfAreaInfo"/> 
+		FROM (
+			SELECT ROW_NUMBER() OVER(ORDER BY areaInfo.AREA_CODE) AS ROWNUMBER,
+			       areaInfo.*
+			FROM TB_AREA_INFO areaInfo
+			<where>
+				<include refid="clauseOfSearch"/>
+			</where>
+			) areaInfo
+		WHERE areaInfo.ROWNUMBER BETWEEN #{page.beginIndex}+1 AND #{page.closeIndex}
+	</select>
+</mapper>

@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.YhRwMapper">
+	<resultMap id="BaseResultMap" type="com.model.YhRw">
+		<id column="YH_RW_ID" jdbcType="VARCHAR" property="yhRwId" />
+		<result column="QZID" jdbcType="VARCHAR" property="qzid" />
+		<result column="YHID" jdbcType="VARCHAR" property="yhid" />
+		<result column="RWID" jdbcType="VARCHAR" property="rwid" />
+		<result column="STID" jdbcType="VARCHAR" property="stid" />
+		<result column="WCZT" jdbcType="VARCHAR" property="wczt" />
+		<result column="SHZT" jdbcType="VARCHAR" property="shzt" />
+		<result column="RWLX" jdbcType="VARCHAR" property="rwlx" />
+		<result column="TIME_STAMP" jdbcType="BIGINT" property="timeStamp" />
+		<result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+		<result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+		<result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		YH_RW_ID, QZID, YHID, RWID, STID, WCZT, SHZT, RWLX,
+		TIME_STAMP =
+		CAST(TIME_STAMP as bigint), ENABLE_STATUS, DELETE_STATUS,
+		CREATE_TIME, CREATE_ID, UPDATE_TIME, UPDATE_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_YH_RW
+		where YH_RW_ID = #{yhRwId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectYhidByRwid" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		select
+		YHID
+		from TB_YH_RW
+		<include refid="whereList" />
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		TB_YH_RW
+		where YH_RW_ID = #{yhRwId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.YhRw">
+		insert into TB_YH_RW
+		(YH_RW_ID, QZID, YHID,
+		RWID, STID, WCZT, SHZT,
+		RWLX, TIME_STAMP,
+		ENABLE_STATUS,
+		DELETE_STATUS, CREATE_TIME, CREATE_ID,
+		UPDATE_TIME,
+		UPDATE_ID)
+		values (#{yhRwId,jdbcType=VARCHAR},
+		#{qzid,jdbcType=VARCHAR},
+		#{yhid,jdbcType=VARCHAR},
+		#{rwid,jdbcType=VARCHAR}, #{stid,jdbcType=VARCHAR},
+		#{wczt,jdbcType=VARCHAR},
+		#{shzt,jdbcType=VARCHAR},
+		#{rwlx,jdbcType=VARCHAR}, #{timeStamp,jdbcType=BIGINT},
+		#{enableStatus,jdbcType=VARCHAR},
+		#{deleteStatus,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.YhRw">
+		insert into TB_YH_RW
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="yhRwId != null">
+				YH_RW_ID,
+			</if>
+			<if test="qzid != null">
+				QZID,
+			</if>
+			<if test="yhid != null">
+				YHID,
+			</if>
+			<if test="rwid != null">
+				RWID,
+			</if>
+			<if test="stid != null">
+				STID,
+			</if>
+			<if test="wczt != null">
+				WCZT,
+			</if>
+			<if test="shzt != null">
+				SHZT,
+			</if>
+			<if test="rwlx != null">
+				RWLX,
+			</if>
+			<if test="timeStamp != null">
+				TIME_STAMP,
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS,
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="yhRwId != null">
+				#{yhRwId,jdbcType=VARCHAR},
+			</if>
+			<if test="qzid != null">
+				#{qzid,jdbcType=VARCHAR},
+			</if>
+			<if test="yhid != null">
+				#{yhid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwid != null">
+				#{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="stid != null">
+				#{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="wczt != null">
+				#{wczt,jdbcType=VARCHAR},
+			</if>
+			<if test="shzt != null">
+				#{shzt,jdbcType=VARCHAR},
+			</if>
+			<if test="rwlx != null">
+				#{rwlx,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStamp != null">
+				#{timeStamp,jdbcType=BIGINT},
+			</if>
+			<if test="enableStatus != null">
+				#{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				#{updateId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.YhRw">
+		update TB_YH_RW
+		<set>
+			<if test="qzid != null">
+				QZID = #{qzid,jdbcType=VARCHAR},
+			</if>
+			<if test="yhid != null">
+				YHID = #{yhid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwid != null">
+				RWID = #{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="stid != null">
+				STID = #{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="wczt != null">
+				WCZT = #{wczt,jdbcType=VARCHAR},
+			</if>
+			<if test="shzt != null">
+				SHZT = #{shzt,jdbcType=VARCHAR},
+			</if>
+			<if test="rwlx != null">
+				RWLX = #{rwlx,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStamp != null">
+				TIME_STAMP = #{timeStamp,jdbcType=BIGINT},
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where YH_RW_ID = #{yhRwId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.YhRw">
+		update TB_YH_RW
+		set QZID = #{qzid,jdbcType=VARCHAR},
+		YHID = #{yhid,jdbcType=VARCHAR},
+		RWID = #{rwid,jdbcType=VARCHAR},
+		STID = #{stid,jdbcType=VARCHAR},
+		WCZT =
+		#{wczt,jdbcType=VARCHAR},
+		SHZT = #{shzt,jdbcType=VARCHAR},
+		RWLX =
+		#{rwlx,jdbcType=VARCHAR},
+		TIME_STAMP = #{timeStamp,jdbcType=BIGINT},
+		ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS =
+		#{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=VARCHAR},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID =
+		#{updateId,jdbcType=VARCHAR}
+		where YH_RW_ID =
+		#{yhRwId,jdbcType=VARCHAR}
+	</update>
+
+
+	<update id="updateYhRw" parameterType="map">
+		update TB_YH_RW
+		<set>
+			<if test="newqzid != null">
+				QZID = #{newqzid,jdbcType=VARCHAR},
+			</if>
+			<if test="newyhid != null">
+				YHID = #{newyhid,jdbcType=VARCHAR},
+			</if>
+			<if test="newrwid != null">
+				RWID = #{newrwid,jdbcType=VARCHAR},
+			</if>
+			<if test="newstid != null">
+				STID = #{newstid,jdbcType=VARCHAR},
+			</if>
+			<if test="newwczt != null">
+				WCZT = #{newwczt,jdbcType=VARCHAR},
+			</if>
+			<if test="newshzt != null">
+				SHZT = #{newshzt,jdbcType=VARCHAR},
+			</if>
+			<if test="newrwlx != null">
+				RWLX = #{newrwlx,jdbcType=VARCHAR},
+			</if>
+			<if test="newenableStatus != null">
+				ENABLE_STATUS = #{newenableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="newdeleteStatus != null">
+				DELETE_STATUS = #{newdeleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="newcreateTime != null">
+				CREATE_TIME = #{newcreateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="newcreateId != null">
+				CREATE_ID = #{newcreateId,jdbcType=VARCHAR},
+			</if>
+			<if test="newupdateTime != null">
+				UPDATE_TIME = #{newupdateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="newupdateId != null">
+				UPDATE_ID = #{newupdateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<include refid="whereList" />
+	</update>
+
+
+
+	<update id="updateYhRwWczt" parameterType="map">
+		update TB_YH_RW
+		<set>
+			<if test="newqzid != null">
+				QZID = #{newqzid,jdbcType=VARCHAR},
+			</if>
+			<if test="newyhid != null">
+				YHID = #{newyhid,jdbcType=VARCHAR},
+			</if>
+			<if test="newrwid != null">
+				RWID = #{newrwid,jdbcType=VARCHAR},
+			</if>
+			<if test="newstid != null">
+				STID = #{newstid,jdbcType=VARCHAR},
+			</if>
+			<if test="newwczt != null">
+				WCZT = #{newwczt,jdbcType=VARCHAR},
+			</if>
+			<if test="newshzt != null">
+				SHZT = #{newshzt,jdbcType=VARCHAR},
+			</if>
+			<if test="newrwlx != null">
+				RWLX = #{newrwlx,jdbcType=VARCHAR},
+			</if>
+			<if test="newenableStatus != null">
+				ENABLE_STATUS = #{newenableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="newdeleteStatus != null">
+				DELETE_STATUS = #{newdeleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="newcreateTime != null">
+				CREATE_TIME = #{newcreateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="newcreateId != null">
+				CREATE_ID = #{newcreateId,jdbcType=VARCHAR},
+			</if>
+			<if test="newupdateTime != null">
+				UPDATE_TIME = #{newupdateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="newupdateId != null">
+				UPDATE_ID = #{newupdateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<where>
+			WCZT &lt;&gt; #{newwczt,jdbcType=VARCHAR}
+			and
+			RWID IN (SELECT RWID FROM TB_STRW WHERE
+			(TB_STRW.KSSJ &lt; CONVERT(VARCHAR,GETDATE(),120) or TB_STRW.KSSJ is NULL or
+			TB_STRW.KSSJ = '')
+			and
+			(TB_STRW.JSSJ &gt; CONVERT(VARCHAR, GETDATE(),120) or TB_STRW.JSSJ is
+			NULL or TB_STRW.JSSJ = '')
+			and
+			TB_STRW.JLZQLX =
+			#{jlzqlx,jdbcType=VARCHAR}
+			and
+			(TB_STRW.ZDJLS is Null or TB_STRW.ZDJLS = '' or TB_STRW.ZDJLS &gt;
+			(SELECT COUNT(*) FROM TB_RWJL WHERE TB_RWJL.RWID=TB_STRW.RWID)))
+		</where>
+	</update>
+
+	<sql id="whereList">
+		<where>
+			<if test="qzid != null">
+				and QZID = #{qzid,jdbcType=VARCHAR}
+			</if>
+			<if test="yhid != null">
+				and YHID = #{yhid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwid != null">
+				and RWID = #{rwid,jdbcType=VARCHAR}
+			</if>
+			<if test="stid != null">
+				and STID = #{stid,jdbcType=VARCHAR}
+			</if>
+			<if test="wczt != null">
+				and WCZT = #{wczt,jdbcType=VARCHAR}
+			</if>
+			<if test="shzt != null">
+				and SHZT = #{shzt,jdbcType=VARCHAR}
+			</if>
+			<if test="rwlx != null">
+				and RWLX = #{rwlx,jdbcType=VARCHAR}
+			</if>
+			<if test="timeStamp != null">
+				and TIME_STAMP = #{timeStamp,jdbcType=BIGINT}
+			</if>
+			<if test="enableStatus != null">
+				and ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="deleteStatus != null">
+				and DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				and CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test="createId != null">
+				and CREATE_ID = #{createId,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				and UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+			<if test="updateId != null">
+				and UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+
+
+</mapper>

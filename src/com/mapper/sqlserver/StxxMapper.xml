@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.StxxMapper">
+	<resultMap id="BaseResultMap" type="com.model.Stxx">
+		<id column="STID" jdbcType="VARCHAR" property="stid" />
+		<result column="STFZID" jdbcType="VARCHAR" property="stfzid" />
+		<result column="AREA_ID" jdbcType="VARCHAR" property="areaId" />
+		<result column="STJJLX" jdbcType="VARCHAR" property="stjjlx" />
+		<result column="STJJ" jdbcType="VARCHAR" property="stjj" />
+		<result column="QZID" jdbcType="VARCHAR" property="qzid" />
+		<result column="STMC" jdbcType="VARCHAR" property="stmc" />
+		<result column="STSP" jdbcType="VARCHAR" property="stsp" />
+		<result column="STMS" jdbcType="VARCHAR" property="stms" />
+		<result column="STDZ" jdbcType="VARCHAR" property="stdz" />
+		<result column="STLXR" jdbcType="VARCHAR" property="stlxr" />
+		<result column="STLXFS" jdbcType="VARCHAR" property="stlxfs" />
+		<result column="STLX" jdbcType="VARCHAR" property="stlx" />
+		<result column="TIME_STAMP" jdbcType="BIGINT" property="timeStamp" />
+		<result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+		<result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+		<result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		STID, STFZID, AREA_ID, STJJLX, STJJ, QZID, STMC, STSP,
+		STMS, STDZ, STLXR,
+		STLXFS,
+		STLX, TIME_STAMP = CAST(TIME_STAMP as
+		bigint), ENABLE_STATUS,
+		DELETE_STATUS, CREATE_TIME, CREATE_ID,
+		UPDATE_TIME,
+		UPDATE_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_STXX
+		where STID = #{stid,jdbcType=VARCHAR}
+	</select>
+	<select id="selectStxx" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_STXX
+		<include refid="whereList" />
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		TB_STXX
+		where STID = #{stid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.Stxx">
+		insert into TB_STXX (STID,
+		STFZID, AREA_ID,
+		STJJLX, STJJ, QZID,
+		STMC, STSP, STMS, STDZ,
+		STLXR,
+		STLXFS, STLX,
+		TIME_STAMP, ENABLE_STATUS, DELETE_STATUS,
+		CREATE_TIME,
+		CREATE_ID, UPDATE_TIME,
+		UPDATE_ID)
+		values (#{stid,jdbcType=VARCHAR},
+		#{stfzid,jdbcType=VARCHAR},
+		#{areaId,jdbcType=VARCHAR},
+		#{stjjlx,jdbcType=VARCHAR}, #{stjj,jdbcType=VARCHAR},
+		#{qzid,jdbcType=VARCHAR},
+		#{stmc,jdbcType=VARCHAR},
+		#{stsp,jdbcType=VARCHAR},
+		#{stms,jdbcType=VARCHAR},
+		#{stdz,jdbcType=VARCHAR},
+		#{stlxr,jdbcType=VARCHAR},
+		#{stlxfs,jdbcType=VARCHAR},
+		#{stlx,jdbcType=VARCHAR},
+		#{timeStamp,jdbcType=BIGINT}, #{enableStatus,jdbcType=VARCHAR},
+		#{deleteStatus,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR},
+		#{updateId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.Stxx">
+		insert into TB_STXX
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="stid != null">
+				STID,
+			</if>
+			<if test="stfzid != null">
+				STFZID,
+			</if>
+			<if test="areaId != null">
+				AREA_ID,
+			</if>
+			<if test="stjjlx != null">
+				STJJLX,
+			</if>
+			<if test="stjj != null">
+				STJJ,
+			</if>
+			<if test="qzid != null">
+				QZID,
+			</if>
+			<if test="stmc != null">
+				STMC,
+			</if>
+			<if test="stsp != null">
+				STSP,
+			</if>
+			<if test="stms != null">
+				STMS,
+			</if>
+			<if test="stdz != null">
+				STDZ,
+			</if>
+			<if test="stlxr != null">
+				STLXR,
+			</if>
+			<if test="stlxfs != null">
+				STLXFS,
+			</if>
+			<if test="stlx != null">
+				STLX,
+			</if>
+			<if test="timeStamp != null">
+				TIME_STAMP,
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS,
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="stid != null">
+				#{stid,jdbcType=VARCHAR},
+			</if>
+			<if test="stfzid != null">
+				#{stfzid,jdbcType=VARCHAR},
+			</if>
+			<if test="areaId != null">
+				#{areaId,jdbcType=VARCHAR},
+			</if>
+			<if test="stjjlx != null">
+				#{stjjlx,jdbcType=VARCHAR},
+			</if>
+			<if test="stjj != null">
+				#{stjj,jdbcType=VARCHAR},
+			</if>
+			<if test="qzid != null">
+				#{qzid,jdbcType=VARCHAR},
+			</if>
+			<if test="stmc != null">
+				#{stmc,jdbcType=VARCHAR},
+			</if>
+			<if test="stsp != null">
+				#{stsp,jdbcType=VARCHAR},
+			</if>
+			<if test="stms != null">
+				#{stms,jdbcType=VARCHAR},
+			</if>
+			<if test="stdz != null">
+				#{stdz,jdbcType=VARCHAR},
+			</if>
+			<if test="stlxr != null">
+				#{stlxr,jdbcType=VARCHAR},
+			</if>
+			<if test="stlxfs != null">
+				#{stlxfs,jdbcType=VARCHAR},
+			</if>
+			<if test="stlx != null">
+				#{stlx,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStamp != null">
+				#{timeStamp,jdbcType=BIGINT},
+			</if>
+			<if test="enableStatus != null">
+				#{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				#{updateId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.Stxx">
+		update TB_STXX
+		<set>
+			<if test="stfzid != null">
+				STFZID = #{stfzid,jdbcType=VARCHAR},
+			</if>
+			<if test="areaId != null">
+				AREA_ID = #{areaId,jdbcType=VARCHAR},
+			</if>
+			<if test="stjjlx != null">
+				STJJLX = #{stjjlx,jdbcType=VARCHAR},
+			</if>
+			<if test="stjj != null">
+				STJJ = #{stjj,jdbcType=VARCHAR},
+			</if>
+			<if test="qzid != null">
+				QZID = #{qzid,jdbcType=VARCHAR},
+			</if>
+			<if test="stmc != null">
+				STMC = #{stmc,jdbcType=VARCHAR},
+			</if>
+			<if test="stsp != null">
+				STSP = #{stsp,jdbcType=VARCHAR},
+			</if>
+			<if test="stms != null">
+				STMS = #{stms,jdbcType=VARCHAR},
+			</if>
+			<if test="stdz != null">
+				STDZ = #{stdz,jdbcType=VARCHAR},
+			</if>
+			<if test="stlxr != null">
+				STLXR = #{stlxr,jdbcType=VARCHAR},
+			</if>
+			<if test="stlxfs != null">
+				STLXFS = #{stlxfs,jdbcType=VARCHAR},
+			</if>
+			<if test="stlx != null">
+				STLX = #{stlx,jdbcType=VARCHAR},
+			</if>
+			<if test="timeStamp != null">
+				TIME_STAMP = #{timeStamp,jdbcType=BIGINT},
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where STID = #{stid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.Stxx">
+		update TB_STXX
+		set
+		STFZID = #{stfzid,jdbcType=VARCHAR},
+		AREA_ID =
+		#{areaId,jdbcType=VARCHAR},
+		STJJLX = #{stjjlx,jdbcType=VARCHAR},
+		STJJ =
+		#{stjj,jdbcType=VARCHAR},
+		QZID = #{qzid,jdbcType=VARCHAR},
+		STMC =
+		#{stmc,jdbcType=VARCHAR},
+		STSP = #{stsp,jdbcType=VARCHAR},
+		STMS =
+		#{stms,jdbcType=VARCHAR},
+		STDZ = #{stdz,jdbcType=VARCHAR},
+		STLXR =
+		#{stlxr,jdbcType=VARCHAR},
+		STLXFS = #{stlxfs,jdbcType=VARCHAR},
+		STLX =
+		#{stlx,jdbcType=VARCHAR},
+		TIME_STAMP = #{timeStamp,jdbcType=BIGINT},
+		ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS =
+		#{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=VARCHAR},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID =
+		#{updateId,jdbcType=VARCHAR}
+		where STID = #{stid,jdbcType=VARCHAR}
+	</update>
+	<sql id="whereList">
+	<where>
+		<if test="stid != null">
+			AND STID = #{stid,jdbcType=VARCHAR}
+		</if>
+		<if test="stfzid != null">
+			AND STFZID = #{stfzid,jdbcType=VARCHAR}
+		</if>
+		<if test="areaId != null">
+			AND AREA_ID = #{areaId,jdbcType=VARCHAR}
+		</if>
+		<if test="stjjlx != null">
+			AND STJJLX = #{stjjlx,jdbcType=VARCHAR}
+		</if>
+		<if test="stjj != null">
+			AND STJJ = #{stjj,jdbcType=VARCHAR}
+		</if>
+		<if test="qzid != null">
+			AND QZID = #{qzid,jdbcType=VARCHAR}
+		</if>
+		<if test="stmc != null">
+			AND STMC = #{stmc,jdbcType=VARCHAR}
+		</if>
+		<if test="stsp != null">
+			AND STSP = #{stsp,jdbcType=VARCHAR}
+		</if>
+		<if test="stms != null">
+			AND STMS = #{stms,jdbcType=VARCHAR}
+		</if>
+		<if test="stdz != null">
+			AND STDZ = #{stdz,jdbcType=VARCHAR}
+		</if>
+		<if test="stlxr != null">
+			AND STLXR = #{stlxr,jdbcType=VARCHAR}
+		</if>
+		<if test="stlxfs != null">
+			AND STLXFS = #{stlxfs,jdbcType=VARCHAR}
+		</if>
+		<if test="stlx != null">
+			AND STLX = #{stlx,jdbcType=VARCHAR}
+		</if>
+		<if test="timeStamp != null">
+			AND TIME_STAMP > #{timeStamp,jdbcType=BIGINT}
+		</if>
+		<if test="enableStatus != null">
+			AND ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="deleteStatus != null">
+			AND DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="createTime != null">
+			AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+		</if>
+		<if test="createId != null">
+			AND CREATE_ID = #{createId,jdbcType=VARCHAR}
+		</if>
+		<if test="updateTime != null">
+			AND UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+		</if>
+		<if test="updateId != null">
+			AND UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+		</if>
+		</where>
+	</sql>
+</mapper>

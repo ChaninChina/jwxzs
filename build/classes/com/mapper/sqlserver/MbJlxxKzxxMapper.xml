@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MbJlxxKzxxMapper">
+  <resultMap id="BaseResultMap" type="com.model.MbJlxxKzxx">
+    <id column="XXID" jdbcType="VARCHAR" property="xxid" />
+    <result column="XXKZLX" jdbcType="VARCHAR" property="xxkzlx" />
+    <result column="XXKZMS" jdbcType="VARCHAR" property="xxkzms" />
+    <result column="KZNRBZ" jdbcType="VARCHAR" property="kznrbz" />
+    <result column="YXWK" jdbcType="VARCHAR" property="yxwk" />
+    <result column="MRZ" jdbcType="VARCHAR" property="mrz" />
+    <result column="KZNR_ZXZ" jdbcType="INTEGER" property="kznrZxz" />
+    <result column="KZNR_ZDZ" jdbcType="INTEGER" property="kznrZdz" />
+    <result column="KZNR_YZGZ" jdbcType="VARCHAR" property="kznrYzgz" />
+    <result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+    <result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    XXID, XXKZLX, XXKZMS, KZNRBZ, YXWK, MRZ, KZNR_ZXZ, KZNR_ZDZ, KZNR_YZGZ, ENABLE_STATUS, 
+    DELETE_STATUS, CREATE_TIME, CREATE_ID, UPDATE_TIME, UPDATE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_MB_JLXX_KZXX
+    where XXID = #{xxid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_MB_JLXX_KZXX
+    where XXID = #{xxid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.MbJlxxKzxx">
+    insert into TB_MB_JLXX_KZXX (XXID, XXKZLX, XXKZMS, 
+      KZNRBZ, YXWK, MRZ, 
+      KZNR_ZXZ, KZNR_ZDZ, KZNR_YZGZ, 
+      ENABLE_STATUS, DELETE_STATUS, CREATE_TIME, 
+      CREATE_ID, UPDATE_TIME, UPDATE_ID
+      )
+    values (#{xxid,jdbcType=VARCHAR}, #{xxkzlx,jdbcType=VARCHAR}, #{xxkzms,jdbcType=VARCHAR}, 
+      #{kznrbz,jdbcType=VARCHAR}, #{yxwk,jdbcType=VARCHAR}, #{mrz,jdbcType=VARCHAR}, 
+      #{kznrZxz,jdbcType=INTEGER}, #{kznrZdz,jdbcType=INTEGER}, #{kznrYzgz,jdbcType=VARCHAR}, 
+      #{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.MbJlxxKzxx">
+    insert into TB_MB_JLXX_KZXX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="xxid != null">
+        XXID,
+      </if>
+      <if test="xxkzlx != null">
+        XXKZLX,
+      </if>
+      <if test="xxkzms != null">
+        XXKZMS,
+      </if>
+      <if test="kznrbz != null">
+        KZNRBZ,
+      </if>
+      <if test="yxwk != null">
+        YXWK,
+      </if>
+      <if test="mrz != null">
+        MRZ,
+      </if>
+      <if test="kznrZxz != null">
+        KZNR_ZXZ,
+      </if>
+      <if test="kznrZdz != null">
+        KZNR_ZDZ,
+      </if>
+      <if test="kznrYzgz != null">
+        KZNR_YZGZ,
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="xxid != null">
+        #{xxid,jdbcType=VARCHAR},
+      </if>
+      <if test="xxkzlx != null">
+        #{xxkzlx,jdbcType=VARCHAR},
+      </if>
+      <if test="xxkzms != null">
+        #{xxkzms,jdbcType=VARCHAR},
+      </if>
+      <if test="kznrbz != null">
+        #{kznrbz,jdbcType=VARCHAR},
+      </if>
+      <if test="yxwk != null">
+        #{yxwk,jdbcType=VARCHAR},
+      </if>
+      <if test="mrz != null">
+        #{mrz,jdbcType=VARCHAR},
+      </if>
+      <if test="kznrZxz != null">
+        #{kznrZxz,jdbcType=INTEGER},
+      </if>
+      <if test="kznrZdz != null">
+        #{kznrZdz,jdbcType=INTEGER},
+      </if>
+      <if test="kznrYzgz != null">
+        #{kznrYzgz,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.MbJlxxKzxx">
+    update TB_MB_JLXX_KZXX
+    <set>
+      <if test="xxkzlx != null">
+        XXKZLX = #{xxkzlx,jdbcType=VARCHAR},
+      </if>
+      <if test="xxkzms != null">
+        XXKZMS = #{xxkzms,jdbcType=VARCHAR},
+      </if>
+      <if test="kznrbz != null">
+        KZNRBZ = #{kznrbz,jdbcType=VARCHAR},
+      </if>
+      <if test="yxwk != null">
+        YXWK = #{yxwk,jdbcType=VARCHAR},
+      </if>
+      <if test="mrz != null">
+        MRZ = #{mrz,jdbcType=VARCHAR},
+      </if>
+      <if test="kznrZxz != null">
+        KZNR_ZXZ = #{kznrZxz,jdbcType=INTEGER},
+      </if>
+      <if test="kznrZdz != null">
+        KZNR_ZDZ = #{kznrZdz,jdbcType=INTEGER},
+      </if>
+      <if test="kznrYzgz != null">
+        KZNR_YZGZ = #{kznrYzgz,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XXID = #{xxid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.MbJlxxKzxx">
+    update TB_MB_JLXX_KZXX
+    set XXKZLX = #{xxkzlx,jdbcType=VARCHAR},
+      XXKZMS = #{xxkzms,jdbcType=VARCHAR},
+      KZNRBZ = #{kznrbz,jdbcType=VARCHAR},
+      YXWK = #{yxwk,jdbcType=VARCHAR},
+      MRZ = #{mrz,jdbcType=VARCHAR},
+      KZNR_ZXZ = #{kznrZxz,jdbcType=INTEGER},
+      KZNR_ZDZ = #{kznrZdz,jdbcType=INTEGER},
+      KZNR_YZGZ = #{kznrYzgz,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+    where XXID = #{xxid,jdbcType=VARCHAR}
+  </update>
+</mapper>

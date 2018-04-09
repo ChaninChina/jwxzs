@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.SplcMapper">
+	<resultMap id="BaseResultMap" type="com.model.Splc">
+		<id column="LCID" jdbcType="VARCHAR" property="lcid" />
+		<result column="RWID" jdbcType="VARCHAR" property="rwid" />
+		<result column="SJLC_ID" jdbcType="VARCHAR" property="sjlcId" />
+		<result column="XJLC_ID" jdbcType="VARCHAR" property="xjlcId" />
+		<result column="LCCJ" jdbcType="INTEGER" property="lccj" />
+		<result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+		<result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+		<result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+		<result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+		<result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+		<result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		LCID, RWID, SJLC_ID, XJLC_ID, LCCJ, ENABLE_STATUS,
+		DELETE_STATUS,
+		CREATE_TIME, CREATE_ID,
+		UPDATE_TIME, UPDATE_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_SPLC
+		where LCID = #{lcid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		TB_SPLC
+		where LCID = #{lcid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.model.Splc">
+		insert into TB_SPLC (LCID,
+		RWID, SJLC_ID,
+		XJLC_ID, LCCJ, ENABLE_STATUS,
+		DELETE_STATUS, CREATE_TIME,
+		CREATE_ID,
+		UPDATE_TIME, UPDATE_ID)
+		values (#{lcid,jdbcType=VARCHAR},
+		#{rwid,jdbcType=VARCHAR},
+		#{sjlcId,jdbcType=VARCHAR},
+		#{xjlcId,jdbcType=VARCHAR}, #{lccj,jdbcType=INTEGER},
+		#{enableStatus,jdbcType=VARCHAR},
+		#{deleteStatus,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR},
+		#{createId,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.model.Splc">
+		insert into TB_SPLC
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="lcid != null">
+				LCID,
+			</if>
+			<if test="rwid != null">
+				RWID,
+			</if>
+			<if test="sjlcId != null">
+				SJLC_ID,
+			</if>
+			<if test="xjlcId != null">
+				XJLC_ID,
+			</if>
+			<if test="lccj != null">
+				LCCJ,
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS,
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="createId != null">
+				CREATE_ID,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="lcid != null">
+				#{lcid,jdbcType=VARCHAR},
+			</if>
+			<if test="rwid != null">
+				#{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="sjlcId != null">
+				#{sjlcId,jdbcType=VARCHAR},
+			</if>
+			<if test="xjlcId != null">
+				#{xjlcId,jdbcType=VARCHAR},
+			</if>
+			<if test="lccj != null">
+				#{lccj,jdbcType=INTEGER},
+			</if>
+			<if test="enableStatus != null">
+				#{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				#{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				#{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				#{updateId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.model.Splc">
+		update TB_SPLC
+		<set>
+			<if test="rwid != null">
+				RWID = #{rwid,jdbcType=VARCHAR},
+			</if>
+			<if test="sjlcId != null">
+				SJLC_ID = #{sjlcId,jdbcType=VARCHAR},
+			</if>
+			<if test="xjlcId != null">
+				XJLC_ID = #{xjlcId,jdbcType=VARCHAR},
+			</if>
+			<if test="lccj != null">
+				LCCJ = #{lccj,jdbcType=INTEGER},
+			</if>
+			<if test="enableStatus != null">
+				ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteStatus != null">
+				DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+			</if>
+			<if test="createId != null">
+				CREATE_ID = #{createId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where LCID = #{lcid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.model.Splc">
+		update TB_SPLC
+		set
+		RWID = #{rwid,jdbcType=VARCHAR},
+		SJLC_ID = #{sjlcId,jdbcType=VARCHAR},
+		XJLC_ID = #{xjlcId,jdbcType=VARCHAR},
+		LCCJ = #{lccj,jdbcType=INTEGER},
+		ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+		DELETE_STATUS =
+		#{deleteStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=VARCHAR},
+		CREATE_ID =
+		#{createId,jdbcType=VARCHAR},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=VARCHAR},
+		UPDATE_ID =
+		#{updateId,jdbcType=VARCHAR}
+		where LCID = #{lcid,jdbcType=VARCHAR}
+	</update>
+
+	<sql id="whereList">
+		<where>
+			<if test="lcid != null">
+				and LCID = #{lcid,jdbcType=VARCHAR}
+			</if>
+			<if test="rwid != null">
+				and RWID = #{rwid,jdbcType=VARCHAR}
+			</if>
+			<if test="sjlcId != null">
+				and SJLC_ID = #{sjlcId,jdbcType=VARCHAR}
+			</if>
+			<if test="sjlcIdNull != null">
+				and (SJLC_ID = '' or SJLC_ID is null)
+			</if>
+			<if test="xjlcId != null">
+				and XJLC_ID = #{xjlcId,jdbcType=VARCHAR}
+			</if>
+			<if test="lccj != null">
+				and LCCJ = #{lccj,jdbcType=INTEGER}
+			</if>
+			<if test="enableStatus != null">
+				and ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="deleteStatus != null">
+				and DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="createTime != null">
+				and CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			<if test="createId != null">
+				and CREATE_ID = #{createId,jdbcType=VARCHAR}
+			</if>
+			<if test="updateTime != null">
+				and UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+			<if test="updateId != null">
+				and UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</sql>
+
+
+	<select id="selectSplc" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from TB_SPLC
+		<include refid="whereList" />
+	</select>
+</mapper>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.QxxxMapper">
+  <resultMap id="BaseResultMap" type="com.model.Qxxx">
+    <id column="QX_ID" jdbcType="VARCHAR" property="qxId" />
+    <result column="FJQX_ID" jdbcType="VARCHAR" property="fjqxId" />
+    <result column="QXMC" jdbcType="VARCHAR" property="qxmc" />
+    <result column="QXSP" jdbcType="VARCHAR" property="qxsp" />
+    <result column="QXMS" jdbcType="VARCHAR" property="qxms" />
+    <result column="QXPX" jdbcType="INTEGER" property="qxpx" />
+    <result column="QXLX" jdbcType="VARCHAR" property="qxlx" />
+    <result column="QXCJ" jdbcType="INTEGER" property="qxcj" />
+    <result column="QXLJ" jdbcType="VARCHAR" property="qxlj" />
+    <result column="QXTB" jdbcType="VARCHAR" property="qxtb" />
+    <result column="SUBSET_SYMBOL" jdbcType="VARCHAR" property="subsetSymbol" />
+    <result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+    <result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    QX_ID, FJQX_ID, QXMC, QXSP, QXMS, QXPX, QXLX, QXCJ, QXLJ, QXTB, SUBSET_SYMBOL, ENABLE_STATUS, 
+    DELETE_STATUS, CREATE_TIME, CREATE_ID, UPDATE_TIME, UPDATE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_QXXX
+    where QX_ID = #{qxId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_QXXX
+    where QX_ID = #{qxId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Qxxx">
+    insert into TB_QXXX (QX_ID, FJQX_ID, QXMC, 
+      QXSP, QXMS, QXPX, QXLX, 
+      QXCJ, QXLJ, QXTB, SUBSET_SYMBOL, 
+      ENABLE_STATUS, DELETE_STATUS, CREATE_TIME, 
+      CREATE_ID, UPDATE_TIME, UPDATE_ID
+      )
+    values (#{qxId,jdbcType=VARCHAR}, #{fjqxId,jdbcType=VARCHAR}, #{qxmc,jdbcType=VARCHAR}, 
+      #{qxsp,jdbcType=VARCHAR}, #{qxms,jdbcType=VARCHAR}, #{qxpx,jdbcType=INTEGER}, #{qxlx,jdbcType=VARCHAR}, 
+      #{qxcj,jdbcType=INTEGER}, #{qxlj,jdbcType=VARCHAR}, #{qxtb,jdbcType=VARCHAR}, #{subsetSymbol,jdbcType=VARCHAR}, 
+      #{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Qxxx">
+    insert into TB_QXXX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="qxId != null">
+        QX_ID,
+      </if>
+      <if test="fjqxId != null">
+        FJQX_ID,
+      </if>
+      <if test="qxmc != null">
+        QXMC,
+      </if>
+      <if test="qxsp != null">
+        QXSP,
+      </if>
+      <if test="qxms != null">
+        QXMS,
+      </if>
+      <if test="qxpx != null">
+        QXPX,
+      </if>
+      <if test="qxlx != null">
+        QXLX,
+      </if>
+      <if test="qxcj != null">
+        QXCJ,
+      </if>
+      <if test="qxlj != null">
+        QXLJ,
+      </if>
+      <if test="qxtb != null">
+        QXTB,
+      </if>
+      <if test="subsetSymbol != null">
+        SUBSET_SYMBOL,
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="qxId != null">
+        #{qxId,jdbcType=VARCHAR},
+      </if>
+      <if test="fjqxId != null">
+        #{fjqxId,jdbcType=VARCHAR},
+      </if>
+      <if test="qxmc != null">
+        #{qxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qxsp != null">
+        #{qxsp,jdbcType=VARCHAR},
+      </if>
+      <if test="qxms != null">
+        #{qxms,jdbcType=VARCHAR},
+      </if>
+      <if test="qxpx != null">
+        #{qxpx,jdbcType=INTEGER},
+      </if>
+      <if test="qxlx != null">
+        #{qxlx,jdbcType=VARCHAR},
+      </if>
+      <if test="qxcj != null">
+        #{qxcj,jdbcType=INTEGER},
+      </if>
+      <if test="qxlj != null">
+        #{qxlj,jdbcType=VARCHAR},
+      </if>
+      <if test="qxtb != null">
+        #{qxtb,jdbcType=VARCHAR},
+      </if>
+      <if test="subsetSymbol != null">
+        #{subsetSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Qxxx">
+    update TB_QXXX
+    <set>
+      <if test="fjqxId != null">
+        FJQX_ID = #{fjqxId,jdbcType=VARCHAR},
+      </if>
+      <if test="qxmc != null">
+        QXMC = #{qxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="qxsp != null">
+        QXSP = #{qxsp,jdbcType=VARCHAR},
+      </if>
+      <if test="qxms != null">
+        QXMS = #{qxms,jdbcType=VARCHAR},
+      </if>
+      <if test="qxpx != null">
+        QXPX = #{qxpx,jdbcType=INTEGER},
+      </if>
+      <if test="qxlx != null">
+        QXLX = #{qxlx,jdbcType=VARCHAR},
+      </if>
+      <if test="qxcj != null">
+        QXCJ = #{qxcj,jdbcType=INTEGER},
+      </if>
+      <if test="qxlj != null">
+        QXLJ = #{qxlj,jdbcType=VARCHAR},
+      </if>
+      <if test="qxtb != null">
+        QXTB = #{qxtb,jdbcType=VARCHAR},
+      </if>
+      <if test="subsetSymbol != null">
+        SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where QX_ID = #{qxId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Qxxx">
+    update TB_QXXX
+    set FJQX_ID = #{fjqxId,jdbcType=VARCHAR},
+      QXMC = #{qxmc,jdbcType=VARCHAR},
+      QXSP = #{qxsp,jdbcType=VARCHAR},
+      QXMS = #{qxms,jdbcType=VARCHAR},
+      QXPX = #{qxpx,jdbcType=INTEGER},
+      QXLX = #{qxlx,jdbcType=VARCHAR},
+      QXCJ = #{qxcj,jdbcType=INTEGER},
+      QXLJ = #{qxlj,jdbcType=VARCHAR},
+      QXTB = #{qxtb,jdbcType=VARCHAR},
+      SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+    where QX_ID = #{qxId,jdbcType=VARCHAR}
+  </update>
+</mapper>

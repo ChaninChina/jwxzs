@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.JsxxMapper">
+  <resultMap id="BaseResultMap" type="com.model.Jsxx">
+    <id column="JSID" jdbcType="VARCHAR" property="jsid" />
+    <result column="FJJSID" jdbcType="VARCHAR" property="fjjsid" />
+    <result column="JSMC" jdbcType="VARCHAR" property="jsmc" />
+    <result column="JSSP" jdbcType="VARCHAR" property="jssp" />
+    <result column="JSMS" jdbcType="VARCHAR" property="jsms" />
+    <result column="JSPX" jdbcType="INTEGER" property="jspx" />
+    <result column="JSCJ" jdbcType="INTEGER" property="jscj" />
+    <result column="SUBSET_SYMBOL" jdbcType="VARCHAR" property="subsetSymbol" />
+    <result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+    <result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    JSID, FJJSID, JSMC, JSSP, JSMS, JSPX, JSCJ, SUBSET_SYMBOL, ENABLE_STATUS, DELETE_STATUS, 
+    CREATE_TIME, CREATE_ID, UPDATE_TIME, UPDATE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_JSXX
+    where JSID = #{jsid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_JSXX
+    where JSID = #{jsid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Jsxx">
+    insert into TB_JSXX (JSID, FJJSID, JSMC, 
+      JSSP, JSMS, JSPX, JSCJ, 
+      SUBSET_SYMBOL, ENABLE_STATUS, DELETE_STATUS, 
+      CREATE_TIME, CREATE_ID, UPDATE_TIME, 
+      UPDATE_ID)
+    values (#{jsid,jdbcType=VARCHAR}, #{fjjsid,jdbcType=VARCHAR}, #{jsmc,jdbcType=VARCHAR}, 
+      #{jssp,jdbcType=VARCHAR}, #{jsms,jdbcType=VARCHAR}, #{jspx,jdbcType=INTEGER}, #{jscj,jdbcType=INTEGER}, 
+      #{subsetSymbol,jdbcType=VARCHAR}, #{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, 
+      #{updateId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Jsxx">
+    insert into TB_JSXX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jsid != null">
+        JSID,
+      </if>
+      <if test="fjjsid != null">
+        FJJSID,
+      </if>
+      <if test="jsmc != null">
+        JSMC,
+      </if>
+      <if test="jssp != null">
+        JSSP,
+      </if>
+      <if test="jsms != null">
+        JSMS,
+      </if>
+      <if test="jspx != null">
+        JSPX,
+      </if>
+      <if test="jscj != null">
+        JSCJ,
+      </if>
+      <if test="subsetSymbol != null">
+        SUBSET_SYMBOL,
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jsid != null">
+        #{jsid,jdbcType=VARCHAR},
+      </if>
+      <if test="fjjsid != null">
+        #{fjjsid,jdbcType=VARCHAR},
+      </if>
+      <if test="jsmc != null">
+        #{jsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jssp != null">
+        #{jssp,jdbcType=VARCHAR},
+      </if>
+      <if test="jsms != null">
+        #{jsms,jdbcType=VARCHAR},
+      </if>
+      <if test="jspx != null">
+        #{jspx,jdbcType=INTEGER},
+      </if>
+      <if test="jscj != null">
+        #{jscj,jdbcType=INTEGER},
+      </if>
+      <if test="subsetSymbol != null">
+        #{subsetSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Jsxx">
+    update TB_JSXX
+    <set>
+      <if test="fjjsid != null">
+        FJJSID = #{fjjsid,jdbcType=VARCHAR},
+      </if>
+      <if test="jsmc != null">
+        JSMC = #{jsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="jssp != null">
+        JSSP = #{jssp,jdbcType=VARCHAR},
+      </if>
+      <if test="jsms != null">
+        JSMS = #{jsms,jdbcType=VARCHAR},
+      </if>
+      <if test="jspx != null">
+        JSPX = #{jspx,jdbcType=INTEGER},
+      </if>
+      <if test="jscj != null">
+        JSCJ = #{jscj,jdbcType=INTEGER},
+      </if>
+      <if test="subsetSymbol != null">
+        SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where JSID = #{jsid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Jsxx">
+    update TB_JSXX
+    set FJJSID = #{fjjsid,jdbcType=VARCHAR},
+      JSMC = #{jsmc,jdbcType=VARCHAR},
+      JSSP = #{jssp,jdbcType=VARCHAR},
+      JSMS = #{jsms,jdbcType=VARCHAR},
+      JSPX = #{jspx,jdbcType=INTEGER},
+      JSCJ = #{jscj,jdbcType=INTEGER},
+      SUBSET_SYMBOL = #{subsetSymbol,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+    where JSID = #{jsid,jdbcType=VARCHAR}
+  </update>
+</mapper>

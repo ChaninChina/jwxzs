@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.BbxxMapper">
+  <resultMap id="BaseResultMap" type="com.model.Bbxx">
+    <id column="BBID" jdbcType="VARCHAR" property="bbid" />
+    <result column="BBMC" jdbcType="VARCHAR" property="bbmc" />
+    <result column="BBTB" jdbcType="VARCHAR" property="bbtb" />
+    <result column="BBMS" jdbcType="VARCHAR" property="bbms" />
+    <result column="BBPT" jdbcType="VARCHAR" property="bbpt" />
+    <result column="BBBH" jdbcType="INTEGER" property="bbbh" />
+    <result column="AZBMC" jdbcType="VARCHAR" property="azbmc" />
+    <result column="BBDZ" jdbcType="VARCHAR" property="bbdz" />
+    <result column="FBSJ" jdbcType="VARCHAR" property="fbsj" />
+    <result column="QZGX" jdbcType="VARCHAR" property="qzgx" />
+    <result column="XZCS" jdbcType="INTEGER" property="xzcs" />
+    <result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+    <result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BBID, BBMC, BBTB, BBMS, BBPT, BBBH, AZBMC, BBDZ, FBSJ, QZGX, XZCS, ENABLE_STATUS, 
+    DELETE_STATUS, CREATE_TIME, CREATE_ID, UPDATE_TIME, UPDATE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_BBXX
+    where BBID = #{bbid,jdbcType=VARCHAR}
+  
+  </select>
+  
+    <select id="selectBbxx" parameterType="map" resultMap="BaseResultMap">
+    select top 1
+    <include refid="Base_Column_List" />
+    from TB_BBXX
+    <where>
+       <if test="bbid != null">
+        AND BBID = #{bbid,jdbcType=VARCHAR}
+      </if>
+       <if test="bbmc != null">
+        AND BBMC = #{bbmc,jdbcType=VARCHAR}
+      </if>
+      <if test="bbtb != null">
+        AND BBTB = #{bbtb,jdbcType=VARCHAR}
+      </if>
+      <if test="bbms != null">
+        AND BBMS = #{bbms,jdbcType=VARCHAR}
+      </if>
+      <if test="bbpt != null">
+        AND BBPT = #{bbpt,jdbcType=VARCHAR}
+      </if>
+      <if test="bbbh != null">
+        AND BBBH > #{bbbh,jdbcType=INTEGER}
+      </if>
+      <if test="azbmc != null">
+        AND AZBMC = #{azbmc,jdbcType=VARCHAR}
+      </if>
+      <if test="bbdz != null">
+        AND BBDZ = #{bbdz,jdbcType=VARCHAR}
+      </if>
+      <if test="fbsj != null">
+        AND FBSJ = #{fbsj,jdbcType=VARCHAR}
+      </if>
+      <if test="qzgx != null">
+        AND QZGX = #{qzgx,jdbcType=VARCHAR}
+      </if>
+      <if test="xzcs != null">
+        AND XZCS = #{xzcs,jdbcType=INTEGER}
+      </if>
+      <if test="enableStatus != null">
+        AND ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="deleteStatus != null">
+        AND DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        AND CREATE_TIME = #{createTime,jdbcType=VARCHAR}
+      </if>
+      <if test="createId != null">
+        AND CREATE_ID = #{createId,jdbcType=VARCHAR}
+      </if>
+      <if test="updateTime != null">
+        AND UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+      </if>
+      <if test="updateId != null">
+        AND UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by BBBH desc
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_BBXX
+    where BBID = #{bbid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Bbxx">
+    insert into TB_BBXX (BBID, BBMC, BBTB, 
+      BBMS, BBPT, BBBH, AZBMC, 
+      BBDZ, FBSJ, QZGX, XZCS, 
+      ENABLE_STATUS, DELETE_STATUS, CREATE_TIME, 
+      CREATE_ID, UPDATE_TIME, UPDATE_ID
+      )
+    values (#{bbid,jdbcType=VARCHAR}, #{bbmc,jdbcType=VARCHAR}, #{bbtb,jdbcType=VARCHAR}, 
+      #{bbms,jdbcType=VARCHAR}, #{bbpt,jdbcType=VARCHAR}, #{bbbh,jdbcType=INTEGER}, #{azbmc,jdbcType=VARCHAR}, 
+      #{bbdz,jdbcType=VARCHAR}, #{fbsj,jdbcType=VARCHAR}, #{qzgx,jdbcType=VARCHAR}, #{xzcs,jdbcType=INTEGER}, 
+      #{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Bbxx">
+    insert into TB_BBXX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bbid != null">
+        BBID,
+      </if>
+      <if test="bbmc != null">
+        BBMC,
+      </if>
+      <if test="bbtb != null">
+        BBTB,
+      </if>
+      <if test="bbms != null">
+        BBMS,
+      </if>
+      <if test="bbpt != null">
+        BBPT,
+      </if>
+      <if test="bbbh != null">
+        BBBH,
+      </if>
+      <if test="azbmc != null">
+        AZBMC,
+      </if>
+      <if test="bbdz != null">
+        BBDZ,
+      </if>
+      <if test="fbsj != null">
+        FBSJ,
+      </if>
+      <if test="qzgx != null">
+        QZGX,
+      </if>
+      <if test="xzcs != null">
+        XZCS,
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bbid != null">
+        #{bbid,jdbcType=VARCHAR},
+      </if>
+      <if test="bbmc != null">
+        #{bbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bbtb != null">
+        #{bbtb,jdbcType=VARCHAR},
+      </if>
+      <if test="bbms != null">
+        #{bbms,jdbcType=VARCHAR},
+      </if>
+      <if test="bbpt != null">
+        #{bbpt,jdbcType=VARCHAR},
+      </if>
+      <if test="bbbh != null">
+        #{bbbh,jdbcType=INTEGER},
+      </if>
+      <if test="azbmc != null">
+        #{azbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bbdz != null">
+        #{bbdz,jdbcType=VARCHAR},
+      </if>
+      <if test="fbsj != null">
+        #{fbsj,jdbcType=VARCHAR},
+      </if>
+      <if test="qzgx != null">
+        #{qzgx,jdbcType=VARCHAR},
+      </if>
+      <if test="xzcs != null">
+        #{xzcs,jdbcType=INTEGER},
+      </if>
+      <if test="enableStatus != null">
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Bbxx">
+    update TB_BBXX
+    <set>
+      <if test="bbmc != null">
+        BBMC = #{bbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bbtb != null">
+        BBTB = #{bbtb,jdbcType=VARCHAR},
+      </if>
+      <if test="bbms != null">
+        BBMS = #{bbms,jdbcType=VARCHAR},
+      </if>
+      <if test="bbpt != null">
+        BBPT = #{bbpt,jdbcType=VARCHAR},
+      </if>
+      <if test="bbbh != null">
+        BBBH = #{bbbh,jdbcType=INTEGER},
+      </if>
+      <if test="azbmc != null">
+        AZBMC = #{azbmc,jdbcType=VARCHAR},
+      </if>
+      <if test="bbdz != null">
+        BBDZ = #{bbdz,jdbcType=VARCHAR},
+      </if>
+      <if test="fbsj != null">
+        FBSJ = #{fbsj,jdbcType=VARCHAR},
+      </if>
+      <if test="qzgx != null">
+        QZGX = #{qzgx,jdbcType=VARCHAR},
+      </if>
+      <if test="xzcs != null">
+        XZCS = #{xzcs,jdbcType=INTEGER},
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BBID = #{bbid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Bbxx">
+    update TB_BBXX
+    set BBMC = #{bbmc,jdbcType=VARCHAR},
+      BBTB = #{bbtb,jdbcType=VARCHAR},
+      BBMS = #{bbms,jdbcType=VARCHAR},
+      BBPT = #{bbpt,jdbcType=VARCHAR},
+      BBBH = #{bbbh,jdbcType=INTEGER},
+      AZBMC = #{azbmc,jdbcType=VARCHAR},
+      BBDZ = #{bbdz,jdbcType=VARCHAR},
+      FBSJ = #{fbsj,jdbcType=VARCHAR},
+      QZGX = #{qzgx,jdbcType=VARCHAR},
+      XZCS = #{xzcs,jdbcType=INTEGER},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+    where BBID = #{bbid,jdbcType=VARCHAR}
+  </update>
+</mapper>

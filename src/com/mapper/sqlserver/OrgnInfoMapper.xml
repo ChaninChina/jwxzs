@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.OrgnInfoMapper">
+	
+	<resultMap id="orgnInfoResultMap" type="OrgnInfo">
+		<id property="orgnId" column="ORGNINFO_ORGN_ID"/>
+		<result property="prevId" column="ORGNINFO_PREV_ID"/>
+		<result property="areaId" column="ORGNINFO_AREA_ID"/>
+		<result property="orgnCode" column="ORGNINFO_ORGN_CODE"/>
+		<result property="orgnType" column="ORGNINFO_ORGN_TYPE"/>
+		<result property="orgnName" column="ORGNINFO_ORGN_NAME"/>
+		<result property="orgnPiny" column="ORGNINFO_ORGN_PINY"/>
+		<result property="orgnRank" column="ORGNINFO_ORGN_RANK"/>
+		<result property="orgnSort" column="ORGNINFO_ORGN_SORT"/>
+		<result property="orgnNote" column="ORGNINFO_ORGN_NOTE"/>
+		<result property="subsetSymbol" column="ORGNINFO_SUBSET_SYMBOL"/>
+		<result property="redactSymbol" column="ORGNINFO_REDACT_SYMBOL"/>
+		<result property="enableStatus" column="ORGNINFO_ENABLE_STATUS"/>
+		<result property="deleteStatus" column="ORGNINFO_DELETE_STATUS"/>
+		<result property="createId" column="ORGNINFO_CREATE_ID"/>
+		<result property="createTime" column="ORGNINFO_CREATE_TIME"/>
+		<result property="updateId" column="ORGNINFO_UPDATE_ID"/>
+		<result property="updateTime" column="ORGNINFO_UPDATE_TIME"/>
+		<association property="areaInfo" javaType="AreaInfo">
+			<id column="AREAINFO_AREA_ID" property="areaId"/>
+		</association>
+		<association property="prevOrgn" javaType="OrgnInfo">
+		</association>
+	</resultMap>
+	
+	<resultMap id="prevOrgnResultMap" type="OrgnInfo">
+		<id property="orgnId" column="PREVORGN_ORGN_ID"/>
+		<result property="prevId" column="PREVORGN_PREV_ID"/>
+		<result property="areaId" column="PREVORGN_AREA_ID"/>
+		<result property="orgnCode" column="PREVORGN_ORGN_CODE"/>
+		<result property="orgnType" column="PREVORGN_ORGN_TYPE"/>
+		<result property="orgnName" column="PREVORGN_ORGN_NAME"/>
+		<result property="orgnPiny" column="PREVORGN_ORGN_PINY"/>
+		<result property="orgnRank" column="PREVORGN_ORGN_RANK"/>
+		<result property="orgnSort" column="PREVORGN_ORGN_SORT"/>
+		<result property="orgnNote" column="PREVORGN_ORGN_NOTE"/>
+		<result property="subsetSymbol" column="PREVORGN_SUBSET_SYMBOL"/>
+		<result property="redactSymbol" column="PREVORGN_REDACT_SYMBOL"/>
+		<result property="enableStatus" column="PREVORGN_ENABLE_STATUS"/>
+		<result property="deleteStatus" column="PREVORGN_DELETE_STATUS"/>
+		<result property="createId" column="PREVORGN_CREATE_ID"/>
+		<result property="createTime" column="PREVORGN_CREATE_TIME"/>
+		<result property="updateId" column="PREVORGN_UPDATE_ID"/>
+		<result property="updateTime" column="PREVORGN_UPDATE_TIME"/>
+	</resultMap>
+	
+	<sql id="columnsOfOrgnInfo">
+	    orgnInfo.ORGN_ID AS ORGNINFO_ORGN_ID
+	    ,orgnInfo.PREV_ID AS ORGNINFO_PREV_ID
+	    ,orgnInfo.AREA_ID AS ORGNINFO_AREA_ID
+	    ,orgnInfo.ORGN_CODE AS ORGNINFO_ORGN_CODE
+	    ,orgnInfo.ORGN_TYPE AS ORGNINFO_ORGN_TYPE
+	    ,orgnInfo.ORGN_NAME AS ORGNINFO_ORGN_NAME
+	    ,orgnInfo.ORGN_PINY AS ORGNINFO_ORGN_PINY
+	    ,orgnInfo.ORGN_RANK AS ORGNINFO_ORGN_RANK
+	    ,orgnInfo.ORGN_SORT AS ORGNINFO_ORGN_SORT
+	    ,orgnInfo.ORGN_NOTE AS ORGNINFO_ORGN_NOTE
+	    ,orgnInfo.SUBSET_SYMBOL AS ORGNINFO_SUBSET_SYMBOL
+	    ,orgnInfo.REDACT_SYMBOL AS ORGNINFO_REDACT_SYMBOL
+	    ,orgnInfo.ENABLE_STATUS AS ORGNINFO_ENABLE_STATUS
+	    ,orgnInfo.DELETE_STATUS AS ORGNINFO_DELETE_STATUS
+	    ,orgnInfo.CREATE_ID AS ORGNINFO_CREATE_ID
+	    ,orgnInfo.CREATE_TIME AS ORGNINFO_CREATE_TIME
+	    ,orgnInfo.UPDATE_ID AS ORGNINFO_UPDATE_ID
+	    ,orgnInfo.UPDATE_TIME AS ORGNINFO_UPDATE_TIME
+	</sql>
+	
+	<sql id="columnsOfPrevOrgn">
+	    prevOrgn.ORGN_ID AS PREVORGN_ORGN_ID
+	    ,prevOrgn.PREV_ID AS PREVORGN_PREV_ID
+	    ,prevOrgn.ORGN_CODE AS PREVORGN_ORGN_CODE
+	    ,prevOrgn.ORGN_TYPE AS PREVORGN_ORGN_TYPE
+	    ,prevOrgn.ORGN_NAME AS PREVORGN_ORGN_NAME
+	    ,prevOrgn.ORGN_PINY AS PREVORGN_ORGN_PINY
+	    ,prevOrgn.ORGN_RANK AS PREVORGN_ORGN_RANK
+	    ,prevOrgn.ORGN_SORT AS PREVORGN_ORGN_SORT
+	    ,prevOrgn.ORGN_NOTE AS PREVORGN_ORGN_NOTE
+	    ,prevOrgn.SUBSET_SYMBOL AS PREVORGN_SUBSET_SYMBOL
+	    ,prevOrgn.REDACT_SYMBOL AS PREVORGN_REDACT_SYMBOL
+	    ,prevOrgn.ENABLE_STATUS AS PREVORGN_ENABLE_STATUS
+	    ,prevOrgn.DELETE_STATUS AS PREVORGN_DELETE_STATUS
+	    ,prevOrgn.CREATE_ID AS PREVORGN_CREATE_ID
+	    ,prevOrgn.CREATE_TIME AS PREVORGN_CREATE_TIME
+	    ,prevOrgn.UPDATE_ID AS PREVORGN_UPDATE_ID
+	    ,prevOrgn.UPDATE_TIME AS PREVORGN_UPDATE_TIME
+	</sql>
+	
+	<!-- 保存机构基本信息 -->
+	<insert id="insert" parameterType="OrgnInfo">
+		INSERT INTO TB_ORGN_INFO
+           (ORGN_ID
+           ,PREV_ID
+           ,AREA_ID
+           ,ORGN_CODE
+           ,ORGN_TYPE
+           ,ORGN_NAME
+           ,ORGN_PINY
+           ,ORGN_RANK
+           ,ORGN_SORT
+           ,ORGN_NOTE
+           ,SUBSET_SYMBOL
+           ,REDACT_SYMBOL
+           ,ENABLE_STATUS
+           ,DELETE_STATUS
+           ,CREATE_ID
+           ,CREATE_TIME
+           ,UPDATE_ID
+           ,UPDATE_TIME)
+		VALUES
+           (#{orgnId}
+           ,#{prevId}
+           ,#{areaId}
+           ,#{orgnCode}
+           ,#{orgnType}
+           ,#{orgnName}
+           ,#{orgnPiny}
+           ,#{orgnRank}
+           ,#{orgnSort}
+           ,#{orgnNote}
+           ,#{subsetSymbol}
+           ,#{redactSymbol}
+           ,#{enableStatus}
+           ,#{deleteStatus}
+           ,#{createId}
+           ,#{createTime}
+           ,#{createId}
+           ,#{createTime})
+	</insert>
+	
+	<!-- 删除机构基本信息(通过机构主键) -->
+	<delete id="deleteByOrgnId" parameterType="string">
+	    DELETE FROM TB_ORGN_INFO
+	    WHERE ORGN_ID = #{orgnId}
+	</delete>
+	
+	<!-- 删除机构基本信息(通过机构编号) -->
+	<delete id="deleteByOrgnCode" parameterType="string">
+	    DELETE FROM TB_ORGN_INFO
+	    WHERE ORGN_CODE = #{orgnCode}
+	</delete>
+	
+	<!-- 更新机构基本信息(通过机构主键) -->
+	<update id="updateByOrgnIdSelective" parameterType="OrgnInfo">
+		UPDATE TB_ORGN_INFO
+		<set>
+		  	<if test="prevId != null">
+		  		PREV_ID = #{prevId},
+		  	</if>
+		  	<if test="areaId != null">
+		  		AREA_ID = #{areaId},
+		  	</if>
+		  	<if test="orgnCode != null">
+		  		ORGN_CODE = #{orgnCode},
+		  	</if>
+		  	<if test="orgnType != null">
+		  		ORGN_TYPE = #{orgnType},
+		  	</if>
+		  	<if test="orgnName != null">
+		  		ORGN_NAME = #{orgnName},
+		  	</if>
+		  	<if test="orgnPiny != null">
+		  		ORGN_PINY = #{orgnPiny},
+		  	</if>
+		  	<if test="orgnRank != null">
+		  		ORGN_RANK = #{orgnRank},
+		  	</if>
+		  	<if test="orgnSort != null">
+		  		ORGN_SORT = #{orgnSort},
+		  	</if>
+		  	<if test="orgnNote != null">
+		  		ORGN_NOTE = #{orgnNote},
+		  	</if>
+		  	<if test="subsetSymbol != null">
+		  		SUBSET_SYMBOL = #{subsetSymbol},
+		  	</if>
+		  	<if test="redactSymbol != null">
+		  		REDACT_SYMBOL = #{redactSymbol},
+		  	</if>
+		  	<if test="enableStatus != null">
+		  		ENABLE_STATUS = #{enableStatus},
+		  	</if>
+		  	<if test="deleteStatus != null">
+		  		DELETE_STATUS = #{deleteStatus},
+		  	</if>
+		  	<if test="updateId != null">
+		  		UPDATE_ID = #{updateId},
+		  	</if>
+		  	<if test="updateTime != null">
+		  		UPDATE_TIME = #{updateTime}
+		  	</if>
+		</set>
+		WHERE ORGN_ID = #{orgnId}
+	</update>
+	
+	<!-- 更新机构基本信息(通过机构主键) -->
+	<update id="updateByOrgnIdProcedure" parameterType="map" statementType="CALLABLE">
+		<![CDATA[
+			{CALL PRO_JG_XG (
+				#{orgnId,mode=IN,jdbcType=VARCHAR},
+				#{prevId,mode=IN,jdbcType=VARCHAR},
+				#{areaId,mode=IN,jdbcType=VARCHAR},
+				#{orgnCode,mode=IN,jdbcType=VARCHAR},
+				#{orgnType,mode=IN,jdbcType=VARCHAR},
+				#{orgnStep,mode=IN,jdbcType=VARCHAR},
+				#{orgnName,mode=IN,jdbcType=VARCHAR},
+				#{orgnPiny,mode=IN,jdbcType=VARCHAR},
+				#{orgnRank,mode=IN,jdbcType=INTEGER},
+				#{orgnSort,mode=IN,jdbcType=INTEGER},
+				#{orgnNote,mode=IN,jdbcType=VARCHAR},
+				#{subsetSymbol,mode=IN,jdbcType=VARCHAR},
+				#{redactSymbol,mode=IN,jdbcType=VARCHAR},
+				#{enableStatus,mode=IN,jdbcType=VARCHAR},
+				#{deleteStatus,mode=IN,jdbcType=VARCHAR},
+				#{handleId,mode=IN,jdbcType=VARCHAR},
+				#{handleName,mode=IN,jdbcType=VARCHAR},
+				#{handleTime,mode=IN,jdbcType=VARCHAR},
+				#{errorMsg,mode=OUT,jdbcType=LONGVARCHAR})}
+		]]>
+	</update>
+	
+	<!-- 查询机构基本信息 -->
+	<select id="select" parameterType="OrgnInfo" resultMap="orgnInfoResultMap">
+		SELECT <include refid="columnsOfOrgnInfo"/>
+		FROM TB_ORGN_INFO orgnInfo
+		<where>
+			<if test="orgnId != null">
+		    	AND orgnInfo.ORGN_ID = #{orgnId}
+		    </if>
+		    <if test="prevId != null">
+		    	ANd orgnInfo.PREV_ID = #{prevId}
+		    </if>
+		    <if test="areaId != null">
+		    	ANd orgnInfo.AREA_ID = #{areaId}
+		    </if>
+		    <if test="orgnCode != null">
+		    	ANd orgnInfo.ORGN_CODE = #{orgnCode}
+		    </if>
+		    <if test="enableStatus != null">
+		    	AND orgnInfo.ENABLE_STATUS = #{enableStatus}
+		    </if>
+		    <if test="deleteStatus != null">
+		    	AND orgnInfo.DELETE_STATUS = #{deleteStatus}
+		    </if>
+		</where>
+	    ORDER BY orgnInfo.ORGN_CODE ASC
+	</select>
+	
+	<!-- 统计机构编号数量  -->
+	<select id="tjbhsl" parameterType="map" resultType="java.lang.Integer">
+		SELECT COUNT(1)
+		FROM TB_ORGN_INFO orgnInfo
+		WHERE orgnInfo.ORGN_CODE = #{orgnCode,jdbcType=VARCHAR}
+		<if test="deleteStatus != null">
+	    	AND orgnInfo.DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR}
+	    </if>
+	</select>
+	
+	<!-- 查询机构基本信息(通过机构主键) -->
+	<select id="selectByOrgnId" parameterType="string" resultMap="orgnInfoResultMap">
+		SELECT <include refid="columnsOfOrgnInfo"/>
+		FROM TB_ORGN_INFO orgnInfo
+		WHERE orgnInfo.ORGN_ID = #{_parameter}
+	</select>
+	
+	<!-- 查询机构基本信息(通过父级主键) -->
+	<select id="selectByPrevId" parameterType="string" resultMap="orgnInfoResultMap">
+		SELECT <include refid="columnsOfOrgnInfo"/>
+		FROM TB_ORGN_INFO orgnInfo
+		<where>
+			<choose>
+				<when test="_parameter != null">
+					AND orgnInfo.PREV_ID = #{_parameter}
+				</when>
+				<otherwise>
+					AND orgnInfo.PREV_ID IS NULL
+				</otherwise>
+			</choose>
+		</where>
+		ORDER BY orgnInfo.ORGN_CODE ASC
+	</select>
+	
+	<!-- 查询父级机构信息(通过机构主键) -->
+	<select id="selectPrevByOrgnId" parameterType="string" resultMap="prevOrgnResultMap">
+		SELECT <include refid="columnsOfPrevOrgn"/>
+		FROM TB_ORGN_INFO orgnInfo
+		INNER JOIN TB_ORGN_INFO prevOrgn
+		ON prevOrgn.ORGN_ID = orgnInfo.PREV_ID
+		WHERE orgnInfo.ORGN_ID = #{_parameter}
+	</select>
+	
+	<!-- 查询子级机构数量(通过机构主键) -->
+	<select id="selectRankSizeByOrgnId" parameterType="map" resultType="integer">
+		SELECT COUNT(rankOrgn.ORGN_ID)
+		FROM TB_ORGN_INFO rankOrgn
+		<where>
+			<choose>
+				<when test="orgnId != null">
+					AND rankOrgn.PREV_ID = #{orgnId}
+				</when>
+				<otherwise>
+					AND rankOrgn.PREV_ID IS NULL
+				</otherwise>
+			</choose>
+			<if test="enableStatus != null">
+				AND rankOrgn.ENABLE_STATUS = #{enableStatus}
+			</if>
+			<if test="deleteStatus != null">
+				AND rankOrgn.DELETE_STATUS = #{deleteStatus}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 查询平级机构数量(通过机构主键) -->
+	<select id="selectFlatSizeByOrgnId" parameterType="map" resultType="integer">
+		SELECT COUNT(flatOrgn.ORGN_ID)
+		FROM TB_ORGN_INFO flatOrgn
+		WHERE EXISTS (
+			SELECT prevOrgn.ORGN_ID
+            FROM TB_ORGN_INFO orgnInfo
+            INNER JOIN TB_ORGN_INFO prevOrgn
+            ON prevOrgn.ORGN_ID = orgnInfo.PREV_ID
+            WHERE orgnInfo.ORGN_ID = #{orgnId}
+            AND orgnInfo.PREV_ID = flatOrgn.PREV_ID
+		)
+		<if test="enableStatus != null">
+			AND flatOrgn.ENABLE_STATUS = #{enableStatus}
+		</if>
+		<if test="deleteStatus != null">
+			AND flatOrgn.DELETE_STATUS = #{deleteStatus}
+		</if>
+	</select>
+	
+	<!-- 搜索机构信息条件 -->
+	<sql id="clauseOfSearch">
+		<where>
+			<if test="orgnId != null">
+				AND orgnInfo.ORGN_ID = #{orgnId}
+			</if>
+			<if test="prevId != null">
+				AND orgnInfo.PREV_ID = #{prevId}
+			</if>
+			<if test="orgnCode != null">
+				AND orgnInfo.ORGN_CODE = #{orgnCode}
+			</if>
+			<if test="orgnName != null">
+				AND (LOWER(orgnInfo.ORGN_PINY) LIKE '%' + LOWER(#{orgnName}) + '%'
+		 			OR orgnInfo.ORGN_NAME LIKE '%' + #{orgnName} + '%'
+		 			OR orgnInfo.ORGN_CODE LIKE '%' + #{orgnName})
+			</if>
+			<if test="globOrgn != null">
+				AND SUBSTR(orgnInfo.ORGN_CODE,0,LENGTH(#{globOrgn})) = #{globOrgn}
+			</if>
+			<if test="enableStatus != null">
+				AND orgnInfo.ENABLE_STATUS = #{enableStatus}
+			</if>
+			<if test="deleteStatus != null">
+				AND orgnInfo.DELETE_STATUS = #{deleteStatus}
+			</if>
+		</where>
+	</sql>
+	
+	<!-- 搜索机构信息数量 -->
+	<select id="searchSize" parameterType="map" resultType="java.lang.Integer">
+		SELECT COUNT(orgnInfo.ORGN_ID)
+		FROM TB_ORGN_INFO orgnInfo
+		<include refid="clauseOfSearch"/>
+	</select>
+	
+	<!-- 搜索机构信息数据 -->
+	<select id="searchList" parameterType="map" resultMap="orgnInfoResultMap">
+		SELECT
+			<include refid="columnsOfOrgnInfo"/>
+		FROM (
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY orgnInfo.ORGN_CODE,orgnInfo.ORGN_SORT ASC) AS ROWNUMBER,
+				orgnInfo.*
+			FROM TB_ORGN_INFO orgnInfo
+			<include refid="clauseOfSearch"/>
+		) AS orgnInfo
+		<where>
+			<if test="page != null">
+				orgnInfo.ROWNUMBER BETWEEN #{page.beginIndex} + 1 AND #{page.closeIndex}
+			</if>
+		</where>
+	</select>
+</mapper>

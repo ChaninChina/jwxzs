@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.YhpzMapper">
+  <resultMap id="BaseResultMap" type="com.model.Yhpz">
+    <id column="PZID" jdbcType="VARCHAR" property="pzid" />
+    <result column="YHID" jdbcType="VARCHAR" property="yhid" />
+    <result column="PZMC" jdbcType="VARCHAR" property="pzmc" />
+    <result column="PZMS" jdbcType="VARCHAR" property="pzms" />
+    <result column="PZLX" jdbcType="VARCHAR" property="pzlx" />
+    <result column="PZNR" jdbcType="VARCHAR" property="pznr" />
+    <result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+    <result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PZID, YHID, PZMC, PZMS, PZLX, PZNR, ENABLE_STATUS, DELETE_STATUS, CREATE_TIME, CREATE_ID, 
+    UPDATE_TIME, UPDATE_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from TB_YHPZ
+    where PZID = #{pzid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_YHPZ
+    where PZID = #{pzid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Yhpz">
+    insert into TB_YHPZ (PZID, YHID, PZMC, 
+      PZMS, PZLX, PZNR, ENABLE_STATUS, 
+      DELETE_STATUS, CREATE_TIME, CREATE_ID, 
+      UPDATE_TIME, UPDATE_ID)
+    values (#{pzid,jdbcType=VARCHAR}, #{yhid,jdbcType=VARCHAR}, #{pzmc,jdbcType=VARCHAR}, 
+      #{pzms,jdbcType=VARCHAR}, #{pzlx,jdbcType=VARCHAR}, #{pznr,jdbcType=VARCHAR}, #{enableStatus,jdbcType=VARCHAR}, 
+      #{deleteStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{createId,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Yhpz">
+    insert into TB_YHPZ
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pzid != null">
+        PZID,
+      </if>
+      <if test="yhid != null">
+        YHID,
+      </if>
+      <if test="pzmc != null">
+        PZMC,
+      </if>
+      <if test="pzms != null">
+        PZMS,
+      </if>
+      <if test="pzlx != null">
+        PZLX,
+      </if>
+      <if test="pznr != null">
+        PZNR,
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pzid != null">
+        #{pzid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhid != null">
+        #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="pzmc != null">
+        #{pzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="pzms != null">
+        #{pzms,jdbcType=VARCHAR},
+      </if>
+      <if test="pzlx != null">
+        #{pzlx,jdbcType=VARCHAR},
+      </if>
+      <if test="pznr != null">
+        #{pznr,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Yhpz">
+    update TB_YHPZ
+    <set>
+      <if test="yhid != null">
+        YHID = #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="pzmc != null">
+        PZMC = #{pzmc,jdbcType=VARCHAR},
+      </if>
+      <if test="pzms != null">
+        PZMS = #{pzms,jdbcType=VARCHAR},
+      </if>
+      <if test="pzlx != null">
+        PZLX = #{pzlx,jdbcType=VARCHAR},
+      </if>
+      <if test="pznr != null">
+        PZNR = #{pznr,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PZID = #{pzid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Yhpz">
+    update TB_YHPZ
+    set YHID = #{yhid,jdbcType=VARCHAR},
+      PZMC = #{pzmc,jdbcType=VARCHAR},
+      PZMS = #{pzms,jdbcType=VARCHAR},
+      PZLX = #{pzlx,jdbcType=VARCHAR},
+      PZNR = #{pznr,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+    where PZID = #{pzid,jdbcType=VARCHAR}
+  </update>
+</mapper>

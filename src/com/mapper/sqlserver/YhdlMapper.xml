@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.YhdlMapper">
+  <resultMap id="BaseResultMap" type="com.model.Yhdl">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="YHID" jdbcType="VARCHAR" property="yhid" />
+    <result column="DLPT" jdbcType="VARCHAR" property="dlpt" />
+    <result column="TOKEN" jdbcType="VARCHAR" property="token" />
+    <result column="GQSJ" jdbcType="BIGINT" property="gqsj" />
+    <result column="DLSJ" jdbcType="VARCHAR" property="dlsj" />
+    <result column="IPDZ" jdbcType="VARCHAR" property="ipdz" />
+    <result column="ENABLE_STATUS" jdbcType="VARCHAR" property="enableStatus" />
+    <result column="DELETE_STATUS" jdbcType="VARCHAR" property="deleteStatus" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="CREATE_ID" jdbcType="VARCHAR" property="createId" />
+    <result column="UPDATE_TIME" jdbcType="VARCHAR" property="updateTime" />
+    <result column="UPDATE_ID" jdbcType="VARCHAR" property="updateId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.model.Yhdl">
+    <result column="KHDL" jdbcType="LONGVARCHAR" property="khdl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, YHID, DLPT, TOKEN, GQSJ, DLSJ, IPDZ, ENABLE_STATUS, DELETE_STATUS, CREATE_TIME, 
+    CREATE_ID, UPDATE_TIME, UPDATE_ID
+  </sql>
+  <sql id="Blob_Column_List">
+    KHDL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from TB_YHDL
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from TB_YHDL
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.model.Yhdl">
+    insert into TB_YHDL (ID, YHID, DLPT, 
+      TOKEN, GQSJ, DLSJ, IPDZ, 
+      ENABLE_STATUS, DELETE_STATUS, CREATE_TIME, 
+      CREATE_ID, UPDATE_TIME, UPDATE_ID, 
+      KHDL)
+    values (#{id,jdbcType=VARCHAR}, #{yhid,jdbcType=VARCHAR}, #{dlpt,jdbcType=VARCHAR}, 
+      #{token,jdbcType=VARCHAR}, #{gqsj,jdbcType=BIGINT}, #{dlsj,jdbcType=VARCHAR}, #{ipdz,jdbcType=VARCHAR}, 
+      #{enableStatus,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{createId,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{updateId,jdbcType=VARCHAR}, 
+      #{khdl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.model.Yhdl">
+    insert into TB_YHDL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="yhid != null">
+        YHID,
+      </if>
+      <if test="dlpt != null">
+        DLPT,
+      </if>
+      <if test="token != null">
+        TOKEN,
+      </if>
+      <if test="gqsj != null">
+        GQSJ,
+      </if>
+      <if test="dlsj != null">
+        DLSJ,
+      </if>
+      <if test="ipdz != null">
+        IPDZ,
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS,
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createId != null">
+        CREATE_ID,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID,
+      </if>
+      <if test="khdl != null">
+        KHDL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="yhid != null">
+        #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="dlpt != null">
+        #{dlpt,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="gqsj != null">
+        #{gqsj,jdbcType=BIGINT},
+      </if>
+      <if test="dlsj != null">
+        #{dlsj,jdbcType=VARCHAR},
+      </if>
+      <if test="ipdz != null">
+        #{ipdz,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="khdl != null">
+        #{khdl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.model.Yhdl">
+    update TB_YHDL
+    <set>
+      <if test="yhid != null">
+        YHID = #{yhid,jdbcType=VARCHAR},
+      </if>
+      <if test="dlpt != null">
+        DLPT = #{dlpt,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        TOKEN = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="gqsj != null">
+        GQSJ = #{gqsj,jdbcType=BIGINT},
+      </if>
+      <if test="dlsj != null">
+        DLSJ = #{dlsj,jdbcType=VARCHAR},
+      </if>
+      <if test="ipdz != null">
+        IPDZ = #{ipdz,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null">
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null">
+        DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createId != null">
+        CREATE_ID = #{createId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateId != null">
+        UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      </if>
+      <if test="khdl != null">
+        KHDL = #{khdl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.model.Yhdl">
+    update TB_YHDL
+    set YHID = #{yhid,jdbcType=VARCHAR},
+      DLPT = #{dlpt,jdbcType=VARCHAR},
+      TOKEN = #{token,jdbcType=VARCHAR},
+      GQSJ = #{gqsj,jdbcType=BIGINT},
+      DLSJ = #{dlsj,jdbcType=VARCHAR},
+      IPDZ = #{ipdz,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR},
+      KHDL = #{khdl,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.model.Yhdl">
+    update TB_YHDL
+    set YHID = #{yhid,jdbcType=VARCHAR},
+      DLPT = #{dlpt,jdbcType=VARCHAR},
+      TOKEN = #{token,jdbcType=VARCHAR},
+      GQSJ = #{gqsj,jdbcType=BIGINT},
+      DLSJ = #{dlsj,jdbcType=VARCHAR},
+      IPDZ = #{ipdz,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      DELETE_STATUS = #{deleteStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      CREATE_ID = #{createId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATE_ID = #{updateId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
